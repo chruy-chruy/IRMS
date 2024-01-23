@@ -16,7 +16,9 @@ body {
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	
 }
+
 
 .screen {		
 	/* background: linear-gradient(90deg, #5D54A4, #7C78B8);		 */
