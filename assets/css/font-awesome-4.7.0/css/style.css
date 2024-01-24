@@ -1,0 +1,243 @@
+
+body {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+  .content{
+    overflow:hidden;
+    margin-left: 255px;
+    /* padding: 20px; */
+    /* background-color: #504f4f; */
+    position: relative;
+    top: 0;
+    bottom: 0;
+ 
+}
+
+.header{
+    /* position: relative; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,.1);
+    text-align: center;
+}
+
+.footer{
+  /* position: relative; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px rgba(0,0,0,.1);
+  text-align: center;
+  padding: 10px;
+}
+
+.footer .save{
+  width: 150px;
+  padding: 10px;
+  margin-right: 20px;
+  border: 1px solid #CCCCCC;
+  background-color: #4a9e53;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff; 
+  cursor: pointer;
+}
+.footer .save:hover{
+  background-color: #397a40;
+}
+
+.footer .cancel{
+  width: 150px;
+  padding: 10px;
+  margin-right: 20px;
+  border: 1px solid #CCCCCC;
+  background-color: #a03838;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #ffffff; 
+  cursor: pointer;
+  text-decoration: none; 
+}
+.footer .cancel:hover{
+  background-color: #7a2a2a;
+}
+
+
+.search-box input[type="text"]{
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    transition: 0.4s;
+}
+.search-box h1{
+    width: 200px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    transition: 0.4s;
+}
+
+.search-box a button {
+    width: 150px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #CCCCCC;
+    background-color: #4a9e53;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff; 
+    float: right;
+}
+
+.search-box a button:hover {
+    color: #ffffff;
+    background-color: #03754b;
+}
+
+
+/* table */
+.data {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+  }
+  
+  .data td, .data th {
+	border: 1px solid #ddd;
+	padding: 10px;
+  }
+  .data tr a{
+    color: #515353;
+  }
+  .data tr a:hover{
+    color: rgb(5, 197, 127);
+  }
+  
+  .data tr a i{
+    width: 30px;
+    height: 30px;
+  }
+
+  .data tr:nth-child(even){background-color: #f2f2f2;}
+  
+  .data tr:hover {background-color: #ddd;}
+  
+  .data thead th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+    padding-left: 12px;
+	text-align: left;
+	background-color: #799e7d;
+	color: white;
+  }
+
+  .grid-container{
+    margin-top:50px;
+  display: grid;
+  gap: 5px;
+  grid-template-columns: auto auto auto auto;
+  /* background-color: #2196F3; */
+
+  }
+
+  .grid-item {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
+    padding: 10px;
+  }
+
+  .grid-item .form-label{
+    display: block;
+    font-weight: bold;
+    padding: 0;
+  }
+
+  .grid-item .required{
+    color: red;
+  }
+
+  .grid-item .form-control{
+    width: 300px;
+    height: 23px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    transition: 0.4s;
+    background-color: #f2f2f2;
+  }
+
+  .form-control:hover{
+    background-color: #f7f7f7;
+  }
+
+
+  .image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
+    padding: 5px;
+    margin-top: 10px;
+  }
+  
+  .image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: solid 5px #799e7d;
+  }
+
+  .input-image{
+    text-align: center; 
+  }
+
+.input-image button{
+  border: 0px;
+  cursor: pointer;
+  background-color: transparent;
+  margin: none;
+}
+
+.input-image button i{
+  color: #c7c4c4;
+}
+
+.input-image input[type="file"] {
+  background-color: #f2f2f2;
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+}
+
+.grid-container h3 {
+  font-weight: bold;
+  font-size: 20px;
+  color: #06aa16;
+}
+
+
