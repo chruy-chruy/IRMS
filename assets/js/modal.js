@@ -50,7 +50,7 @@ function take_snapshot() {
     Webcam.snap(function (data_uri) {
         // display results in page
         document.getElementById('image').innerHTML =
-            '<img id="imageprev" src="' + data_uri + '" style="width: 150px; border-radius: 50%; border: solid 5px #799e7d;"/>';
+            '<img id="imageprev" name="imageprev" src="' + data_uri + '" style="width: 150px; border-radius: 50%; border: solid 5px #799e7d;"/> <input type="hidden" name="imageValue" value="' + data_uri + '"/>';
     });
     modal.style.display = "none";
     Webcam.reset();

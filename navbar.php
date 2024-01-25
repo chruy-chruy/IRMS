@@ -9,14 +9,13 @@ if (!isset($_SESSION['id'])) {
         <div class="sidebar">
             <nav class="main-menu">
                 <div>
-                    <!-- <img src="../../assets/img/logo.png" alt="Logo" class="logo"> -->
+                    <img src="../../assets/img/logo.png" alt="Logo" class="logo">
                 </div>
 
                 <div class="scrollbar" id="style-1">
 
                     <ul>
-
-                        <li class="<?php if ($page == 'Home') {echo 'active';} ?>">
+                        <li class="darkerlishadow <?php if ($page == 'Home') {echo 'active';} ?>">
                             <a href="../home">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">Home</span>
@@ -25,7 +24,7 @@ if (!isset($_SESSION['id'])) {
 
 
                         </li>
-                        <li class="darkerlishadow <?php if ($page == 'Dashboard') {echo 'active';} ?>">
+                        <li class="darkerli <?php if ($page == 'Dashboard') {echo 'active';} ?>">
                             <a href="../announcement/index.html">
                                 <i class="fa fa-bar-chart  fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
@@ -61,7 +60,7 @@ if (!isset($_SESSION['id'])) {
 
                     <ul class="logout">
                         <li>
-                            <a href="http://startific.com">
+                            <a href="">
                                 <i class="fa fa-sign-out fa-lg"></i>
                                 <span class="nav-text">
                                     Logout

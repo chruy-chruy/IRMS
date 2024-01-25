@@ -1,3 +1,5 @@
+
+
 (function (document) {
     'use strict';
 
@@ -35,3 +37,4 @@
     });
 
 })(document);
+new DataTable('#example');
