@@ -41,7 +41,7 @@ include "../../db_conn.php";
             </div>
             <div class="input-image">
                 <?php
-                include "../../includes/modal.php";
+                include "../../includes/modal_cam.php";
                 ?>
 
             </div>

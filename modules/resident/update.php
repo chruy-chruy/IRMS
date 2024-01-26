@@ -53,5 +53,5 @@ $sql ="UPDATE `resident` SET
 WHERE id = '$id'";
 mysqli_query($conn, $sql);
 
-header("location:index.php?message=updated");
+header("location:index.php?message=Success! Changes has been saved successfully.");
 ?>

@@ -21,8 +21,13 @@
 $page = 'Resident';
 include "../../navbar.php";
 include "../../db_conn.php";
+
  ?>
         <div class="content">
+            <?php if(isset($_GET['message'])){
+            $message = $_GET['message'];
+            ?> <div class="alert" id="hide"><?php echo $message; ?></div><?php
+          } ?>
             <div class="header">
                 <h1><?php if ($page) {echo $page;} ?></h1>
             </div>

@@ -15,11 +15,9 @@
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
-    <script src="../../assets/js/table.js"></script>
     <script src="../../assets/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="webcamjs/webcam.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
 </head>
 
@@ -44,7 +42,7 @@ while ($row = mysqli_fetch_array($squery)) {
             </div>
             <div class="input-image">
                 <?php
-                include "../../includes/modal.php";
+                include "../../includes/modal_cam.php";
                 ?>
 
             </div>
@@ -183,7 +181,10 @@ while ($row = mysqli_fetch_array($squery)) {
             </div>
             <div class="footer">
             <button class="save" type="submit">Save</button>
-            <a href="./"><button class="delete" type="button">Delete</button></a>
+            <button class="delete" id="delBtn" type="button" onclick="del()">Delete</button>
+            <?php
+                include_once "../../includes/modal_del.php";
+            ?>
             </div>
         </form>
         </div>

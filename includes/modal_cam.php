@@ -83,5 +83,4 @@
   </div>
 
 </div>
-
 <script src="../../assets/js/modal.js"></script>
