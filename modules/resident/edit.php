@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_array($squery)) {
         <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
             <div class="image" id="image">
                 <img src="../../uploads/<?php echo $row['image'] ?>" alt="">
-                <input type="text" hidden name="imageValue" value="default.png">
+                <input type="text" hidden name="imageValue" value="<?php echo $row['image'] ?>">
             </div>
             <div class="input-image">
                 <?php

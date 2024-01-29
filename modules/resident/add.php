@@ -36,8 +36,8 @@ include "../../db_conn.php";
             
         <form class="row g-3" action="create.php" method="post">
             <div class="image" id="image">
-                <img src="../../assets/img/default.png" alt="">
-                <input type="text" hidden name="imageValue" value="default.png">
+                <img src="../../assets/img/default.jpeg" alt="">
+                <input type="text" hidden name="imageValue" value="default.jpeg">
             </div>
             <div class="input-image">
                 <?php

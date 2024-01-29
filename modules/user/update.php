@@ -1,25 +1,9 @@
 <?php 
 
 include "../../db_conn.php";
-$first_name = ($_POST['first_name']);
-$middle_name = ($_POST['middle_name']);
-$last_name = ($_POST['last_name']);
-$suffix = ($_POST['suffix']);
-$gender = ($_POST['gender']);
-$date_of_birth = ($_POST['date_of_birth']);
-$civil_status = ($_POST['civil_status']);
-$street = ($_POST['street']);
-$purok = ($_POST['purok']);
-$place_of_birth = ($_POST['place_of_birth']);
-$phone_number = ($_POST['phone_number']);
-$telephone_number = ($_POST['telephone_number']);
-$email_address = ($_POST['email_address']);
-$nationality = ($_POST['nationality']);
-$educational_attainment = ($_POST['educational_attainment']);
-$occupation = ($_POST['occupation']);
-$religion = ($_POST['religion']);
-$blood_type = ($_POST['blood_type']);
-$imageValue =  ($_POST['imageValue']);
+$username = ($_POST['username']);
+$role = ($_POST['role']);
+$password = ($_POST['password']);
 $id = $_GET['id'];
 
 if(str_ends_with($imageValue, 'jpeg') || str_ends_with($imageValue, 'png' )){}
