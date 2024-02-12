@@ -15,18 +15,9 @@ if (!isset($_SESSION['id'])) {
                 <div class="scrollbar" id="style-1">
 
                     <ul>
-                        <li class="darkerlishadow <?php if ($page == 'Home') {echo 'active';} ?>">
-                            <a href="../home">
+                        <li class="darkerlishadow <?php if ($page == 'Dashboard') {echo 'active';} ?>">
+                            <a href="../dashboard">
                                 <i class="fa fa-home fa-lg"></i>
-                                <span class="nav-text">Home</span>
-                            </a>
-                        </li>
-
-
-                        </li>
-                        <li class="darkerli <?php if ($page == 'Dashboard') {echo 'active';} ?>">
-                            <a href="../announcement/index.html">
-                                <i class="fa fa-bar-chart  fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
                             </a>
                         </li>
@@ -39,9 +30,9 @@ if (!isset($_SESSION['id'])) {
                         </li>
 
                         <li class="darkerli <?php if ($page == 'Announcement') {echo 'active';} ?>">
-                            <a href="../announcement/">
+                            <a href="../certificate/">
                                 <i class="fa fa-bullhorn fa-lg"></i>
-                                <span class="nav-text">Announcement</span>
+                                <span class="nav-text">Certificate</span>
                             </a>
                         </li>
 
@@ -60,7 +51,7 @@ if (!isset($_SESSION['id'])) {
 
                     <ul class="logout">
                         <li>
-                            <a href="">
+                            <a href="../../logout.php">
                                 <i class="fa fa-sign-out fa-lg"></i>
                                 <span class="nav-text">
                                     Logout
@@ -72,6 +63,5 @@ if (!isset($_SESSION['id'])) {
             </nav>
         </div>
         <div class="content">
-
         </div>
     </div>

@@ -32,7 +32,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['role'] = $row['role'];
-                header("Location: modules/home/");
+                header("Location: modules/dashboard/");
                 exit();
             }
             else{

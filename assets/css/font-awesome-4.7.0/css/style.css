@@ -265,6 +265,13 @@ body {
     background-color: #f2f2f2;
   }
 
+  .dashboard{
+  background-color: transparent;
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 50px;
+  }
+
   .form-control:hover{
     background-color: #d1d4d2;
     outline: none;
@@ -319,9 +326,25 @@ body {
   color: #06aa16;
 }
 
-.alert {
+.alert_message {
   padding: 20px;
   background-color: #50bb60;
+  width: 400px;
+  display:block;
+  position: fixed;
+  color: white;
+  border-bottom-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  opacity: 1;
+  transition: opacity 0;
+  margin-bottom: 15px;
+  overflow: hidden;
+  animation: cssAnimation 2.5s forwards;
+}
+.alert_error {
+  padding: 20px;
+  background-color: #a03838;
   width: 400px;
   display:block;
   position: fixed;

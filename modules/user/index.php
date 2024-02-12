@@ -24,10 +24,7 @@ include "../../db_conn.php";
 
  ?>
         <div class="content">
-            <?php if(isset($_GET['message'])){
-            $message = $_GET['message'];
-            ?> <div class="alert" id="hide"><?php echo $message; ?></div><?php
-          } ?>
+        <?php include "../../includes/alert.php"; ?>
             <div class="header">
                 <h1><?php if ($page) {echo $page;} ?></h1>
             </div>
@@ -44,7 +41,7 @@ include "../../db_conn.php";
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from user ");
+        $squery =  mysqli_query($conn, "SELECT * from user where del_status != 'deleted' ");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">

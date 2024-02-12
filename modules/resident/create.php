@@ -22,14 +22,12 @@ $blood_type = ($_POST['blood_type']);
 $del_status = "active";
 $imageValue =  ($_POST['imageValue']);
 
-if($imageValue != 'default.png'){
-$img = $imageValue;
-$image_name = $first_name. "_" . $last_name. "." .date("Y.m.d") .'.jpeg';
-$dir = "../../uploads/".$first_name. "_" . $last_name. "." .date("Y.m.d") .'.jpeg';
-file_put_contents($dir, file_get_contents($img));
-
-$imageValue =$image_name;
-}
+if(str_ends_with($imageValue, 'jpeg') || str_ends_with($imageValue, 'png' )){}
+    else{    $img = $imageValue;
+        $image_name = $first_name. "_" . $last_name. "." .date("Y.m.d") .'.jpeg';
+        $dir = "../../uploads/".$first_name. "_" . $last_name. "." .date("Y.m.d") .'.jpeg';
+        file_put_contents($dir, file_get_contents($img));
+        $imageValue =$image_name;}
 
 // check if resident is already exist
 $squery =  mysqli_query($conn, "SELECT * from resident Where 
@@ -85,9 +83,9 @@ if (empty($check)){
         '$del_status')";
     
     mysqli_query($conn, $sql2);
-    header("location:index.php");
+    header("location:index.php?message=Success! new resident has been saved successfully.");
 }
 else{
-    header("location:add.php");
+    header("location:add.php?error=Error! resident already exist.");
     }
  ?>

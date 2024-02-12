@@ -37,6 +37,10 @@ while ($row = mysqli_fetch_array($squery)) {
         <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
             <div class="grid-container">
+            <h3>User Information</h3>
+                <div></div>
+                <div></div>
+                <div></div>
                 <div class="grid-item">
                     <label class="form-label">Username <span class="required">*</span></label>
                     <input type="text" class="form-control" name="username" value="<?php echo $row['username'] ?>" required>
@@ -49,7 +53,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Passwword<span class="required">*</span></label>
+                    <label class="form-label">Password<span class="required">*</span></label>
                     <input type="text" class="form-control" name="password" 
                     value = "<?php echo $row['password']; ?>" required>
                 </div>

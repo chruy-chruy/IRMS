@@ -58,7 +58,8 @@ font-size:20px;
 }
 
 .main-menu, .sidebar {
-background-image: linear-gradient( #83b48a80 1%, white 80%);
+/* background-image: linear-gradient( #83b48a80 1%, white 80%); */
+background-image:  linear-gradient( #EAF9E7, white );
 padding-top: 20px;
 top:0;
 bottom:0;
@@ -90,13 +91,12 @@ width:255px;
 display:table;
 border-collapse:collapse;
 border-spacing:0;
-color:#070707;
+color:#011518;
 font-size: 14px;
 text-decoration:none;
 -webkit-transform:translateZ(0) scale(1,1);
 -webkit-transition:all .14s linear;
 transition:all .14s linear;
-font-family: 'Strait', sans-serif;
 border-top:1px solid #f2f2f2;
 text-shadow: 1px 1px 1px  #fff;  
 border: none;
