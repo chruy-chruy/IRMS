@@ -17,6 +17,7 @@
 <?php 
 $page = 'Dashboard';
 include "../../navbar.php";
+include "../../db_conn.php";
  ?>
 <div class="content">
 <div class="header">
@@ -24,16 +25,52 @@ include "../../navbar.php";
 </div>
 
 <div  class="row g-3">
-<div class="grid-container">
-  <div class="grid-item dashboard"><i class="fa fa-users"> Total Resident</i></div>
-  <div class="grid-item dashboard">2</div>
-  <div class="grid-item dashboard">3</div>
-  <div class="grid-item dashboard">4</div>
-  <div class="grid-item dashboard">5</div>
-  <div class="grid-item dashboard">6</div>
-  <div class="grid-item dashboard">7</div>
-  <div class="grid-item dashboard">8</div>
-  <div class="grid-item dashboard">9</div>
+<div class="grid-container-dashboard">
+
+  <div class="dashboard">
+  <div class="box-icon"><i class="fa fa-users"></i></div>
+  <div class="box-content">
+  <span class="big"><?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_resident FROM resident Where del_status != 'deleted'");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_resident']; }
+    ?></span>
+     Total Resident
+  </div>
+  </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-male"></i></div> 
+    <div class="box-content">
+    <span class="big"><?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS male FROM resident 
+    Where del_status != 'deleted' && gender = 'male' ");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['male']; }
+    ?></span>
+    Male
+    </div>
+    </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-female"></i></div> 
+    <div class="box-content">
+      <span class="big"> <?php $squery =  mysqli_query($conn, "SELECT COUNT(id) AS female FROM resident 
+      Where del_status != 'deleted' && gender = 'female' ");
+      while ($row = mysqli_fetch_array($squery)) { echo $row['female']; } ?>
+      </span>
+      Female
+    </div>
+    </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-certificate"></i></div> 
+    <div class="box-content">
+      <span class="big"> <?php $squery =  mysqli_query($conn, "SELECT COUNT(id) AS female FROM resident 
+      Where del_status != 'deleted' && gender = 'female' ");
+      while ($row = mysqli_fetch_array($squery)) { echo $row['female']; } ?>
+      </span>
+      Barangay Certificate
+    </div>
+    </div>
 
 </div>
 </div>

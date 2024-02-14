@@ -29,7 +29,7 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
-                        <li class="darkerli <?php if ($page == 'Announcement') {echo 'active';} ?>">
+                        <li class="darkerli <?php if ($page == 'Certificate') {echo 'active';} ?>">
                             <a href="../certificate/">
                                 <i class="fa fa-bullhorn fa-lg"></i>
                                 <span class="nav-text">Certificate</span>

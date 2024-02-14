@@ -46,11 +46,9 @@ while ($row = mysqli_fetch_array($squery)) {
                 ?>
 
             </div>
+            <h3>Personal Information</h3>
             <div class="grid-container">
-                <h3>Personal Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
                     <input type="text" class="form-control" name="first_name" value="<?php echo $row['first_name'] ?>" required>
@@ -94,11 +92,9 @@ while ($row = mysqli_fetch_array($squery)) {
                     <input type="text" class="form-control" id="name" name="civil_status" 
                     value = "<?php echo $row['civil_status']; ?>" required>
                 </div>
-                <div></div>
+                </div>
                 <h3>Address</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="grid-container">
 
                 <div class="grid-item">
                     <label class="form-label">Street<span class="required">*</span></label>
@@ -117,12 +113,9 @@ while ($row = mysqli_fetch_array($squery)) {
                     <input type="text" class="form-control" id="name" name="place_of_birth" 
                     value = "<?php echo $row['place_of_birth']; ?>" required>
                 </div>
-                <div></div>
-
+                </div>
                 <h3>Contact Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="grid-container">
 
                 <div class="grid-item">
                     <label class="form-label">Phone Number<span class="required">*</span></label>
@@ -141,12 +134,9 @@ while ($row = mysqli_fetch_array($squery)) {
                     <input type="text" class="form-control" id="name" name="email_address" 
                     value = "<?php echo $row['email_address']; ?>" >
                 </div>
-                <div></div>
-
+                </div>
                 <h3>Others</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div class="grid-container">
                 
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>

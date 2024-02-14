@@ -10,3 +10,6 @@ light to dark color green
 #C0E6BA
 #4CA771
 #013237
+
+dashboard text grey
+#99a0b0
