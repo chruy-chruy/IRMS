@@ -71,8 +71,8 @@ while ($row = mysqli_fetch_array($squery)) {
 
             </div>
             <div class="footer">
-            <button class="save" type="submit">Save</button>
-            <button class="delete" id="delBtn" type="button" onclick="del()">Delete</button>
+            <button class="save" type="submit">Generate</button>
+            <a href="./"><button class="cancel" type="button">Cancel</button></a>
             <?php
                 include_once "../../includes/modal_del_user.php";
             ?>

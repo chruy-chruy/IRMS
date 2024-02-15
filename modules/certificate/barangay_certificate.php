@@ -100,7 +100,7 @@ while ($row = mysqli_fetch_array($squery)) {
             <img class="logo1" src="../../assets/img/republic.png" alt="Barangay Logo">
             <label>
                 <span
-                    style="font-size: 13px; font-family: Copperplate,Copperplate Gothic Light,fantasy; font-weight:bolder; color: black;">Republic
+                    style="font-size: 13px; font-family: Copperplate,Copperplate Gothic Light,fantasy; color: black;">Republic
                     of the Philippines</span>
                 <br>
                 <p style="font-family: Arial; font-size: 11px; font-weight:bold; margin: 0;">Province of
@@ -109,8 +109,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 <p style="font-family: Arial; font-size: 11px; font-weight:bold; margin: 0;">
                     Municipality of Malungon
                 </p>
-                <span style="font-size:14px; font-family: Copperplate, 'Copperplate Gothic Light', fantasy;
-                font-weight:bolder">
+                <span style="font-size:14px; font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">
                     Barangay of Alkikan</span>
                 <br>
                 <br>
@@ -126,7 +125,7 @@ while ($row = mysqli_fetch_array($squery)) {
             <div class="grid-item1">
                 <hr
                     style="height:4px;border:none;background-color:rgb(82, 11, 11); margin-left: 10px; margin-right: 10px; margin-bottom: 0;">
-                <span style=" font-size: 11px;">LIST OF BRGY. OFFICIAL OF ALKIKAN</span>
+                <span style=" font-size: 11px; color:blue">LIST OF BRGY. OFFICIAL OF ALKIKAN</span>
                 <br>
                 <br>
                 <span style="font-size:14px; font-weight: bold; margin-bottom: 0;">HON. NILO H. ARELLANO</span>

@@ -32,7 +32,7 @@ if (!isset($_SESSION['id'])) {
                         <li class="darkerli <?php if ($page == 'Certificate') {echo 'active';} ?>">
                             <a href="../certificate/">
                                 <i class="fa fa-bullhorn fa-lg"></i>
-                                <span class="nav-text">Certificate</span>
+                                <span class="nav-text">Barangay Certificate</span>
                             </a>
                         </li>
 

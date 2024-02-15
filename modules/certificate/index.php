@@ -26,7 +26,7 @@ include "../../db_conn.php";
         <div class="content">
             <?php include "../../includes/alert.php"; ?>
             <div class="header">
-                <h1><?php if ($page) {echo $page;} ?></h1>
+                <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1>
             </div>
             <div class="search-box">
                 <!-- <input type="text" placeholder="Search" class="search-input" data-table="list"> -->

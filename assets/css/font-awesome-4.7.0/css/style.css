@@ -68,7 +68,7 @@ body {
   cursor: pointer;
 }
 .cancel {
-  width: 100px;
+  width: 150px;
     padding: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -308,6 +308,18 @@ body {
     outline: none;
   }
 
+  .grid-item textarea {
+    width: 300px;
+    height: 130px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+    transition: 0.4s;
+    background-color: #f2f2f2;
+  }
 
   .grid-item .form-control{
     width: 300px;
@@ -394,19 +406,6 @@ body {
   animation: cssAnimation 2.5s forwards;
 }
 
-textarea{
-  width: 300px;
-  height: 100px;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 14px;
-  color: #000;
-  transition: 0.4s;
-  background-color: #f2f2f2;
-
-}
 
 .alert_error {
   padding: 20px;
