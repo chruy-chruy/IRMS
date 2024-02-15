@@ -41,9 +41,6 @@ include "../../db_conn.php";
                     <th style="width: 50px;">ID</th>
                     <th>Name</th>
                     <th style="width: 55px;">Action</th>
-                    <!-- <th style="width: 50px;" ></th>
-                    <th></th>
-                    <th style="width: 55px;" ></th> -->
                 </thead>
                 <?php
         $squery =  mysqli_query($conn, "SELECT * from resident Where del_status != 'deleted'");

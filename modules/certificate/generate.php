@@ -35,9 +35,11 @@ while ($row = mysqli_fetch_array($squery)) {
                 <h1>Generate <?php if ($page) {echo $page;} ?></h1>
             </div>
         <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
-        <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
-        <h3>User Information</h3>
-            <div class="grid-container">
+
+        <form class="row g-3" action="barangay_certificate.php?id=<?php echo $row['id']?>" method="post">
+        <br>
+        <br>
+            <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Resident Name <span class="required">*</span></label>
                     <input readonly  type="text" class="form-control" name="name" value="<?php echo $row['first_name']." ". $row['middle_name'] ." ". $row['last_name'] ." ". $row['suffix'] ?>" required>
@@ -61,10 +63,9 @@ while ($row = mysqli_fetch_array($squery)) {
                     <input type="number" class="form-control" name="password" 
                     value = "" required>
                 </div>
-
                 <div class="grid-item">
                     <label class="form-label">Purpose<span class="required">*</span></label>
-                    <textarea  name="purpose" 
+                    <textarea class="form-control" name="purpose" 
                     value = "" required> </textarea>
                 </div>
 

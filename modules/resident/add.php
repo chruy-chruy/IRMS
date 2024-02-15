@@ -46,11 +46,9 @@ include "../../db_conn.php";
                 ?>
 
             </div>
-            <div class="grid-container">
-                <h3>Personal Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+
+            <h3>Personal Information</h3>
+            <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="first_name" 
@@ -77,7 +75,7 @@ include "../../db_conn.php";
 
                 <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
-                    <select class="form-control" id="gender" name="gender" required>
+                    <select id="gender" name="gender" required>
                     <option value="" select hidden >--</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -95,12 +93,11 @@ include "../../db_conn.php";
                     <input type="text" class="form-control" id="name" name="civil_status" 
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
                 </div>
-                <div></div>
-                <h3>Address</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+            </div>
 
+            <h3>Address</h3>
+
+            <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Street<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="street" 
@@ -118,13 +115,11 @@ include "../../db_conn.php";
                     <input type="text" class="form-control" id="name" name="place_of_birth" 
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
                 </div>
-                <div></div>
+                </div>
 
                 <h3>Contact Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
 
+                <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Phone Number<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="phone_number" 
@@ -142,13 +137,11 @@ include "../../db_conn.php";
                     <input type="text" class="form-control" id="name" name="email_address" 
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
                 </div>
-                <div></div>
+                </div>
 
                 <h3>Others</h3>
-                <div></div>
-                <div></div>
-                <div></div>
-                
+
+                <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="nationality" 

@@ -47,7 +47,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
             </div>
             <h3>Personal Information</h3>
-            <div class="grid-container">
+            <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
@@ -74,7 +74,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
-                    <select class="form-control" id="gender" name="gender" required>
+                    <select id="gender" name="gender" required>
                     <option value="<?php echo $row['gender']; ?>" select hidden ><?php echo $row['gender']; ?></option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -94,7 +94,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
                 </div>
                 <h3>Address</h3>
-                <div class="grid-container">
+                <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">
                     <label class="form-label">Street<span class="required">*</span></label>
@@ -115,7 +115,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
                 </div>
                 <h3>Contact Information</h3>
-                <div class="grid-container">
+                <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">
                     <label class="form-label">Phone Number<span class="required">*</span></label>
@@ -136,7 +136,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
                 </div>
                 <h3>Others</h3>
-                <div class="grid-container">
+                <div class="grid-container grid-container--fill">
                 
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>
