@@ -29,7 +29,6 @@ include "../../db_conn.php";
                 <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1>
             </div>
             <div class="search-box">
-                <!-- <input type="text" placeholder="Search" class="search-input" data-table="list"> -->
                 <a href="#"><button class="generate" id="certBtn" type="button" onclick="generate()">Generate</button></a>
                 <?php
                 include_once "../../includes/modal_cert.php";
@@ -39,21 +38,26 @@ include "../../db_conn.php";
             <table id="example" class="data list">
                 <thead>
                     <th style="width: 50px;">ID</th>
-                    <th>Name</th>
+                    <th>Resident</th>
+                    <th>purpose</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from resident Where del_status != 'deleted'");
+        $squery =  mysqli_query($conn, "SELECT * from certificate ");
          while ($row = mysqli_fetch_array($squery)) {
+            $resident_id = $row['id'];
+            $squery =  mysqli_query($conn, "SELECT * from resident Where id = $resident_id");
+           $res = mysqli_fetch_array($squery)
         ?>
                 <tr class="table-row">
                     <td><?php echo $row['id'] ?></td>
                     <td>
                         <div class="profile">
-                        <img src="../../uploads/<?php echo $row['image'] ?>" alt="">
-                        <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
+                        <img src="../../uploads/<?php echo $res['image'] ?>" alt="">
+                        <span class="name"><?php echo $res['first_name'] . " " . $res['last_name'] ?></span>
                         </div>
                     </td>
+                    <td><?php echo $row['purpose'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         view

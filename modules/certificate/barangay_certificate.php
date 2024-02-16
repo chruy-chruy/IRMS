@@ -18,6 +18,7 @@
             margin: 10px auto;
             border-radius: 10px;
             background-color: #ffffff;
+            border: solid 3px #718f7460;
         }
 
         .certificate-header {
@@ -75,6 +76,63 @@
             grid-template-columns: auto auto;
             padding: 10px;
         }
+
+        .buttons{
+            margin-top: 37%;
+            margin-left: 47%;
+            position:fixed;
+        }
+        .buttons .print{
+            width: 100px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size:16px;
+            box-shadow: 0 3px 5px #999;
+        }
+        .buttons .back{
+            width: 100px;
+            padding: 10px;
+            color: #4b4848;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size:16px;
+            box-shadow: 0 3px 5px #999;
+        }
+        .back:hover {
+           background-color: #FAFAFA;
+        }
+
+        .print:hover {
+            background-color: #45a049;
+        }
+        @media print {
+        .print{
+                display:none;
+        }
+        .back{
+                display:none;
+        }
+        .certificate {
+            max-width: 8.5in;
+            /* Legal page width */
+            margin: 10px auto;
+            border-radius: 10px;
+            background-color: #ffffff;
+            border: none;
+        }
+        @page {
+            margin: 0.3in 1in 0.3in 1in !important
+        }
+        }
     </style>
 </head>
 
@@ -83,6 +141,12 @@
 $page = 'Certificate';
 include "../../db_conn.php";
 $id = $_GET['id'];
+$print = $_GET['print'];
+$amount = $_POST['amount'];
+$purpose = $_POST['purpose'];
+$date_issued = $_POST['date_issued'];
+$date = date_create($date_issued);
+$format_date = date_format($date,"jS \d\a\y \of F\, Y");
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$id'");
 while ($row = mysqli_fetch_array($squery)) {
     $gender;
@@ -103,10 +167,10 @@ while ($row = mysqli_fetch_array($squery)) {
                     style="font-size: 13px; font-family: Copperplate,Copperplate Gothic Light,fantasy; color: black;">Republic
                     of the Philippines</span>
                 <br>
-                <p style="font-family: Arial; font-size: 11px; font-weight:bold; margin: 0;">Province of
+                <p style="font-family: Arial; font-size: 11px;  margin: 0;">Province of
                     Sarangani
                 </p>
-                <p style="font-family: Arial; font-size: 11px; font-weight:bold; margin: 0;">
+                <p style="font-family: Arial; font-size: 11px;  margin: 0;">
                     Municipality of Malungon
                 </p>
                 <span style="font-size:14px; font-family: Copperplate, 'Copperplate Gothic Light', fantasy;">
@@ -207,20 +271,18 @@ while ($row = mysqli_fetch_array($squery)) {
                     WHOM IT MAY CONCERN:</span>
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                 text-justify: inter-word;">
-                    This is to certify that <?php echo  $gender ?> <b><?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']." ".$row['suffix']?></b>, of legal
-                    age, <?php echo  $row['civil_status'] ?>, Filipino Citizen, and a bona fide resident of Sitio
-                    Spring, Barangay Alkikan, Malungon Sarangani Province.</p>
+                    This is to certify that <b><?php echo  $gender ?> <?php echo $row['first_name']." ".$row['middle_name']." ".$row['last_name']." ".$row['suffix']?></b>, of legal
+                    age, <?php echo  $row['civil_status'] ?>, Filipino Citizen, and a bona fide resident of <?php echo  $row['purok'] ?>, Barangay Alkikan, Malungon Sarangani Province.</p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
                     This Barangay certification is being issued upon the request of
-                    the above mentioned name in connection with his desire to
-                    open savings account at BDO Network Bank Malandag Branch
+                    the above mentioned name in connection with his desire to <?php echo $purpose ?>
                     and whatever legal purposes that may serve him best.</p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
-                    Issued this 12nd day of February, 2024 at Barangay Hall,
+                    Issued this <b><?php echo $format_date ?></b> at Barangay Hall,
                     Alkikan, Malungon, Sarangani Province.
                 </p>
 
@@ -254,12 +316,14 @@ while ($row = mysqli_fetch_array($squery)) {
                         Signed in the absence of Punong Barangay:
                         <br>
                         <br>
-                        <hr
-                            style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
+                        <hr style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
                         <b style="font-size: 14px; font-family: serif;">Kagawad On Duty l</b>
                     </p>
                 </div>
-
+            </div>
+            <div class="buttons">
+            <button class="print" id="print" onclick="window.print();window.location.href='save.php?id=<?php echo $id ?>&amount=<?php echo $amount ?>&purpose=<?php echo $purpose ?>&date_issued=<?php echo $date_issued ?>'">Print</button>
+            <button class="back" onclick="history.back()">Back</button>
             </div>
         </div>
     </div>

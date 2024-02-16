@@ -27,6 +27,7 @@ $page = 'Certificate';
 include "../../navbar.php";
 include "../../db_conn.php";
 $id = $_GET['id'];
+
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$id'");
 while ($row = mysqli_fetch_array($squery)) {
  ?>
@@ -36,7 +37,7 @@ while ($row = mysqli_fetch_array($squery)) {
             </div>
         <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
 
-        <form class="row g-3" action="barangay_certificate.php?id=<?php echo $row['id']?>" method="post">
+        <form class="row g-3" action="barangay_certificate.php?id=<?php echo $row['id']?>&print=true" method="post">
         <br>
         <br>
             <div class="grid-container grid-container--fill">
@@ -60,7 +61,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <div class="grid-item">
                     <label class="form-label">Amount<span class="required">*</span></label>
-                    <input type="number" class="form-control" name="password" 
+                    <input type="number" class="form-control" name="amount" 
                     value = "" required>
                 </div>
                 <div class="grid-item">
