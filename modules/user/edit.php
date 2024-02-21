@@ -36,11 +36,8 @@ while ($row = mysqli_fetch_array($squery)) {
             </div>
         <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
-            <div class="grid-container">
-            <h3>User Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+        <h3>User Information</h3>
+            <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Username <span class="required">*</span></label>
                     <input type="text" class="form-control" name="username" value="<?php echo $row['username'] ?>" required>

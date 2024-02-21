@@ -18,7 +18,7 @@
 
 <body>
     <?php 
-$page = 'Certificate';
+$page = 'Clearance';
 include "../../navbar.php";
 include "../../db_conn.php";
 
@@ -26,7 +26,7 @@ include "../../db_conn.php";
         <div class="content">
             <?php include "../../includes/alert.php"; ?>
             <div class="header">
-                <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1>
+                <!-- <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1> -->
             </div>
             <div class="search-box">
                 <a href="#"><button class="generate" id="certBtn" type="button" onclick="generate()">Generate</button></a>
@@ -43,7 +43,7 @@ include "../../db_conn.php";
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from certificate ");
+        $squery =  mysqli_query($conn, "SELECT * from clearance ");
          while ($row = mysqli_fetch_array($squery)) {
             $resident_id = $row['id'];
             $squery2 =  mysqli_query($conn, "SELECT * from resident Where id = $resident_id");

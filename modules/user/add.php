@@ -46,11 +46,9 @@ include "../../db_conn.php";
                 ?>
 
             </div>
-            <div class="grid-container">
-                <h3>User Information</h3>
-                <div></div>
-                <div></div>
-                <div></div>
+            <h3>User Information</h3>
+            <div class="grid-container grid-container--fill">
+              
                 <div class="grid-item">
                     <label class="form-label">Username<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="username" 

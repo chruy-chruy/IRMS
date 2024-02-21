@@ -147,6 +147,7 @@ $purpose = $_POST['purpose'];
 $date_issued = $_POST['date_issued'];
 $date = date_create($date_issued);
 $format_date = date_format($date,"jS \d\a\y \of F\, Y");
+
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$id'");
 while ($row = mysqli_fetch_array($squery)) {
     $gender;
@@ -163,7 +164,7 @@ while ($row = mysqli_fetch_array($squery)) {
     if($middle_name == ""){
         $middle_initial = "";
     }else{
-        $middle_initial = strtoupper($get_initial.".");
+        $middle_initial = $get_initial.".";
     }
  ?>
 
@@ -271,22 +272,31 @@ while ($row = mysqli_fetch_array($squery)) {
                 <h1
                     style="font-size: 18px; font-weight: bolder; margin: 0; text-align: center; font-family: Arial Black;">
                     BARANGAY
-                    CERTIFICATE
+                    CLEARANCE
                 </h1>
                 <br>
                 <span
                     style="font-size:15px; font-family: Algerian; font-weight:bold; display: flex;align-items: center;">TO
                     WHOM IT MAY CONCERN:</span>
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
-                text-justify: inter-word;">
-                    This is to certify that <b><?php echo  $gender ?> <?php echo $row['first_name']." ".$middle_initial." ".$row['last_name']." ".$row['suffix']?></b>, of legal
-                    age, <?php echo  $row['civil_status'] ?>, Filipino Citizen, and a bona fide resident of <?php echo  $row['purok'] ?>, Barangay Alkikan, Malungon Sarangani Province.</p>
+                text-justify: inter-word; text-indent: 50px;">
+                   THIS IS TO CERTIFY that based on the records of this Barangay of date the person whose name personal
+                    circumstances and signature below has not been accused nor has a pending case with the Lupong
+                    Tagapamayapa of neither crime involving moral turpitude nor act contrary to our existing law;</p>
+
+                <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
+                    text-justify: inter-word; text-transform: capitalize">
+                    Name: <b><?php echo $row['first_name']." ".$middle_initial." ".$row['last_name']." ".$row['suffix']?></b> <br>
+                    Address: <b>Purok <?php echo  $row['purok'] ?>, Barangay Alkikan, Malungon, Sarangani Province </b><br>
+                    Civil Status: <b><?php echo  $row['civil_status'] ?></b><br>
+                    Citizenship: <b><?php echo  $row['nationality'] ?></b><br>
+                    Occupation: <b><?php echo  $row['occupation'] ?></b><br>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
-                    This Barangay certification is being issued upon the request of
-                    the above mentioned name in connection with his desire to <?php echo $purpose ?>
-                    and whatever legal purposes that may serve him best.</p>
+                    THIS BARANGAY CERTIFICATION is issued upon the request of the above named person for his desire to
+                    <?php echo  $purpose ?> and for whatever purposes that may serve him best
+                </p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
