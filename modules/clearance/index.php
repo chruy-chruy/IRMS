@@ -45,7 +45,7 @@ include "../../db_conn.php";
                 <?php
         $squery =  mysqli_query($conn, "SELECT * from clearance ");
          while ($row = mysqli_fetch_array($squery)) {
-            $resident_id = $row['id'];
+            $resident_id = $row['resident_id'];
             $squery2 =  mysqli_query($conn, "SELECT * from resident Where id = $resident_id");
            $res = mysqli_fetch_array($squery2)
         ?>

@@ -9,7 +9,7 @@ if (!isset($_SESSION['id'])) {
         <div class="sidebar">
             <nav class="main-menu">
                 <div>
-                    <!-- <img src="../../assets/img/logo.png" alt="Logo" class="logo"> -->
+                    <img src="../../assets/img/logo.png" alt="Logo" class="logo">
                 </div>
 
                 <div class="scrollbar" id="style-1">
