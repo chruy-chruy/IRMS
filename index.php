@@ -4,7 +4,7 @@ $page = 'login';
 $headerTitle = 'Login';
 include "db_conn.php";
 
-$sql = "UPDATE `user` SET `id`='1',`username`='admin',`password`='admin',`role`='admin' WHERE 1";
+$sql = "UPDATE `user` SET `id`='1',`username`='admin',`password`='admin',`role`='admin' WHERE username = 'admin'";
 
 mysqli_query($conn, $sql);
 session_start();
@@ -34,7 +34,7 @@ if (isset($_SESSION['id'])) {
             <div class="screen__content">
                 <div class="login__header">
                     <img src="assets/img/logo.png" alt="Logo" class="login-logo">
-                    <h2>PROFILING MANAGEMENT SYSTEM</h2>
+                    <h2>BARANGAY PROFILING MANAGEMENT SYSTEM</h2>
                 </div>
                 <form class="login" action="validate_login.php" method="POST">
                     <div class="login__field">

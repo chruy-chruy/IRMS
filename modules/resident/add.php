@@ -98,16 +98,18 @@ include "../../db_conn.php";
             <h3>Address</h3>
 
             <div class="grid-container grid-container--fill">
-                <div class="grid-item">
-                    <label class="form-label">Street<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="street" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
-                </div>
 
                 <div class="grid-item">
                     <label class="form-label">Purok<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="purok" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <select id="purok" name="purok" required>
+                    <option value="" select hidden >--</option>
+                        <option value="Sitio Balite">Sitio Balite</option>
+                        <option value="Sitio Spring">Sitio Spring</option>
+                        <option value="Sitio Crossing">Sitio Crossing</option>
+                        <option value="Purok Ni-an">Purok Ni-an</option>
+                        <option value="Purok Bag-o">Purok Bag-o</option>
+                        <option value="Purok Constantino">Purok Constantino</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
@@ -124,12 +126,6 @@ include "../../db_conn.php";
                     <label class="form-label">Phone Number<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="phone_number" 
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
-                </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Telephone Number</label>
-                    <input type="text" class="form-control" id="name" name="telephone_number" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
                 </div>
 
                 <div class="grid-item">
@@ -163,12 +159,6 @@ include "../../db_conn.php";
                 <div class="grid-item">
                     <label class="form-label">Religion</label>
                     <input type="text" class="form-control" id="name" name="religion" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
-                </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Blood Type</label>
-                    <input type="text" class="form-control" id="name" name="blood_type" 
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
                 </div>
 

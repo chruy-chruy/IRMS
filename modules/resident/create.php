@@ -12,13 +12,11 @@ $street = ucwords($_POST['street']);
 $purok = ucwords($_POST['purok']);
 $place_of_birth = ucwords($_POST['place_of_birth']);
 $phone_number = ($_POST['phone_number']);
-$telephone_number = ($_POST['telephone_number']);
 $email_address = ($_POST['email_address']);
 $nationality = ucwords($_POST['nationality']);
 $educational_attainment = ucwords($_POST['educational_attainment']);
 $occupation = ucwords($_POST['occupation']);
 $religion = ucwords($_POST['religion']);
-$blood_type = ($_POST['blood_type']);
 $del_status = "active";
 $imageValue =  ($_POST['imageValue']);
 
@@ -47,17 +45,14 @@ if (empty($check)){
     `gender`,
     `date_of_birth`,
     `civil_status`,
-    `street`,
     `purok`,
     `place_of_birth`,
     `phone_number`,
-    `telephone_number`,
     `email_address`,
     `nationality`,
     `educational_attainment`,
     `occupation`,
     `religion`,
-    `blood_type`,
     `image`,
     `del_status`
     ) VALUES (
@@ -68,17 +63,14 @@ if (empty($check)){
         '$gender',
         '$date_of_birth',
         '$civil_status',
-        '$street',
         '$purok',
         '$place_of_birth',
         '$phone_number',
-        '$telephone_number',
         '$email_address',
         '$nationality',
         '$educational_attainment',
         '$occupation',
         '$religion',
-        '$blood_type',
         '$imageValue',
         '$del_status')";
     

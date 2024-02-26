@@ -28,8 +28,9 @@ include "../../db_conn.php";
             <div class="header">
                 <h1><?php if ($page) {echo $page;} ?></h1>
             </div>
+            
             <div class="search-box">
-                <!-- <input type="text" placeholder="Search" class="search-input" data-table="list"> -->
+            <a href="./export.php"><button style="float:left;">Export</button></a>
                 <a href="./add.php"><button>Add</button></a>
             </div>
             <div class="table_wrap">
@@ -43,7 +44,7 @@ include "../../db_conn.php";
                     <th style="width: 55px;" ></th> -->
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from resident Where del_status != 'deleted'");
+        $squery =  mysqli_query($conn, "SELECT * from resident Where del_status != 'deleted' ORDER BY id DESC;");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">
@@ -65,7 +66,9 @@ include "../../db_conn.php";
             </table>
             </div>
     </div>
-<script>new DataTable('#example');</script>
+<script>new DataTable('#example', {
+    order: [[0, 'desc']]
+});</script>
 
 </body>
 

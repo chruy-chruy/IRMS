@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $resident_id = $_GET['id'];
 $date_issued = $_GET['date_issued'];
 $amount = $_GET['amount'];

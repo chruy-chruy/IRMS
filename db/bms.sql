@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 11:14 AM
+-- Generation Time: Feb 26, 2024 at 10:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -32,8 +32,8 @@ CREATE TABLE `certificate` (
   `resident_id` int(55) NOT NULL,
   `purpose` varchar(255) NOT NULL,
   `amount` varchar(255) NOT NULL,
-  `issued_date` datetime NOT NULL,
-  `user_id` int(55) NOT NULL
+  `issued_date` date NOT NULL,
+  `user_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,8 +41,34 @@ CREATE TABLE `certificate` (
 --
 
 INSERT INTO `certificate` (`id`, `resident_id`, `purpose`, `amount`, `issued_date`, `user_id`) VALUES
-(00001, 15, ' take scholarship exam', '50', '2024-02-16 00:00:00', 0),
-(00002, 15, 'job application ', '50', '2024-02-16 00:00:00', 0);
+(00001, 15, ' take scholarship exam', '50', '2024-02-16', '0'),
+(00002, 15, 'job application ', '50', '2024-02-16', '0'),
+(00003, 3, ' test', '12', '2024-02-21', '0'),
+(00004, 1, ' test', '212', '2024-02-21', 'admin admin'),
+(00005, 1, ' test', '12', '2024-02-26', 'admin admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clearance`
+--
+
+CREATE TABLE `clearance` (
+  `id` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `resident_id` int(55) NOT NULL,
+  `purpose` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `issued_date` date NOT NULL,
+  `user_id` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `clearance`
+--
+
+INSERT INTO `clearance` (`id`, `resident_id`, `purpose`, `amount`, `issued_date`, `user_id`) VALUES
+(00001, 1, 'est', '23', '2024-02-21', ' '),
+(00002, 3, 'updated', '23', '2024-02-21', 'admin admin');
 
 -- --------------------------------------------------------
 
@@ -94,7 +120,8 @@ INSERT INTO `resident` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`
 (00012, 'Asd', 'ss', 'asda', 'asd', 'Male', '2313-11-12', 'asd', 'asd', 'sad', 'ads', 'asd', '', '', 'asd', '', '', '', '', 'default.jpeg', '2024-01-30 15:37:49', 'active'),
 (00013, 'Asd', '', 'ss', '123', 'Male', '0213-12-11', '123', '13', '213', '2131', '123', '', '', '1231', '', '', '', '', 'default.jpeg', '2024-01-30 15:38:11', 'active'),
 (00014, 'Asd ', '', 'ss', '', 'Male', '0000-00-00', '1231', '123', '12321', '321', '123', '', '', '123', '', '', '', '', 'default.jpeg', '2024-01-30 15:38:37', 'active'),
-(00015, 'Juan', '', 'Dela Cruz', '', 'Male', '2000-11-23', 'Single', 'Test', 'Sitio Spring', 'Gensan City', '09531023180', '09531023180', 'test@gmail.com', 'Filipino', 'College', 'IT', 'Catholic', 'B+', 'Juan_Dela Cruz.2024.02.16.jpeg', '2024-02-16 17:10:15', 'active');
+(00015, 'Juan', '', 'Dela Cruz', '', 'Male', '2000-11-23', 'Single', 'Test', 'Sitio Spring', 'Gensan City', '09531023180', '09531023180', 'test@gmail.com', 'Filipino', 'College', 'IT', 'Catholic', 'B+', 'Juan_Dela Cruz.2024.02.16.jpeg', '2024-02-16 17:10:15', 'active'),
+(00016, 'Test', 'Test', 'Test', '', 'Male', '1998-11-23', 'Single', '1', 'Sitio Balite', 'Lagao General Santos City', '926883740', '12331231', 'test@gmail.com', 'Filipino', 'College', 'Teacher', 'Inc', 'B+', 'default.jpeg', '2024-02-21 14:14:21', 'active');
 
 -- --------------------------------------------------------
 
@@ -130,6 +157,12 @@ ALTER TABLE `certificate`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `clearance`
+--
+ALTER TABLE `clearance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `resident`
 --
 ALTER TABLE `resident`
@@ -149,13 +182,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `certificate`
 --
 ALTER TABLE `certificate`
+  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `clearance`
+--
+ALTER TABLE `clearance`
   MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `resident`
 --
 ALTER TABLE `resident`
-  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `user`

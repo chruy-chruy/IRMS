@@ -97,15 +97,16 @@ while ($row = mysqli_fetch_array($squery)) {
                 <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">
-                    <label class="form-label">Street<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="street" 
-                    value = "<?php echo $row['street']; ?>" required>
-                </div>
-
-                <div class="grid-item">
                     <label class="form-label">Purok<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="purok" 
-                    value = "<?php echo $row['purok']; ?>" required>
+                    <select id="purok" name="purok" required>
+                    <option value="<?php echo $row['purok']; ?>" select hidden ><?php echo $row['purok']; ?></option>
+                        <option value="Sitio Balite">Sitio Balite</option>
+                        <option value="Sitio Spring">Sitio Spring</option>
+                        <option value="Sitio Crossing">Sitio Crossing</option>
+                        <option value="Purok Ni-an">Purok Ni-an</option>
+                        <option value="Purok Bag-o">Purok Bag-o</option>
+                        <option value="Purok Constantino">Purok Constantino</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
@@ -121,12 +122,6 @@ while ($row = mysqli_fetch_array($squery)) {
                     <label class="form-label">Phone Number<span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="phone_number" 
                     value = "<?php echo $row['phone_number']; ?>" required>
-                </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Telephone Number</label>
-                    <input type="text" class="form-control" id="name" name="telephone_number" 
-                    value = "<?php echo $row['telephone_number']; ?>" >
                 </div>
 
                 <div class="grid-item">
@@ -160,12 +155,6 @@ while ($row = mysqli_fetch_array($squery)) {
                     <label class="form-label">Religion</label>
                     <input type="text" class="form-control" id="name" name="religion" 
                     value = "<?php echo $row['religion']; ?>"  >
-                </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Blood Type</label>
-                    <input type="text" class="form-control" id="name" name="blood_type" 
-                    value = "<?php echo $row['blood_type']; ?>" >
                 </div>
 
             </div>

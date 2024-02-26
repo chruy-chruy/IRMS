@@ -1,11 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+$page = 'Clearance';
+include "../../navbar.php";
+include "../../db_conn.php";
+ ?>
 <head>
 
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
-    <title>Residents</title>
+    <title><?php if ($page) {echo "Barangay ".$page;} ?></title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
@@ -17,16 +22,10 @@
 </head>
 
 <body>
-    <?php 
-$page = 'Clearance';
-include "../../navbar.php";
-include "../../db_conn.php";
-
- ?>
         <div class="content">
             <?php include "../../includes/alert.php"; ?>
             <div class="header">
-                <!-- <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1> -->
+                <h1><?php if ($page) {echo "Barangay ".$page;} ?></h1>
             </div>
             <div class="search-box">
                 <a href="#"><button class="generate" id="certBtn" type="button" onclick="generate()">Generate</button></a>
@@ -69,7 +68,9 @@ include "../../db_conn.php";
             </table>
             </div>
     </div>
-<script>new DataTable('#example');
+<script>new DataTable('#example', {
+    order: [[0, 'desc']]
+});
 new DataTable('#example2',{
   info: false,
     ordering: false,
