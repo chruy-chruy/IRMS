@@ -295,8 +295,20 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
-                    THIS BARANGAY CERTIFICATION is issued upon the request of the above named person for his desire to
-                    <?php echo  $purpose ?> and for whatever purposes that may serve him best
+                    THIS BARANGAY CERTIFICATION is issued upon the request of the above named person for 
+                    <?php
+                     if($row['gender'] == "Female"){
+                        echo "her";
+                     }else {
+                        echo "his";
+                     } ?>
+                      desire to <b><?php echo $purpose ?></b>
+                    and whatever legal purposes that may serve <?php
+                     if($row['gender'] == "Female"){
+                        echo "her";
+                     }else {
+                        echo "him";
+                     } ?> best
                 </p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
@@ -312,7 +324,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         Prepared by:
                         <br>
                         <br>
-                        <b>GINA A. GENITE</b>
+                        <b style="font-size:15px; font-weight: bold; margin-bottom: 0; text-decoration: underline">GINA A. GENITE</b>
                         <br>
                         Barangay Secretary
                     </div>
@@ -322,7 +334,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         Attested & Approved by:
                         <br>
                         <br>
-                        <b>NILO H. ARELLANO</b>
+                        <b style="font-size:15px; font-weight: bold; margin-bottom: 0; text-decoration: underline">NILO H. ARELLANO</b>
                         <br>
                         Punong Barangay
                     </div>
@@ -331,12 +343,12 @@ while ($row = mysqli_fetch_array($squery)) {
                 <br>
                 <br>
                 <div style="text-align: center; float: left;">
-                    <p style="font-size: 13px; font-family: Arial, Helvetica, sans-serif;">
+                    <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;">
                         Signed in the absence of Punong Barangay:
                         <br>
                         <br>
                         <hr style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
-                        <b style="font-size: 14px; font-family: serif;">Kagawad On Duty l</b>
+                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty l</b>
                     </p>
                 </div>
             </div>

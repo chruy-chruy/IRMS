@@ -90,8 +90,13 @@ include "../../db_conn.php";
 
                 <div class="grid-item">
                     <label class="form-label">Civil Status<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="civil_status" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <select id="civil_status" name="civil_status" required>
+                        <option value="" select hidden >--</option>
+                        <option value="Single">Single</option>
+                        <option value="Maried">Maried</option>
+                        <option value="Separated or Divorced">Separated or Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
                 </div>
             </div>
 
@@ -146,8 +151,12 @@ include "../../db_conn.php";
 
                 <div class="grid-item">
                     <label class="form-label">Educational Attainment</label>
-                    <input type="text" class="form-control" id="name" name="educational_attainment" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
+                    <select id="educational_attainment" name="educational_attainment" required>
+                        <option value="" select hidden >--</option>
+                        <option value="Elementary">Elementary</option>
+                        <option value="High School">High School</option>
+                        <option value="College">College</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">

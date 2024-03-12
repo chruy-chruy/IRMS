@@ -165,6 +165,7 @@ while ($row = mysqli_fetch_array($squery)) {
     }else{
         $middle_initial = strtoupper($get_initial.".");
     }
+
  ?>
 
     <div class="certificate">
@@ -285,8 +286,20 @@ while ($row = mysqli_fetch_array($squery)) {
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
                     This Barangay certification is being issued upon the request of
-                    the above mentioned name in connection with his desire to <?php echo $purpose ?>
-                    and whatever legal purposes that may serve him best.</p>
+                    the above mentioned name in connection with 
+                    <?php
+                     if($row['gender'] == "Female"){
+                        echo "her";
+                     }else {
+                        echo "his";
+                     } ?>
+                      desire to <b><?php echo $purpose ?></b>
+                    and whatever legal purposes that may serve <?php
+                     if($row['gender'] == "Female"){
+                        echo "her";
+                     }else {
+                        echo "him";
+                     } ?> best.</p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
@@ -301,7 +314,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         Prepared by:
                         <br>
                         <br>
-                        <b>GINA A. GENITE</b>
+                        <b style="font-size:15px; font-weight: bold; margin-bottom: 0; text-decoration: underline">GINA A. GENITE</b>
                         <br>
                         Barangay Secretary
                     </div>
@@ -311,7 +324,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         Attested & Approved by:
                         <br>
                         <br>
-                        <b>NILO H. ARELLANO</b>
+                        <b style="font-size:15px; font-weight: bold; margin-bottom: 0; text-decoration: underline">NILO H. ARELLANO</b>
                         <br>
                         Punong Barangay
                     </div>
@@ -320,12 +333,12 @@ while ($row = mysqli_fetch_array($squery)) {
                 <br>
                 <br>
                 <div style="text-align: center; float: left;">
-                    <p style="font-size: 13px; font-family: Arial, Helvetica, sans-serif;">
+                    <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;">
                         Signed in the absence of Punong Barangay:
                         <br>
                         <br>
                         <hr style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
-                        <b style="font-size: 14px; font-family: serif;">Kagawad On Duty l</b>
+                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty l</b>
                     </p>
                 </div>
             </div>
