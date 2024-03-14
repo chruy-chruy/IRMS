@@ -17,8 +17,8 @@
         rel="stylesheet">
     <script src="../../assets/js/main.js"></script>
     <script type="text/javascript" src="webcamjs/webcam.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="../../assets/js/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" href="../../assets/css/jquery.dataTables.min.css">
 </head>
 
 <body>
@@ -59,11 +59,12 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
 
 
-                <div class="grid-item">
+                <!-- <div class="grid-item">
                     <label class="form-label">Amount<span class="required">*</span></label>
                     <input type="number" class="form-control" name="amount" 
                     value = "" required>
-                </div>
+                </div> -->
+
                 <div class="grid-item">
                     <label class="form-label">Purpose<span class="required">*</span></label>
                     <textarea class="form-control" name="purpose" 
