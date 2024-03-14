@@ -143,7 +143,6 @@ include "../../db_conn.php";
 $id = $_GET['id'];
 $resident_id = $_GET['resident_id'];
 $print = $_GET['print'];
-$amount = $_POST['amount'];
 $purpose = $_POST['purpose'];
 $date_issued = $_POST['date_issued'];
 $date = date_create($date_issued);
@@ -353,7 +352,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
             </div>
             <div class="buttons">
-            <button class="print" id="print" onclick="window.print();window.location.href='update.php?id=<?php echo $id ?>&resident_id=<?php echo $resident_id ?>&amount=<?php echo $amount ?>&purpose=<?php echo $purpose ?>&date_issued=<?php echo $date_issued ?>'">Print</button>
+            <button class="print" id="print" onclick="window.print();window.location.href='update.php?id=<?php echo $id ?>&resident_id=<?php echo $resident_id ?>&purpose=<?php echo $purpose ?>&date_issued=<?php echo $date_issued ?>'">Print</button>
             <button class="back" onclick="history.back()">Back</button>
             </div>
         </div>

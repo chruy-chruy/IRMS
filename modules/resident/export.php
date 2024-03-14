@@ -11,21 +11,21 @@
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
         rel="stylesheet">
 <!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../../assets/css/jquery.dataTables.min.css">
 <!-- DataTables Buttons CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.3.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="../../assets/css/buttons.dataTables.min.css">
 
 <!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../../assets/js/report/jquery.min.js"></script>
 <!-- DataTables JS -->
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="../../assets/js/jquery.dataTables.min.js"></script>
 <!-- DataTables Buttons JS -->
-<script src="https://cdn.datatables.net/buttons/2.3.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.html5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.3.1/js/buttons.print.min.js"></script>
+<script src="../../assets/js/report/dataTables.buttons.min.js"></script>
+<script src="../../assets/js/report/jszip.min.js"></script>
+<script src="../../assets/js/report/buttons.html5.min.js"></script>
+<script src="../../assets/js/report/pdfmake.min.js"></script>
+<script src="../../assets/js/report/vfs_fonts.js"></script>
+<script src="../../assets/js/report/buttons.print.min.js"></script>
 
 
 
@@ -111,7 +111,7 @@ include "../../db_conn.php";
     $('#example').DataTable({
         dom: 'Bfrtip', // Add buttons to DOM
         buttons: [
-            'copy', // Copy to clipboard
+            // 'copy', // Copy to clipboard
             'excel', // Export to Excel
             'pdf', // Export to PDF
             'print' // Print button

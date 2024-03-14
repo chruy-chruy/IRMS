@@ -21,8 +21,10 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>BMS</title>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
+    <link rel="icon" type="image/x-icon" href="assets/img/republic.ico">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-4.7.0/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    
     <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/login.css">
 
 </head>
@@ -33,16 +35,16 @@ if (isset($_SESSION['id'])) {
         <div class="screen">
             <div class="screen__content">
                 <div class="login__header">
-                    <img src="assets/img/logo.png" alt="Logo" class="login-logo">
-                    <h2>BARANGAY PROFILING MANAGEMENT SYSTEM</h2>
+                    <img src="assets/img/republic.png" alt="Logo" class="login-logo">
+                    <h2>PROFILING MANAGEMENT SYSTEM</h2>
                 </div>
                 <form class="login" action="validate_login.php" method="POST">
                     <div class="login__field">
-                        <i class="login__icon fas fa-user"></i>
+                        <i class="login__icon fas fa fa-user"></i>
                         <input type="text" class="login__input" placeholder="User Name" name="username">
                     </div>
                     <div class="login__field">
-                        <i class="login__icon fas fa-lock"></i>
+                        <i class="login__icon fas fa fa-lock"></i>
                         <input type="password" class="login__input" placeholder="Password" name="password">
                     </div>
                     <?php if (isset($_GET['error'])) { ?>

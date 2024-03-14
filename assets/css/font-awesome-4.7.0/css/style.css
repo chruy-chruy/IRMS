@@ -273,7 +273,7 @@ body {
   .grid-container-dashboard{
     margin-top:50px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
     }
 
@@ -284,11 +284,19 @@ body {
     align-items: center;
     border: 1px solid #ede8f0;
     border-radius: 5px;
-    width: 260px;
+    width: 200px;
     padding: 10px;
     margin-left: auto;
   margin-right: auto;
   }
+
+  .img{
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+  }
+  
 
 .big {
     display: block;
