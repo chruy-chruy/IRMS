@@ -10,6 +10,7 @@
 
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
+    <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
     <title>Residents</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
@@ -83,7 +84,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <div class="grid-item">
                     <label class="form-label">Date of Birth<span class="required">*</span></label>
-                    <input type="date" class="form-control" id="name" name="date_of_birth" 
+                    <input type="date" class="form-control" id="name" name="date_of_birth" max="<?= date('Y-m-d'); ?>" 
                     value = "<?php echo $row['date_of_birth']; ?>" required>
                 </div>
 
@@ -159,7 +160,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
             </div>
             <div class="footer">
-            <button class="save" type="submit">Save</button>
+            <button class="save" type="submit">Update</button>
             <button class="delete" id="delBtn" type="button" onclick="del()">Delete</button>
             <?php
                 include_once "../../includes/modal_del.php";

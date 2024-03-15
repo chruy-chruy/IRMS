@@ -4,12 +4,12 @@ if (!isset($_SESSION['id'])) {
     header("Location: ../index.php");
     exit();
 } ?>
-
+<link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
 <div class="container">
         <div class="sidebar">
             <nav class="main-menu">
                 <div>
-                    <img src="../../assets/img/logo.png" alt="Logo" class="logo">
+                    <img src="../../assets/img/republic.png" alt="Logo" class="logo">
                 </div>
 
                 <div class="scrollbar" id="style-1">

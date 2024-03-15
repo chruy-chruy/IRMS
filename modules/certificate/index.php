@@ -10,6 +10,7 @@ include "../../db_conn.php";
  ?>
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
+    <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
     <title><?php if ($page) {echo "Barangay ".$page;} ?></title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
@@ -60,7 +61,7 @@ include "../../db_conn.php";
                     <td><?php echo $row['purpose'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
-                        view
+                        View
                         </a>
                         <!-- <a href=""><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a> -->
                     </td>

@@ -10,6 +10,7 @@
 
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
+    <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
     <title>Residents</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
@@ -84,7 +85,7 @@ include "../../db_conn.php";
 
                 <div class="grid-item">
                     <label class="form-label">Date of Birth<span class="required">*</span></label>
-                    <input type="date" class="form-control" id="name" name="date_of_birth" 
+                    <input type="date" class="form-control" id="name" name="date_of_birth"  max="<?= date('Y-m-d'); ?>"
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
                 </div>
 
