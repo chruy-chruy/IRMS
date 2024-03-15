@@ -35,8 +35,8 @@ if (isset($_SESSION['id'])) {
         <div class="screen">
             <div class="screen__content">
                 <div class="login__header">
-                    <img src="assets/img/logo.png" alt="Logo" class="login-logo">
-                    <h2>BARANGAY PROFILING MANAGEMENT SYSTEM</h2>
+                    <img src="assets/img/republic.png" alt="Logo" class="login-logo">
+                    <h2>PROFILING MANAGEMENT SYSTEM</h2>
                 </div>
                 <form class="login" action="validate_login.php" method="POST">
                     <div class="login__field">
