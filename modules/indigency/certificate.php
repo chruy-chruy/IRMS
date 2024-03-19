@@ -148,11 +148,11 @@ $format_date = date_format($date,"jS \d\a\y \of F\, Y");
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$id'");
 while ($row = mysqli_fetch_array($squery)) {
     $gender;
-    if($row['gender'] == "Female" &&  $row['civil_status'] == "single"){
+    if($row['gender'] == "Female" &&  $row['civil_status'] == "Single"){
         $gender = "Ms.";
-    }elseif($row['gender'] == "Female" &&  $row['civil_status'] == "married"){
+    }elseif($row['gender'] == "Female" &&  $row['civil_status'] == "Married"){
         $gender = "Mrs.";
-    }else{
+    }elseif($row['gender'] == "Male"){
         $gender = "Mr.";
     }
 
