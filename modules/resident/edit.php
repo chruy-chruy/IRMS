@@ -121,13 +121,13 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <div class="grid-item">
                     <label class="form-label">Phone Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="phone_number" 
+                    <input type="number" maxlength="10" class="form-control" id="name" name="phone_number" placeholder="09123456789"
                     value = "<?php echo $row['phone_number']; ?>" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Email Address</label>
-                    <input type="text" class="form-control" id="name" name="email_address" 
+                    <input type="email" class="form-control" id="name" name="email_address" 
                     value = "<?php echo $row['email_address']; ?>" >
                 </div>
                 </div>
@@ -141,9 +141,21 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Educational Attainment</label>
-                    <input type="text" class="form-control" id="name" name="educational_attainment" 
-                    value = "<?php echo $row['educational_attainment']; ?>" >
+                    <label class="form-label">Educational Attainment<span class="required">*</span></label>
+                    <select id="educational_attainment" name="educational_attainment" required>
+                        <option value="<?php echo $row['educational_attainment']; ?>" select hidden ><?php echo $row['educational_attainment']; ?></option>
+                        <option value="No Grade Completed">No Grade Completed</option>
+                        <option value="Pre-School/Early Childhood Education">Pre-School/Early Childhood Education</option>
+                        <option value="Elementary Education">Elementary Education</option>
+                        <option value="Junior High School Education">Junior High School Education</option>
+                        <option value="Senior High School Education">Senior High School Education</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="Vocational or Technical Education">Vocational or Technical Education</option>
+                        <option value="Associate Degree">Associate Degree</option>
+                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                        <option value="Master Degree">Master's Degree</option>
+                        <option value="Doctoral Degree/Ph.D.">Doctoral Degree/Ph.D.</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">

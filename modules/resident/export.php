@@ -47,7 +47,9 @@ include "../../db_conn.php";
             <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
          </div>
             <div class="table_wrap">
+        
             <table id="example" class="data list">
+                
                 <thead>
                     <th style="width: 50px;">ID</th>
                     <th>Name</th>
@@ -107,17 +109,45 @@ include "../../db_conn.php";
             </table>
             </div>
     </div>
-<script>$(document).ready(function() {
+<script>
+
+$(document).ready(function() {
     $('#example').DataTable({
         dom: 'Bfrtip', // Add buttons to DOM
         buttons: [
-            // 'copy', // Copy to clipboard
+            {
+                extend: 'pdf',
+                text: 'PDF',
+                title: 'Residents of Barangay Alkikan'
+             
+            },
             'excel', // Export to Excel
-            'pdf', // Export to PDF
-            'print' // Print button
+            {
+                extend: 'print',
+                text: 'Print',
+                title: ' ',
+                customize: function(win) {
+                    // Create header HTML
+                    var header = '<div style="text-align: center; margin-bottom: 20px;">' + // Add your logo here
+                        '<label>' +
+                        '<span style="font-size: 20px; font-family: Copperplate,Copperplate Gothic Light,fantasy; color: black;">Republic of the Philippines</span>' +
+                        '<br>' +
+                        '<p style="font-family: Arial; font-size: 18px;  margin: 0;">Province of Sarangani</p>' +
+                        '<p style="font-family: Arial; font-size: 18px;  margin: 0;">Municipality of Malungon</p>' +
+                        '<span style="font-size:21px; font-family: Copperplate, \'Copperplate Gothic Light\', fantasy;">Barangay of Alkikan</span>' +
+                        '<br><br>' +
+                        '</label>' +
+                        '</div>' +
+                        '<h2>Barangay Residents</h2>';
+
+                    // Add header HTML to window
+                    $(win.document.body).find('div:first').prepend(header);
+                }
+            }
         ]
     });
-});</script>
+});
+</script>
 
 </body>
 

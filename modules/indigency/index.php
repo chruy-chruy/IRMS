@@ -41,6 +41,7 @@ include "../../db_conn.php";
                     <th style="width: 50px;">ID</th>
                     <th>Resident</th>
                     <th>Purpose</th>
+                    <th>Date Issued</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
@@ -59,6 +60,7 @@ include "../../db_conn.php";
                         </div>
                     </td>
                     <td><?php echo $row['purpose'] ?></td>
+                    <td><?php echo $row['issued_date'] ?></td>
                     <td>
                         <a class="view" href="view.php?id=<?php echo $row['id'] ?>&resident_id=<?php echo $row['resident_id'] ?>">
                         View

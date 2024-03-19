@@ -41,7 +41,6 @@ include "../../db_conn.php";
                     <th>Name</th>
                     <th>Purok/Sitio</th>
                     <th>Gender</th>
-                    <th></th>
                     <th style="width: 55px;">Action</th>
                     <!-- <th style="width: 50px;" ></th>
                     <th></th>
@@ -59,6 +58,8 @@ include "../../db_conn.php";
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
                         </div>
                     </td>
+                    <td><?php echo $row['purok'] ?></td>
+                    <td><?php echo $row['gender'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         View

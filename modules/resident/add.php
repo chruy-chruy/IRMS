@@ -130,13 +130,13 @@ include "../../db_conn.php";
                 <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Phone Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="phone_number" 
+                    <input type="number" maxlength="11" class="form-control" id="name" name="phone_number" placeholder="09123456789"
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Email Address</label>
-                    <input type="text" class="form-control" id="name" name="email_address" 
+                    <input type="email" class="form-control" id="name" name="email_address" placeholder="example@gmai.com"
                     <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> >
                 </div>
                 </div>
@@ -151,12 +151,20 @@ include "../../db_conn.php";
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Educational Attainment</label>
+                    <label class="form-label">Educational Attainment<span class="required">*</span></label>
                     <select id="educational_attainment" name="educational_attainment" required>
                         <option value="" select hidden >--</option>
-                        <option value="Elementary">Elementary</option>
-                        <option value="High School">High School</option>
-                        <option value="College">College</option>
+                        <option value="No Grade Completed">No Grade Completed</option>
+                        <option value="Pre-School/Early Childhood Education">Pre-School/Early Childhood Education</option>
+                        <option value="Elementary Education">Elementary Education</option>
+                        <option value="Junior High School Education">Junior High School Education</option>
+                        <option value="Senior High School Education">Senior High School Education</option>
+                        <option value="High School Graduate">High School Graduate</option>
+                        <option value="Vocational or Technical Education">Vocational or Technical Education</option>
+                        <option value="Associate Degree">Associate Degree</option>
+                        <option value="Bachelor's Degree">Bachelor's Degree</option>
+                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="Doctoral Degree/Ph.D.">Doctoral Degree/Ph.D.</option>
                     </select>
                 </div>
 
