@@ -22,6 +22,6 @@ include "../../db_conn.php";
         '$user_id')";
     
     mysqli_query($conn, $sql2);
-    header("location:index.php?message=Success! new user has been saved successfully.");
+    header("location:index.php?message=Success! new clearance has been saved successfully.");
 
 ?>

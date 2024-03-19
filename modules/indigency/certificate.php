@@ -140,12 +140,11 @@
 $page = 'Certificate';
 include "../../db_conn.php";
 $id = $_GET['id'];
-$print = $_GET['print'];
+// $amount = $_POST['amount'];
 $purpose = $_POST['purpose'];
 $date_issued = $_POST['date_issued'];
 $date = date_create($date_issued);
 $format_date = date_format($date,"jS \d\a\y \of F\, Y");
-
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$id'");
 while ($row = mysqli_fetch_array($squery)) {
     $gender;
@@ -162,8 +161,9 @@ while ($row = mysqli_fetch_array($squery)) {
     if($middle_name == ""){
         $middle_initial = "";
     }else{
-        $middle_initial = $get_initial.".";
+        $middle_initial = strtoupper($get_initial.".");
     }
+
  ?>
 
     <div class="certificate">
@@ -193,6 +193,7 @@ while ($row = mysqli_fetch_array($squery)) {
         <hr style="height:3px;border:none;color:#333;background-color:#333; margin-top: 0;">
 
         <div class="grid-container">
+
             <div class="grid-item1">
             <img src="../../assets/img/officials.png" alt="" srcset="">
             </div>
@@ -201,44 +202,30 @@ while ($row = mysqli_fetch_array($squery)) {
             <div class="grid-item2">
                 <h1
                     style="font-size: 18px; font-weight: bolder; margin: 0; text-align: center; font-family: Arial Black;">
-                    BARANGAY
-                    CLEARANCE
+                    CERTIFICATE OF INDIGENCY
                 </h1>
                 <br>
                 <span
                     style="font-size:15px; font-family: Algerian; font-weight:bold; display: flex;align-items: center;">TO
                     WHOM IT MAY CONCERN:</span>
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
-                text-justify: inter-word; text-indent: 50px;">
-                   THIS IS TO CERTIFY that based on the records of this Barangay of date the person whose name personal
-                    circumstances and signature below has not been accused nor has a pending case with the Lupong
-                    Tagapamayapa of neither crime involving moral turpitude nor act contrary to our existing law;</p>
-
-                <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
-                    text-justify: inter-word; text-transform: capitalize">
-                    Name: <b><?php echo $row['first_name']." ".$middle_initial." ".$row['last_name']." ".$row['suffix']?></b> <br>
-                    Address: <b>Purok <?php echo  $row['purok'] ?>, Barangay Alkikan, Malungon, Sarangani Province </b><br>
-                    Civil Status: <b><?php echo  $row['civil_status'] ?></b><br>
-                    Citizenship: <b><?php echo  $row['nationality'] ?></b><br>
-                    Occupation: <b><?php echo  $row['occupation'] ?></b><br>
+                text-justify: inter-word;">
+                    This is to certify that the bearer of this letter <b><?php echo  $gender ?> <?php echo $row['first_name']." ".$middle_initial." ".$row['last_name']." ".$row['suffix']?></b>, of legal
+                    age, <?php echo  $row['civil_status'] ?>, Filipino Citizen, and a bona fide resident of <?php echo  $row['purok'] ?>, Barangay Alkikan, Malungon Sarangani Province.
+                    came to my office asking/ avail <?php echo $purpose ?></p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">
-                    THIS BARANGAY CERTIFICATION is issued upon the request of the above named person for 
-                    <?php
-                     if($row['gender'] == "Female"){
-                        echo "her";
-                     }else {
-                        echo "his";
-                     } ?>
-                      desire to <b><?php echo $purpose ?></b>
-                    and whatever legal purposes that may serve <?php
-                     if($row['gender'] == "Female"){
-                        echo "her";
-                     }else {
-                        echo "him";
-                     } ?> best
+                This is to certify further that the above named person is known
+                to the undersigned that her/his family belongs to the
+                <b>LOW INCOME EARNER.</b>
                 </p>
+
+                <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
+                    text-justify: inter-word;">
+                    This Certificate of <b>INDIGENCY</b> is being issued upon the request of
+                    the above mentioned name and whatever legal
+                    purposes that may serve best.</p>
 
                 <p style="font-size: 15px; font-family: Arial, Helvetica, sans-serif;text-align: justify;
                     text-justify: inter-word;">

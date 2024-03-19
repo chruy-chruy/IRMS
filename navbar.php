@@ -43,6 +43,13 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
+                        <li class="darkerli <?php if ($page == 'Indigency') {echo 'active';} ?>">
+                            <a href="../indigency/">
+                                <i class="fa fa-id-badge fa-lg"></i>
+                                <span class="nav-text">Barangay Indigency</span>
+                            </a>
+                        </li>
+
 
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
                             <a href="../user/">

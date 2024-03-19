@@ -45,7 +45,7 @@
             margin-bottom: 10px;
         }
 
-        .grid-item1 {
+        .grid-item1 img{
             padding-top: 20px;
             top: 0;
             bottom: 0;
@@ -53,7 +53,6 @@
             left: 0;
             width: 250px;
             overflow: hidden;
-            border: solid 3px #000;
             text-align: center;
         }
 
@@ -195,76 +194,9 @@ while ($row = mysqli_fetch_array($squery)) {
         <hr style="height:3px;border:none;color:#333;background-color:#333; margin-top: 0;">
 
         <div class="grid-container">
-            <div class="grid-item1">
-                <hr
-                    style="height:4px;border:none;background-color:rgb(82, 11, 11); margin-left: 10px; margin-right: 10px; margin-bottom: 0;">
-                <span style=" font-size: 11px; color:blue">LIST OF BRGY. OFFICIAL OF ALKIKAN</span>
-                <br>
-                <br>
-                <span style="font-size:14px; font-weight: bold; margin-bottom: 0;">HON. NILO H. ARELLANO</span>
-                <hr
-                    style="height:4px;border:none;background-color:#141414; margin-left: 10px; margin-right: 10px; margin: 0;">
-                <span style="font-size: 11px;">PUNONG BARANGAY</span>
 
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    JEALOUS GUY M. YANAN</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">
-                    HON. JEAMARIE R. DELA CRUZ </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">
-                    HON. MARCELINO D. HERMAN</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    MARCELA L. TAGOY</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    JOYLYN S. BUAN </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. ELSON
-                    H. BERTOLANO </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. ROEL
-                    N. CAR-AT</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. KYRA
-                    JEAN T. TAN </span>
-                <br>
-                <span style="font-size: 11px;">SK Chairperson</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">JULIUS S.
-                    MONTONG</span>
-                <br>
-                <span style="font-size: 11px;">Barangay IPMR</span>
-                <br>
-                <br>
-                <span>=====================</span>
-                <br>
-                <span style="font-size:12px; font-weight: bold;">NOT VALID WITHOUT DRY SEAL</span>
+            <div class="grid-item1">
+            <img src="../../assets/img/officials.png" alt="" srcset="">
             </div>
 
 
@@ -338,7 +270,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         <br>
                         <br>
                         <hr style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
-                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty l</b>
+                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty</b>
                     </p>
                 </div>
             </div>

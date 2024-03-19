@@ -38,7 +38,7 @@ include "../../db_conn.php";
                 <thead>
                     <th style="width: 50px;">ID</th>
                     <th>Resident</th>
-                    <th>purpose</th>
+                    <th>Purpose</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
@@ -58,7 +58,7 @@ include "../../db_conn.php";
                     </td>
                     <td><?php echo $row['purpose'] ?></td>
                     <td>
-                        <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
+                        <a class="view" href="view.php?id=<?php echo $row['id'] ?>&resident_id=<?php echo $row['resident_id'] ?>">
                         View
                         </a>
                         <!-- <a href=""><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a> -->

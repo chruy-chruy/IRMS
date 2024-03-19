@@ -39,6 +39,9 @@ include "../../db_conn.php";
                 <thead>
                     <th style="width: 50px;">ID</th>
                     <th>Name</th>
+                    <th>Purok/Sitio</th>
+                    <th>Gender</th>
+                    <th></th>
                     <th style="width: 55px;">Action</th>
                     <!-- <th style="width: 50px;" ></th>
                     <th></th>

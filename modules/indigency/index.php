@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <?php 
-$page = 'Certificate';
+$page = 'Indigency';
 include "../../navbar.php";
 include "../../db_conn.php";
 
@@ -44,7 +44,7 @@ include "../../db_conn.php";
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from certificate ");
+        $squery =  mysqli_query($conn, "SELECT * from indigency ");
          while ($row = mysqli_fetch_array($squery)) {
             $resident_id = $row['resident_id'];
             $squery2 =  mysqli_query($conn, "SELECT * from resident Where id = $resident_id");

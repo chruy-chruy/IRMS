@@ -46,7 +46,7 @@
             margin-bottom: 10px;
         }
 
-        .grid-item1 {
+        .grid-item1 img{
             padding-top: 20px;
             top: 0;
             bottom: 0;
@@ -54,7 +54,6 @@
             left: 0;
             width: 250px;
             overflow: hidden;
-            border: solid 3px #000;
             text-align: center;
         }
 
@@ -143,19 +142,23 @@ $page = 'Certificate';
 include "../../db_conn.php";
 $id = $_GET['id'];
 $resident_id = $_GET['resident_id'];
-$print = $_GET['print'];
-$purpose = $_POST['purpose'];
-$date_issued = $_POST['date_issued'];
+
+$squery1 =  mysqli_query($conn, "SELECT * from certificate Where id = '$id'");
+$cert = mysqli_fetch_array($squery1);
+$purpose = $cert['purpose'];
+
+
+$date_issued = $cert['issued_date'];
 $date = date_create($date_issued);
 $format_date = date_format($date,"jS \d\a\y \of F\, Y");
 $squery =  mysqli_query($conn, "SELECT * from resident Where id = '$resident_id'");
-while ($row = mysqli_fetch_array($squery)) {
+$row = mysqli_fetch_array($squery);
     $gender;
-    if($row['gender'] == "Female" &&  $row['civil_status'] == "single"){
+    if($row['gender'] == "Female" &&  $row['civil_status'] == "Single"){
         $gender = "Ms.";
-    }elseif($row['gender'] == "Female" &&  $row['civil_status'] == "married"){
+    }elseif($row['gender'] == "Female" &&  $row['civil_status'] == "Married"){
         $gender = "Mrs.";
-    }else{
+    }elseif($row['gender'] == "Male"){
         $gender = "Mr.";
     }
 
@@ -196,75 +199,7 @@ while ($row = mysqli_fetch_array($squery)) {
 
         <div class="grid-container">
             <div class="grid-item1">
-                <hr
-                    style="height:4px;border:none;background-color:rgb(82, 11, 11); margin-left: 10px; margin-right: 10px; margin-bottom: 0;">
-                <span style=" font-size: 11px; color:blue">LIST OF BRGY. OFFICIAL OF ALKIKAN</span>
-                <br>
-                <br>
-                <span style="font-size:14px; font-weight: bold; margin-bottom: 0;">HON. NILO H. ARELLANO</span>
-                <hr
-                    style="height:4px;border:none;background-color:#141414; margin-left: 10px; margin-right: 10px; margin: 0;">
-                <span style="font-size: 11px;">PUNONG BARANGAY</span>
-
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    JEALOUS GUY M. YANAN</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">
-                    HON. JEAMARIE R. DELA CRUZ </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">
-                    HON. MARCELINO D. HERMAN</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    MARCELA L. TAGOY</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON.
-                    JOYLYN S. BUAN </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. ELSON
-                    H. BERTOLANO </span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. ROEL
-                    N. CAR-AT</span>
-                <br>
-                <span style="font-size: 11px;">Barangay Council</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">HON. KYRA
-                    JEAN T. TAN </span>
-                <br>
-                <span style="font-size: 11px;">SK Chairperson</span>
-                <br>
-                <br>
-                <span style="font-size:12px; font-weight: bold; margin-bottom: 0; text-decoration: underline">JULIUS S.
-                    MONTONG</span>
-                <br>
-                <span style="font-size: 11px;">Barangay IPMR</span>
-                <br>
-                <br>
-                <span>=====================</span>
-                <br>
-                <span style="font-size:12px; font-weight: bold;">NOT VALID WITHOUT DRY SEAL</span>
+            <img src="../../assets/img/officials.png" alt="" srcset="">
             </div>
 
 
@@ -272,7 +207,7 @@ while ($row = mysqli_fetch_array($squery)) {
                 <h1
                     style="font-size: 18px; font-weight: bolder; margin: 0; text-align: center; font-family: Arial Black;">
                     BARANGAY
-                    CERTIFICATE
+                    CERTIFICATION
                 </h1>
                 <br>
                 <span
@@ -337,17 +272,16 @@ while ($row = mysqli_fetch_array($squery)) {
                         <br>
                         <br>
                         <hr style="height:1px; width: 200px; border:none;color:#333;background-color:#333; margin-bottom: 0;">
-                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty l</b>
+                        <b style="font-size: 15px; font-family: serif;">Kagawad On Duty</b>
                     </p>
                 </div>
             </div>
             <div class="buttons">
-            <button class="print" id="print" onclick="window.print();window.location.href='update.php?id=<?php echo $id ?>&resident_id=<?php echo $resident_id ?>&purpose=<?php echo $purpose ?>&date_issued=<?php echo $date_issued ?>'">Print</button>
+            <button class="print" id="print" onclick="window.print();window.location.href='index.php'">Print</button>
             <button class="back" onclick="history.back()">Back</button>
             </div>
         </div>
     </div>
-    <?php }?>
 </body>
 
 </html>
