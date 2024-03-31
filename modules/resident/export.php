@@ -51,7 +51,7 @@ include "../../db_conn.php";
             <table id="example" class="data list">
                 
                 <thead>
-                    <th style="width: 50px;">ID</th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Gender</th>
                     <th>Birthday</th>
@@ -73,7 +73,7 @@ include "../../db_conn.php";
             $age = $difference->y;
         ?>
                 <tr class="table-row">
-                    <td><?php echo $row['id'] ?></td>
+                    <td>24-<?php echo $row['id'] ?></td>
                     <td>
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
                     </td>
@@ -118,8 +118,10 @@ $(document).ready(function() {
             {
                 extend: 'pdf',
                 text: 'PDF',
-                title: 'Residents of Barangay Alkikan'
-             
+                title: 'Residents of Barangay Alkikan',
+                customize: function(doc) {
+                    doc.defaultStyle.fontSize = 8;
+                }
             },
             'excel', // Export to Excel
             {

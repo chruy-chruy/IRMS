@@ -38,7 +38,7 @@ include "../../db_conn.php";
             <div class="table_wrap">
             <table id="example" class="data list">
                 <thead>
-                    <th style="width: 50px;">ID</th>
+                    <th style="width: 60px;">ID</th>
                     <th>Resident</th>
                     <th>Purpose</th>
                     <th>Date Issued</th>
@@ -52,7 +52,7 @@ include "../../db_conn.php";
            $res = mysqli_fetch_array($squery2)
         ?>
                 <tr class="table-row">
-                    <td><?php echo $row['id'] ?></td>
+                    <td>24-<?php echo $row['id'] ?></td>
                     <td>
                         <div class="profile">
                         <img src="../../uploads/<?php echo $res['image'] ?>" alt="">

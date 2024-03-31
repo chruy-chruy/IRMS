@@ -146,8 +146,13 @@ include "../../db_conn.php";
                 <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="nationality" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <select id="nationality" name="nationality" required>
+                    <option value="" select hidden >--</option>
+                        <option value="Filipino Citizenship">Filipino Citizenship</option>
+                        <option value="Foreign Citizens">Foreign Citizenship</option>
+                        <option value="Naturalization">Naturalization</option>
+                        <option value="Dual Citizenship">Dual Citizenship</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
@@ -162,8 +167,8 @@ include "../../db_conn.php";
                         <option value="High School Graduate">High School Graduate</option>
                         <option value="Vocational or Technical Education">Vocational or Technical Education</option>
                         <option value="Associate Degree">Associate Degree</option>
-                        <option value="Bachelor's Degree">Bachelor's Degree</option>
-                        <option value="Master's Degree">Master's Degree</option>
+                        <option value="Bachelor Degree">Bachelor's Degree</option>
+                        <option value="Master Degree">Master's Degree</option>
                         <option value="Doctoral Degree/Ph.D.">Doctoral Degree/Ph.D.</option>
                     </select>
                 </div>

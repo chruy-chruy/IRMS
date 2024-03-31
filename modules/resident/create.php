@@ -8,7 +8,6 @@ $suffix = ($_POST['suffix']);
 $gender = ucwords($_POST['gender']);
 $date_of_birth = ($_POST['date_of_birth']);
 $civil_status = ucwords($_POST['civil_status']);
-$street = ucwords($_POST['street']);
 $purok = ucwords($_POST['purok']);
 $place_of_birth = ucwords($_POST['place_of_birth']);
 $phone_number = ($_POST['phone_number']);

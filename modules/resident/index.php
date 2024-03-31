@@ -37,7 +37,7 @@ include "../../db_conn.php";
             <div class="table_wrap">
             <table id="example" class="data list">
                 <thead>
-                    <th style="width: 50px;">ID</th>
+                    <th style="width: 60px;">ID</th>
                     <th>Name</th>
                     <th>Purok/Sitio</th>
                     <th>Gender</th>
@@ -51,7 +51,7 @@ include "../../db_conn.php";
          while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">
-                    <td><?php echo $row['id'] ?></td>
+                    <td>24-<?php echo $row['id'] ?></td>
                     <td>
                         <div class="profile">
                         <img src="../../uploads/<?php echo $row['image'] ?>" alt="">

@@ -136,8 +136,13 @@ while ($row = mysqli_fetch_array($squery)) {
                 
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="nationality" 
-                    value = "<?php echo $row['nationality']; ?>" required>
+                    <select id="nationality" name="nationality" required>
+                    <option value="<?php echo $row['nationality']; ?>" select hidden ><?php echo $row['nationality']; ?></option>
+                        <option value="Filipino Citizenship">Filipino Citizenship</option>
+                        <option value="Foreign Citizens">Foreign Citizenship</option>
+                        <option value="Naturalization">Naturalization</option>
+                        <option value="Dual Citizenship">Dual Citizenship</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
