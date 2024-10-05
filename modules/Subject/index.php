@@ -5,8 +5,8 @@
 
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
-    <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
-    <title>Residents</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
+    <title>IRMS-SUBJECT</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
@@ -19,7 +19,7 @@
 
 <body>
     <?php 
-$page = 'Resident';
+$page = 'Subject';
 include "../../navbar.php";
 include "../../db_conn.php";
 
@@ -31,7 +31,7 @@ include "../../db_conn.php";
             </div>
             
             <div class="search-box">
-            <a href="./export.php"><button style="float:left;">Export</button></a>
+            <!-- <a href="./export.php"><button style="float:left;">Export</button></a> -->
                 <a href="./add.php"><button>Add</button></a>
             </div>
             <div class="table_wrap">
@@ -39,27 +39,21 @@ include "../../db_conn.php";
                 <thead>
                     <th style="width: 60px;">ID</th>
                     <th>Name</th>
-                    <th>Purok/Sitio</th>
-                    <th>Gender</th>
+                    <th>Employee ID</th>
                     <th style="width: 55px;">Action</th>
-                    <!-- <th style="width: 50px;" ></th>
-                    <th></th>
-                    <th style="width: 55px;" ></th> -->
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from resident Where del_status != 'deleted' ORDER BY id DESC;");
+        $squery =  mysqli_query($conn, "SELECT * from teacher Where del_status != 'deleted' ORDER BY id DESC;");
          while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">
                     <td>24-<?php echo $row['id'] ?></td>
                     <td>
                         <div class="profile">
-                        <img src="../../uploads/<?php echo $row['image'] ?>" alt="">
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
                         </div>
                     </td>
-                    <td><?php echo $row['purok'] ?></td>
-                    <td><?php echo $row['gender'] ?></td>
+                    <td><?php echo $row['employee_id'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         View

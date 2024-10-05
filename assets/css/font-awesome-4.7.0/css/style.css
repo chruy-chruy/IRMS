@@ -15,7 +15,7 @@ body {
 
 .header{
     width: 100%;
-    border-bottom: 2px solid#4a9e53;
+    border-bottom: 2px solid#c04747;
     text-align: center;
 }
 
@@ -133,7 +133,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     border: 1px solid #CCCCCC;
-    background-color: #4CA771;
+    background-color: #2C2D2D;
     border-radius: 5px;
     font-size: 15px;
     font-weight: bold;
@@ -144,7 +144,7 @@ body {
 
 .search-box a button:hover {
     color: #ffffff;
-    background-color: #03754b;
+    background-color: #560202;
 }
 
 
@@ -302,14 +302,14 @@ body {
     display: block;
     font-size: 2em;
     margin-right: 1em;
-    color: #4a9e53;
+    color: #c04747;
   }
   
 
 .box-icon i {
   font-size: 2em;
   margin-right: 1em;
-  color: #4a9e53;
+  color: #c04747;
 }
 .box-content{
   color: #99a0b0;
@@ -373,7 +373,7 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: solid 5px #799e7d;
+    border: solid 5px #560202;
   }
 
   .input-image{
@@ -401,7 +401,7 @@ body {
  h3 {
   font-weight: bold;
   font-size: 20px;
-  color: #06aa16;
+  color: #560202;
   margin-bottom: 1px;
 }
 
@@ -446,4 +446,5 @@ body {
 }
 
 /* modal */
+
 

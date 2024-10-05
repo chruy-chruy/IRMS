@@ -10,8 +10,8 @@ include "../../db_conn.php";
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content=="IE=edge" />
     <meta name="google" value="notranslate" />
-    <title><?php if ($page) {echo $page;} ?></title>
-    <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
+    <title>IRMS-<?php if ($page) {echo $page;} ?></title>
+    <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -30,58 +30,50 @@ include "../../db_conn.php";
   <div class="box-icon"><i class="fa fa-users"></i></div>
   <div class="box-content">
   <span class="big"><?php
-    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_resident FROM resident Where del_status != 'deleted'");
-    while ($row = mysqli_fetch_array($squery)) { echo $row['total_resident']; }
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_teacher FROM teacher Where del_status != 'deleted'");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_teacher']; }
     ?></span>
-     Total Resident
+     Total Teachers
   </div>
   </div>
 
     <div class="dashboard">
-    <div class="box-icon"><i class="fa fa-male"></i></div> 
+    <div class="box-icon"><i class="fa fa-users"></i></i></div> 
     <div class="box-content">
-    <span class="big"><?php
-    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS male FROM resident 
-    Where del_status != 'deleted' && gender = 'male' ");
-    while ($row = mysqli_fetch_array($squery)) { echo $row['male']; }
-    ?></span>
-    Male
+    <span class="big">1</span>
+    Total Students
     </div>
     </div>
 
     <div class="dashboard">
-    <div class="box-icon"><i class="fa fa-female"></i></div> 
+    <div class="box-icon"><i class="fa fa-address-book"></i></div> 
     <div class="box-content">
-      <span class="big"> <?php $squery =  mysqli_query($conn, "SELECT COUNT(id) AS female FROM resident 
-      Where del_status != 'deleted' && gender = 'female' ");
-      while ($row = mysqli_fetch_array($squery)) { echo $row['female']; } ?>
+      <span class="big">1
       </span>
-      Female
+      Total Subjects
     </div>
     </div>
 
     <div class="dashboard">
     <div class="box-icon"><i class="fa fa-certificate"></i></div> 
     <div class="box-content">
-      <span class="big"> <?php $squery =  mysqli_query($conn, "SELECT COUNT(id) AS 'certificate' FROM certificate");
-      while ($row = mysqli_fetch_array($squery)) { echo $row['certificate']; } ?>
+      <span class="big">1
       </span>
-      Barangay Certificate
+      Example
     </div>
     </div>
 
     <div class="dashboard">
     <div class="box-icon"><i class="fa fa-certificate"></i></div> 
     <div class="box-content">
-      <span class="big"> <?php $squery =  mysqli_query($conn, "SELECT COUNT(id) AS 'clearance' FROM clearance");
-      while ($row = mysqli_fetch_array($squery)) { echo $row['clearance']; } ?>
+      <span class="big">1
       </span>
-      Barangay Clearance
+      Example
     </div>
     </div>
 </div>
 <br>
-<img class="img" src="../../assets/img/brgy.jpg" alt="Paris" width="90%" height="500px">
+<!-- <img class="img" src="../../assets/img/brgy.jpg" alt="Paris" width="90%" height="500px"> -->
 </div>
 </div>
 </body>

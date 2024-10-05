@@ -13,3 +13,7 @@ light to dark color green
 
 dashboard text grey
 #99a0b0
+
+Icon = c04747
+red = 560202
+black =2C2D2D

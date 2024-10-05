@@ -4,12 +4,12 @@ if (!isset($_SESSION['id'])) {
     header("Location: ../index.php");
     exit();
 } ?>
-<link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
+<link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 <div class="container">
         <div class="sidebar">
             <nav class="main-menu">
                 <div>
-                    <img src="../../assets/img/republic.png" alt="Logo" class="logo">
+                    <img src="../../assets/img/logo.png" alt="Logo" class="logo">
                 </div>
 
                 <div class="scrollbar" id="style-1">
@@ -22,34 +22,30 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
-                        <li class="darkerli <?php if ($page == 'Resident') {echo 'active';} ?>">
-                            <a href="../resident/">
+                        <li class="darkerli <?php if ($page == 'Teacher') {echo 'active';} ?>">
+                            <a href="../Teacher/">
                                 <i class="fa fa-users fa-lg"></i>
-                                <span class="nav-text">Residents</span>
+                                <span class="nav-text">Teacher</span>
                             </a>
                         </li>
 
-                        <li class="darkerli <?php if ($page == 'Certificate') {echo 'active';} ?>">
-                            <a href="../certificate/">
-                                <i class="fa fa-certificate fa-lg"></i>
-                                <span class="nav-text">Barangay Certificate</span>
+                        <li class="darkerli <?php if ($page == 'Student') {echo 'active';} ?>">
+                            <a href="../Student/">
+                                <i class="fa fa-users fa-lg"></i>
+                                <span class="nav-text">
+                                    Student
+                                </span>
                             </a>
                         </li>
 
-                        <li class="darkerli <?php if ($page == 'Clearance') {echo 'active';} ?>">
-                            <a href="../clearance/">
+                        <li class="darkerli <?php if ($page == 'Subject') {echo 'active';} ?>">
+                            <a href="../subject/">
                                 <i class="fa fa-address-card-o fa-lg"></i>
-                                <span class="nav-text">Barangay Clearance</span>
+                                <span class="nav-text">
+                                    Subject
+                                </span>
                             </a>
                         </li>
-
-                        <li class="darkerli <?php if ($page == 'Indigency') {echo 'active';} ?>">
-                            <a href="../indigency/">
-                                <i class="fa fa-id-badge fa-lg"></i>
-                                <span class="nav-text">Barangay Indigency</span>
-                            </a>
-                        </li>
-
 
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
                             <a href="../user/">

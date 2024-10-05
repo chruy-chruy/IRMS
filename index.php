@@ -20,8 +20,9 @@ if (isset($_SESSION['id'])) {
 
 <head>
     <meta charset="UTF-8">
-    <title>BMS</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/republic.ico">
+    <title>IRMS
+    </title>
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.png">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     
@@ -35,8 +36,9 @@ if (isset($_SESSION['id'])) {
         <div class="screen">
             <div class="screen__content">
                 <div class="login__header">
-                    <img src="assets/img/republic.png" alt="Logo" class="login-logo">
-                    <h2>PROFILING MANAGEMENT SYSTEM</h2>
+                    <img src="assets/img/logo.png" alt="Logo" class="login-logo">
+                    <h2>INTEGRATED RECORDS</h2>
+                    <div class="title">MANAGEMENT SYSTEM </div>
                 </div>
                 <form class="login" action="validate_login.php" method="POST">
                     <div class="login__field">
