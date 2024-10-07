@@ -3,7 +3,7 @@
 $sname= "localhost";
 $unmae= "root";
 $password = "";
-$db_name = "bms";
+$db_name = "IRMS";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 

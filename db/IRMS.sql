@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2024 at 10:52 AM
+-- Generation Time: Oct 07, 2024 at 02:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -89,40 +89,27 @@ INSERT INTO `indigency` (`id`, `resident_id`, `purpose`, `issued_date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resident`
+-- Table structure for table `teacher`
 --
 
-CREATE TABLE `resident` (
+CREATE TABLE `teacher` (
   `id` int(5) UNSIGNED ZEROFILL NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `suffix` varchar(255) NOT NULL,
-  `gender` varchar(55) NOT NULL,
-  `date_of_birth` date NOT NULL,
-  `civil_status` varchar(55) NOT NULL,
-  `street` varchar(155) NOT NULL,
-  `purok` varchar(155) NOT NULL,
-  `place_of_birth` varchar(255) NOT NULL,
-  `phone_number` varchar(155) NOT NULL,
-  `telephone_number` varchar(155) NOT NULL,
+  `employee_id` varchar(255) NOT NULL,
   `email_address` varchar(255) NOT NULL,
-  `nationality` varchar(155) NOT NULL,
-  `educational_attainment` varchar(255) NOT NULL,
-  `occupation` varchar(255) NOT NULL,
-  `religion` varchar(255) NOT NULL,
-  `blood_type` varchar(55) NOT NULL,
-  `image` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `del_status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `resident`
+-- Dumping data for table `teacher`
 --
 
-INSERT INTO `resident` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `gender`, `date_of_birth`, `civil_status`, `street`, `purok`, `place_of_birth`, `phone_number`, `telephone_number`, `email_address`, `nationality`, `educational_attainment`, `occupation`, `religion`, `blood_type`, `image`, `date_created`, `del_status`) VALUES
-(00001, 'Troy', '', 'Garidos', '', 'Male', '1999-11-16', 'Single', '', 'Sitio Balite', 'Gensan City', '09531023180', '', 'test@gmail.com', 'Filipino', 'Elementary', 'IT', 'Catholic', '', 'default.jpeg', '2024-03-19 17:23:34', 'active');
+INSERT INTO `teacher` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `employee_id`, `email_address`, `date_created`, `del_status`) VALUES
+(00003, 'Troy', 'Ancino', 'Garidos', '', '02321', '', '2024-10-04 00:35:13', 'active');
 
 -- --------------------------------------------------------
 
@@ -145,7 +132,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `del_status`) VALUES
 (1, 'admin', 'admin', 'admin', ''),
 (2, 'Test', 'asdas', 'asdsa', 'deleted'),
-(3, 'Test', '123', '123', 'deleted');
+(3, 'Test', '123', '123', 'deleted'),
+(4, 'Troy', '1234', 'admin', '');
 
 --
 -- Indexes for dumped tables
@@ -170,9 +158,9 @@ ALTER TABLE `indigency`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resident`
+-- Indexes for table `teacher`
 --
-ALTER TABLE `resident`
+ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -204,16 +192,16 @@ ALTER TABLE `indigency`
   MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `resident`
+-- AUTO_INCREMENT for table `teacher`
 --
-ALTER TABLE `resident`
-  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `teacher`
+  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
