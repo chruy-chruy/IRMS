@@ -38,22 +38,26 @@ include "../../db_conn.php";
             <table id="example" class="data list">
                 <thead>
                     <th style="width: 60px;">ID</th>
-                    <th>Name</th>
-                    <th>Employee ID</th>
+                    <th>Subject Name</th>
+                    <th>Subject Code</th>
+                    <th>Assigned Teacher</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
-        $squery =  mysqli_query($conn, "SELECT * from teacher Where del_status != 'deleted' ORDER BY id DESC;");
-         while ($row = mysqli_fetch_array($squery)) {
+         $squery = mysqli_query($conn, "
+         SELECT s.*, CONCAT(t.first_name, ' ', t.last_name) AS teacher_name 
+         FROM subject s 
+         LEFT JOIN teacher t ON s.teacher_id = t.id 
+         WHERE s.del_status != 'deleted' 
+         ORDER BY s.id DESC;
+     ");
+     while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">
-                    <td>24-<?php echo $row['id'] ?></td>
-                    <td>
-                        <div class="profile">
-                        <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
-                        </div>
-                    </td>
-                    <td><?php echo $row['employee_id'] ?></td>
+                    <td><?php echo $row['id'] ?></td>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['code'] ?></td>
+                    <td><?php echo $row['teacher_name'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         View

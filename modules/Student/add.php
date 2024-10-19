@@ -173,8 +173,14 @@ if (isset($_GET['message'])) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Grade Level<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="grade_level" required>
+                    <label class="form-label">Grade Level</label>
+                    <select name="grade_level" class="form-control" required style="height:43px;">
+                            <option hidden value="" hidden>Select Grade Level</option> 
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
@@ -187,7 +193,7 @@ if (isset($_GET['message'])) {
                     <input type="text" class="form-control" name="section" required>
                 </div>
 
-                <div class="grid-item">
+                <!-- <div class="grid-item">
                     <label class="form-label">Grade 7 Section</label>
                     <input type="text" class="form-control" name="grade7_section">
                 </div>
@@ -205,7 +211,7 @@ if (isset($_GET['message'])) {
                 <div class="grid-item">
                     <label class="form-label">Grade 10 Section</label>
                     <input type="text" class="form-control" name="grade10_section">
-                </div>
+                </div> -->
             </div>
 
             <!-- User Information Display -->
@@ -213,11 +219,11 @@ if (isset($_GET['message'])) {
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Username:</label>
-                    <input type="text" class="form-control" id="username" readonly>
+                    <input type="text" class="form-control" id="username" name="username" readonly>
                 </div>
                 <div class="grid-item">
                     <label class="form-label">Password:</label>
-                    <input type="text" class="form-control" id="password" readonly>
+                    <input type="text" class="form-control" id="password" name="password" password="password" readonly>
                     <button type="button" id="togglePassword">Show</button>
                 </div>
             </div>

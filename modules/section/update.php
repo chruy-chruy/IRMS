@@ -6,14 +6,15 @@ $id = $_GET['id'];
 
 // Initialize variables
 $name = ($_POST['name']);
-$code = ($_POST['code']);
-$teacher_id = ($_POST['teacher_id']);
+$grade_level = ($_POST['grade_level']);
+$teacher = ($_POST['teacher_id']);
+
 
 // Prepare the SQL update query
-$sql = "UPDATE `subject` SET 
+$sql = "UPDATE `section` SET 
 `name`='$name',
-`code`='$code',
-`teacher_id`='$teacher_id'
+`grade_level`='$grade_level',
+`teacher_id`='$teacher'
 WHERE id = '$id'";
 
 // Execute the query

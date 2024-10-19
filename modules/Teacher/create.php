@@ -5,10 +5,15 @@ $first_name = ucwords($_POST['first_name']);
 $middle_name = ucwords($_POST['middle_name']);
 $last_name = ucwords($_POST['last_name']);
 $suffix = ($_POST['suffix']);
-$employee_id = ($_POST['employee_id']);
+$gender = ($_POST['gender']);
+$email = ($_POST['email']);
+$contact_number = ($_POST['contact_number']);
+$username = ($_POST['username']);
+$password = ($_POST['password']);
 
 
-// check if resident is already exist
+
+// check if Teacher is already exist
 $squery =  mysqli_query($conn, "SELECT * from teacher Where 
 first_name = '$first_name' AND
 middle_name = '$middle_name' AND 
@@ -23,14 +28,22 @@ if (empty($check)){
     `middle_name`,
     `last_name`,
     `suffix`,
-    `employee_id`,
+    `gender`,
+    `email`,
+    `contact_number`,
+    `username`,
+    `password`,
     `del_status`
     ) VALUES (
         '$first_name',
         '$middle_name',
         '$last_name',
         '$suffix',
-        '$employee_id',
+        '$gender',
+        '$email',
+        '$contact_number',
+        '$username',
+        '$password',
         'active')";
     
     mysqli_query($conn, $sql2);

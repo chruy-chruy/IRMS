@@ -11,7 +11,7 @@
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
     <link rel="icon" type="image/x-icon" href="../../assets/img/republic.ico">
-    <title>Residents</title>
+    <title>IRMS</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
@@ -24,12 +24,29 @@
 
 <body>
     <?php 
-$page = 'Resident';
+$page = 'Subject';
 include "../../navbar.php";
 include "../../db_conn.php";
 $id = $_GET['id'];
-$squery =  mysqli_query($conn, "SELECT * from teacher Where id = '$id'");
-while ($row = mysqli_fetch_array($squery)) {
+
+
+$squery =  mysqli_query($conn, "SELECT * from `subject` Where id = '$id'");
+$row = mysqli_fetch_array($squery);
+$teacher_id = $row['teacher_id'];
+// Fetch teachers who are not already assigned to any section
+$teachers_query = mysqli_query($conn, "
+SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
+FROM teacher 
+");
+
+$org_teacher = mysqli_query($conn, "
+SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
+FROM teacher 
+WHERE id = '$teacher_id';
+");
+// Fetch the row
+$teacher = mysqli_fetch_assoc($org_teacher);
+
  ?>
         <div class="content">
             <div class="header">
@@ -46,34 +63,29 @@ while ($row = mysqli_fetch_array($squery)) {
             <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">
-                    <label class="form-label">First Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" name="first_name" value="<?php echo $row['first_name'] ?>" required>
+                    <label class="form-label">Subject Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="name" value="<?php echo $row['name'] ?>" required>
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="name" name="middle_name" 
-                    value = "<?php echo $row['middle_name']; ?>">
+                    <label class="form-label">Subject Code</label>
+                    <input type="text" class="form-control" id="name" name="code" 
+                    value = "<?php echo $row['code']; ?>">
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Last Name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="last_name" 
-                    value = "<?php echo $row['last_name']; ?>" required>
+                    <label class="form-label">Assigned Teacher<span class="required">*</span></label>
+                    <select name="teacher_id" class="form-control" required style="height:43px;">
+                        <option hidden value="<?php echo $teacher['id']; ?>"><?php echo $teacher['full_name']; ?></option>
+                        <?php while ($teacher = mysqli_fetch_assoc($teachers_query)): ?> 
+                            <option value="<?php echo $teacher['full_name']; ?>" hidden><?php echo $teacher['full_name']; ?></option> 
+                            <option value="<?php echo $teacher['id']; ?>" 
+                                <?php echo (isset($row['teacher_id']) && $row['teacher_id'] == $teacher['id']) ? 'selected' : ''; ?>>               
+                                <?php echo $teacher['full_name']; ?>     
+                            </option>       
+                        <?php endwhile; ?>  
+                    </select>
                 </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Suffix</label>
-                    <input type="text" class="form-control" id="name" name="suffix" 
-                    value = "<?php echo $row['suffix']; ?>"  >
-                </div>
-
-                <div class="grid-item">
-                    <label class="form-label">Employee ID</label>
-                    <input type="text" class="form-control" id="name" name="employee_id" 
-                    value = "<?php echo $row['employee_id']; ?>"  >
-                </div>
-
             </div>
             <div class="footer">
             <button class="save" type="submit">Update</button>
@@ -85,7 +97,6 @@ while ($row = mysqli_fetch_array($squery)) {
         </form>
         </div>
 
-        <?php } ?>
 </body>
 
 </html>

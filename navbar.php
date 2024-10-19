@@ -47,6 +47,15 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
+                        <li class="darkerli <?php if ($page == 'Section') {echo 'active';} ?>">
+                            <a href="../section/">
+                                <i class="fa fa-address-card-o fa-lg"></i>
+                                <span class="nav-text">
+                                    Section
+                                </span>
+                            </a>
+                        </li>
+
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
                             <a href="../user/">
                                 <i class="fa fa-user fa-lg"></i>

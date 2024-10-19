@@ -39,7 +39,7 @@ include "../../db_conn.php";
                 <thead>
                     <th style="width: 60px;">ID</th>
                     <th>Name</th>
-                    <th>Employee ID</th>
+                    <th>Email</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
@@ -47,13 +47,13 @@ include "../../db_conn.php";
          while ($row = mysqli_fetch_array($squery)) {
         ?>
                 <tr class="table-row">
-                    <td>24-<?php echo $row['id'] ?></td>
+                    <td><?php echo $row['id'] ?></td>
                     <td>
                         <div class="profile">
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name'] ?></span>
                         </div>
                     </td>
-                    <td><?php echo $row['employee_id'] ?></td>
+                    <td><?php echo $row['email'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         View

@@ -1,8 +1,14 @@
 <?php 
 include "../../db_conn.php";
+$page = 'Section';
 
 // Fetch teachers from the database
-$teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM teacher"); // Adjust table name and columns as necessary
+$teachers_query = mysqli_query($conn, "
+SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
+FROM teacher 
+WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL)
+");
+
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +17,7 @@ $teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_n
     <meta charset="utf-8" />
     <meta name="google" value="notranslate" />
     <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
-    <title>IRMS-Teacher</title>
+    <title>IRMS-<?php echo $page; ?></title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -25,7 +31,6 @@ $teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_n
 
 <body>
     <?php 
-    $page = 'Subject';
     include "../../navbar.php";
     ?>
     
@@ -44,22 +49,30 @@ $teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_n
             <h3>Subject Information</h3>
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
-                    <label class="form-label">Subject Name <span class="required">*</span></label>
+                    <label class="form-label">Section Name <span class="required">*</span></label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Subject Code</label>
-                    <input type="text" class="form-control" id="code" name="code">
+                    <label class="form-label">Grade Level<span class="required">*</span></label>
+                    <select name="grade_level" class="form-control" required style="height:43px;">
+                        <option value="" hidden>Select Grade Level</option>
+                        <option value="7" >Grade 7</option>
+                        <option value="8" >Grade 8 </option>
+                        <option value="9" >Grade 9 </option>
+                        <option value="10" >Grade 10 </option>
+                    </select>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Assigned Teacher<span class="required">*</span></label>
                     <select name="teacher_id" class="form-control" required style="height:43px;">
-                        <option value="" hidden>Select a Teacher</option>
-                        <?php while($teacher = mysqli_fetch_assoc($teachers_query)): ?>
-                            <option value="<?php echo $teacher['full_name']; ?>"><?php echo $teacher['full_name']; ?></option>
-                        <?php endwhile; ?>
+                    <option value="" hidden>Select Teacher</option> 
+                        <?php while ($teacher = mysqli_fetch_assoc($teachers_query)): ?> 
+                            <option value="<?php echo $teacher['id']; ?>" <?php echo (isset($row['teacher_id']) && $row['teacher_id'] == $teacher['id']) ? 'selected' : ''; ?>>         
+                                <?php echo $teacher['full_name']; ?>     
+                            </option>       
+                        <?php endwhile; ?>  
                     </select>
                 </div>
             </div>

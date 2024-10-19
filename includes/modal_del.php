@@ -58,11 +58,16 @@
     <span class="close2" onclick="exit()" >&times;</span>.
     <!-- -->
     <div class="header">
-        <h1>Delete Resident</h1>
+        <h1>Delete <?php if ($page) {echo $page;}?> </h1>
     </div>
     <div class="message">
-       Are you sure want to delete resident <br>
-       <div style ="color: red;"><?php echo $row['first_name']; ?> <?php echo $row['last_name']; ?></div>
+       Are you sure want to delete <?php if ($page) {echo $page;}?><br>
+       <div style ="color: red;"><?php 
+       if ($page == 'Student' || $page == 'Teacher' ){
+        echo $row['first_name']; ?> <?php echo $row['last_name'];} 
+       elseif ($page == 'Subject'){
+        echo $row['name'];
+       } ?></div>
     </div>
   
 <a href="delete.php?id=<?php echo $row['id']; ?>"><button type="button" class="confirm">Confirm</button></a>
