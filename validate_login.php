@@ -36,13 +36,15 @@ if (isset($_POST['username'], $_POST['password'], $_POST['role'])) {
 
         // Redirect to appropriate dashboard based on role
         if ($role === 'registrar') {
-            $_SESSION['name'] = $user['name'];;
+            $_SESSION['name'] = $user['name'];
             $_SESSION['role'] = $user['role'];
             header("Location: modules/dashboard/");
         } elseif ($role === 'student') {
-            header("Location: modules/student_dashboard/");
+            $_SESSION['name'] = $user['first_name']." ".$user['last_name'];
+            header("Location: modules_student/dashboard");
         } elseif ($role === 'teacher') {
-            header("Location: modules/teacher_dashboard/");
+            $_SESSION['name'] = $user['first_name']." ".$user['last_name'];
+            header("Location: modules_teacher/dashboard");
         }
         exit();
     } else {
