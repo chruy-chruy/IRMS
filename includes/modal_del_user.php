@@ -58,7 +58,7 @@
     <span class="close2" onclick="exit()" >&times;</span>.
     <!-- -->
     <div class="header">
-        <h1>Delete Resident</h1>
+        <h1>Delete User</h1>
     </div>
     <div class="message">
        Are you sure want to delete<br>

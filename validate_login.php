@@ -1,47 +1,55 @@
 <?php
+// validate_login.php
+
 session_start();
 include "db_conn.php";
 
-echo $_POST['username'] . $_POST['password'];
+if (isset($_POST['username'], $_POST['password'], $_POST['role'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
-
-    function validate($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+    // Query based on the selected role
+    $query = "";
+    switch ($role) {
+        case 'registrar':
+            $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password' AND del_status != 'deledete'";
+            break;
+        case 'student':
+            $query = "SELECT * FROM student WHERE username = '$username' AND password = '$password'  AND del_status != 'deledete'";
+            break;
+        case 'teacher':
+            $query = "SELECT * FROM teacher WHERE username = '$username' AND password = '$password'  AND del_status != 'deledete'";
+            break;
+        default:
+            header("Location: index.php?error=Invalid role selected");
+            exit();
     }
 
-    $uname = validate($_POST['username']);
-    $pass = validate($_POST['password']);
+    $result = mysqli_query($conn, $query);
 
-    if (empty($uname)) {
-        header("Location: index.php?error=Username is required.");
-        exit();
-    } else if (empty($pass)) {
-        header("Location: index.php?error=Password is required.");
+    if (mysqli_num_rows($result) === 1) {
+        $user = mysqli_fetch_assoc($result);
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+     
+
+        // Redirect to appropriate dashboard based on role
+        if ($role === 'registrar') {
+            $_SESSION['name'] = $user['name'];;
+            $_SESSION['role'] = $user['role'];
+            header("Location: modules/dashboard/");
+        } elseif ($role === 'student') {
+            header("Location: modules/student_dashboard/");
+        } elseif ($role === 'teacher') {
+            header("Location: modules/teacher_dashboard/");
+        }
         exit();
     } else {
-        $sql = "SELECT * FROM user WHERE username='$uname' AND password='$pass'";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            if ($row['username'] === $uname && $row['password'] === $pass) {
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['role'] = $row['role'];
-                header("Location: modules/dashboard/");
-                exit();
-            }
-            else{
-                header("Location: index.php?error=Incorrect username or password.");
-            exit();
-            }
-        } else {
-            header("Location: index.php?error=Incorrect username or password.");
-            exit();
-        }
+        header("Location: index.php?error=Invalid username or password");
+        exit();
     }
+} else {
+    header("Location: index.php?error=All fields are required");
+    exit();
 }

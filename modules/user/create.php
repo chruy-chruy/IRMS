@@ -4,6 +4,7 @@ include "../../db_conn.php";
 $username = ucwords($_POST['username']);
 $password = ($_POST['password']);
 $role = ($_POST['role']);
+$name = ($_POST['name']);
 
 // check if resident is already exist
 $squery =  mysqli_query($conn, "SELECT * from user Where 
@@ -15,10 +16,12 @@ if (empty($check)){
      $sql2 = "INSERT INTO `user`(
     `username`,
     `password`,
+    `name`,
     `role`
     ) VALUES (
         '$username',
         '$password',
+        '$name',
         '$role')";
     
     mysqli_query($conn, $sql2);

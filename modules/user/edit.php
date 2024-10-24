@@ -38,21 +38,30 @@ while ($row = mysqli_fetch_array($squery)) {
         <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
         <h3>User Information</h3>
             <div class="grid-container grid-container--fill">
+
+            <div class="grid-item">
+                    <label class="form-label">Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-control" name="name" value="<?php echo $row['name'] ?>" required>
+                </div>
+
                 <div class="grid-item">
                     <label class="form-label">Username <span class="required">*</span></label>
                     <input type="text" class="form-control" name="username" value="<?php echo $row['username'] ?>" required>
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Role</label>
-                    <input type="text" class="form-control" name="role" 
-                    value = "<?php echo $row['role']; ?>">
-                </div>
-
-                <div class="grid-item">
                     <label class="form-label">Password<span class="required">*</span></label>
                     <input type="text" class="form-control" name="password" 
                     value = "<?php echo $row['password']; ?>" required>
+                </div>
+
+                <div class="grid-item">
+                    <label class="form-label">Role<span class="required">*</span></label>
+                    <select name="role" class="form-control" id="role" required style="height:43px;">
+        <option hidden value="<?php echo $row['role']; ?>" hidden><?php echo $row['role']; ?></option> 
+        <option value="registrar">Registrar</option>
+        <option value="administrator">Super Admin</option>
+    </select>
                 </div>
 
             </div>

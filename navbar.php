@@ -3,7 +3,11 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header("Location: ../index.php");
     exit();
-} ?>
+} 
+$name = $_SESSION['name'];
+$role = $_SESSION['role'];
+
+?>
 <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 <div class="container">
         <div class="sidebar">
@@ -11,7 +15,7 @@ if (!isset($_SESSION['id'])) {
                 <div>
                     <img src="../../assets/img/logo.png" alt="Logo" class="logo">
                 </div>
-
+                <div class="user">Hello <?php echo $name; ?>! </div>
                 <div class="scrollbar" id="style-1">
 
                     <ul>
@@ -29,14 +33,6 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
-                        <li class="darkerli <?php if ($page == 'Student') {echo 'active';} ?>">
-                            <a href="../Student/">
-                                <i class="fa fa-users fa-lg"></i>
-                                <span class="nav-text">
-                                    Student
-                                </span>
-                            </a>
-                        </li>
 
                         <li class="darkerli <?php if ($page == 'Subject') {echo 'active';} ?>">
                             <a href="../subject/">
@@ -56,13 +52,23 @@ if (!isset($_SESSION['id'])) {
                             </a>
                         </li>
 
+                        <li class="darkerli <?php if ($page == 'Student') {echo 'active';} ?>">
+                            <a href="../Student/">
+                                <i class="fa fa-users fa-lg"></i>
+                                <span class="nav-text">
+                                    Student
+                                </span>
+                            </a>
+                        </li>
+
+                        <?php if ($role == "administrator"){ ?>
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
                             <a href="../user/">
                                 <i class="fa fa-user fa-lg"></i>
                                 <span class="nav-text">Users</span>
                             </a>
                         </li>
-
+                        <?php }?>
 
                     </ul>
 

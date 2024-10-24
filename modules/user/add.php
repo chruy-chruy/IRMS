@@ -48,23 +48,29 @@ include "../../db_conn.php";
             </div>
             <h3>User Information</h3>
             <div class="grid-container grid-container--fill">
+
+            <div class="grid-item">
+                    <label class="form-label">Full Name<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="name" name="name"  required>
+                </div>
               
                 <div class="grid-item">
                     <label class="form-label">Username<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="username" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <input type="text" class="form-control" id="name" name="username" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Password<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="password" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <input type="text" class="form-control" id="name" name="password" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Role<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="name" name="role" 
-                    <?php if (isset($_GET['name'])) { ?>  value = "<?php echo $_GET['name']; ?>" <?php } ?> required>
+                    <select name="role" class="form-control" id="role" required style="height:43px;">
+        <option hidden value="">Select Role</option> 
+        <option value="registrar">Registrar</option>
+        <option value="administrator">Super Admin</option>
+    </select>
                 </div>
 
 

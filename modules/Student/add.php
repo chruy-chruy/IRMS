@@ -27,7 +27,21 @@ if (isset($_GET['message'])) {
     $page = 'Student';
     include "../../navbar.php";
     include "../../db_conn.php";
+
     ?>
+
+<?php 
+$section_query = mysqli_query($conn, "SELECT * FROM section WHERE del_status != 'deleted'");
+$sections = [];
+while ($section = mysqli_fetch_assoc($section_query)) {
+    $sections[] = $section;
+}
+?>
+
+<script>
+    // Pass PHP sections data to JavaScript
+    const sections = <?php echo json_encode($sections); ?>;
+</script>
     <div class="content">
         <?php include "../../includes/alert.php"; ?>
         <div class="header">
@@ -173,25 +187,29 @@ if (isset($_GET['message'])) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Grade Level</label>
-                    <select name="grade_level" class="form-control" required style="height:43px;">
-                            <option hidden value="" hidden>Select Grade Level</option> 
-                            <option value="7">Grade 7</option>
-                            <option value="8">Grade 8</option>
-                            <option value="9">Grade 9</option>
-                            <option value="10">Grade 10</option>
-                    </select>
-                </div>
-
-                <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="lrn_number" required>
+                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" required>
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Section<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="section" required>
-                </div>
+    <label class="form-label">Grade Level</label>
+    <select name="grade_level" class="form-control" id="grade_level" required style="height:43px;">
+        <option hidden value="">Select Grade Level</option> 
+        <option value="7">Grade 7</option>
+        <option value="8">Grade 8</option>
+        <option value="9">Grade 9</option>
+        <option value="10">Grade 10</option>
+    </select>
+</div>
+
+<div class="grid-item">
+    <label class="form-label">Section<span class="required">*</span></label>
+    <select class="form-control" id="section" name="section" required style="height:43px;">
+        <option value="" hidden>Select Section</option>
+    </select>
+</div>
+
+
 
                 <!-- <div class="grid-item">
                     <label class="form-label">Grade 7 Section</label>
@@ -224,7 +242,6 @@ if (isset($_GET['message'])) {
                 <div class="grid-item">
                     <label class="form-label">Password:</label>
                     <input type="text" class="form-control" id="password" name="password" password="password" readonly>
-                    <button type="button" id="togglePassword">Show</button>
                 </div>
             </div>
 
@@ -236,7 +253,7 @@ if (isset($_GET['message'])) {
 
         <script>
             // Auto-generate username based on email
-            document.getElementById('email').addEventListener('input', function() {
+            document.getElementById('lrn_number').addEventListener('input', function() {
                 const emailValue = this.value;
                 document.getElementById('username').value = emailValue; // Set username as the email
             });
@@ -255,17 +272,25 @@ if (isset($_GET['message'])) {
                 }
             }
 
-            // Toggle password visibility
-            document.getElementById('togglePassword').addEventListener('click', function() {
-                const passwordField = document.getElementById('password');
-                if (passwordField.type === 'password') {
-                    passwordField.type = 'text';
-                    this.textContent = 'Hide';
-                } else {
-                    passwordField.type = 'password';
-                    this.textContent = 'Show';
-                }
-            });
+            // Function to filter and update sections based on grade level
+    document.getElementById('grade_level').addEventListener('change', function() {
+        const selectedGrade = this.value;
+        const sectionSelect = document.getElementById('section');
+
+        // Clear previous options
+        sectionSelect.innerHTML = '<option value="" hidden>Select Section</option>';
+
+        // Loop through sections and add only those that match the selected grade level
+        sections.forEach(section => {
+            if (section.grade_level == selectedGrade) { // Assuming "grade_level" is a field in your "section" table
+                const option = document.createElement('option');
+                option.value = section.id;
+                option.textContent = section.name;
+                sectionSelect.appendChild(option);
+            }
+        });
+    });
+
         </script>
     </div>
 </body>

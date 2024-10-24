@@ -48,7 +48,7 @@
                     FROM section s 
                     LEFT JOIN teacher t ON s.teacher_id = t.id 
                     WHERE s.del_status != 'deleted' 
-                    ORDER BY s.id DESC;
+                    ORDER BY s.grade_level ;
                 ");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
@@ -66,7 +66,7 @@
         </div>
     </div>
     
-    <script>new DataTable('#example', { order: [[0, 'desc']] });</script>
+    <script>new DataTable('#example', { order: [[2, 'asc']] });</script>
 
 </body>
 

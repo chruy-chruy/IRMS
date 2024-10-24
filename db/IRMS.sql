@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2024 at 04:01 PM
+-- Generation Time: Oct 24, 2024 at 04:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `section` (
   `id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `grade_level` varchar(100) NOT NULL,
+  `grade_level` int(5) NOT NULL,
   `teacher_id` varchar(100) NOT NULL,
   `del_status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -40,9 +40,10 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`id`, `name`, `grade_level`, `teacher_id`, `del_status`) VALUES
-(2, 'Molave', '7', '00004', 'active'),
-(3, 'Narra', '7', '00003', 'active'),
-(5, 'Mahogani', '7', '00005', 'active');
+(2, 'Molave', 10, '00004', 'active'),
+(3, 'Narra', 7, '00003', 'active'),
+(5, 'Mahogani', 8, '00005', 'active'),
+(6, 'Test', 9, '00006', 'active');
 
 -- --------------------------------------------------------
 
@@ -94,7 +95,8 @@ CREATE TABLE `student` (
 
 INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `gender`, `age`, `address`, `contact_number`, `birthdate`, `birthplace`, `nationality`, `religion`, `father_name`, `father_occupation`, `father_contact`, `mother_name`, `mother_occupation`, `mother_contact`, `guardian_name`, `guardian_contact`, `elementary_name`, `elementary_address`, `elementary_year`, `email`, `grade_level`, `lrn_number`, `section`, `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, `username`, `password`, `del_status`) VALUES
 (1, 'Jhon', '', 'Doe', '', 'Male', 24, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '1999-11-16', 'Maitum Sarangani', 'filipino', 'catholic', 'Tedmer Garidos', 'Mechanic', '09123455678', 'Mary Ann Garidos', 'Sales Agent', '09123456678', '', '', 'Balite Elementary School', 'Balite Lagao General Santos City', '2012', 'Jhon123@gmail.com', '7', '12312312', '2', '', '', '', '', '', 'jhondoe644', 'active'),
-(2, 'Asd', '', 'Ad', NULL, 'Male', 24, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '1999-12-11', 'Maitum Sarangani', 'filipino', 'catholic', '', '', '', '', '', '', '', '', '', '', '', 'garidostroymichael@gmail.com', '7', '12312312', '2', '', '', '', '', 'garidostroymichael@gmail.com', '', 'deleted');
+(2, 'Asd', '', 'Ad', NULL, 'Male', 24, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '1999-12-11', 'Maitum Sarangani', 'filipino', 'catholic', '', '', '', '', '', '', '', '', '', '', '', 'garidostroymichael@gmail.com', '7', '12312312', '2', '', '', '', '', 'garidostroymichael@gmail.com', '', 'deleted'),
+(3, 'Test', '', '123', NULL, 'Female', 1312, '13', '123', '2004-11-11', '123', '123', '131', '123', '', '', '', '123', '', '', '', 'Balite Elementary School', '', '', 'test@gmail.com', '10', '123213', '2', '', '', '', '', '123213', 'test123865', 'active');
 
 -- --------------------------------------------------------
 
@@ -128,7 +130,7 @@ INSERT INTO `subject` (`id`, `code`, `name`, `details`, `teacher_id`, `del_statu
 --
 
 CREATE TABLE `teacher` (
-  `id` int(5) UNSIGNED ZEROFILL NOT NULL,
+  `id` int(100) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
@@ -147,9 +149,10 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `email`, `gender`, `contact_number`, `username`, `password`, `date_created`, `del_status`) VALUES
-(00003, 'Troy', 'Ancino', 'Garidos', '', 'garidostroymichael@gmail.com', 'Male', '0912354688', 'garidostroymichael@gmail.com', 'troygaridos515', '2024-10-04 00:35:13', 'active'),
-(00004, 'Juan', '', 'Dela Cruz', '', 'Juan@gmail.com', 'Male', '09269883740', 'Juan@gmail.com', 'juandela cruz498', '2024-10-16 21:37:26', 'active'),
-(00005, 'Cardo', '', 'Dalisay', '', 'cardo@gmail.com', 'Male', '09531023180', 'cardo@gmail.com', 'cardodalisay555', '2024-10-19 21:08:29', 'active');
+(3, 'Troy', 'Ancino', 'Garidos', '', 'garidostroymichael@gmail.com', 'Male', '0912354688', 'garidostroymichael@gmail.com', 'troygaridos515', '2024-10-04 00:35:13', 'deleted'),
+(4, 'Juan', '', 'Dela Cruz', '', 'Juan@gmail.com', 'Male', '09269883740', 'Juan@gmail.com', 'juandela cruz498', '2024-10-16 21:37:26', 'active'),
+(5, 'Cardo', '', 'Dalisay', '', 'cardo@gmail.com', 'Male', '09531023180', 'cardo@gmail.com', 'cardodalisay555', '2024-10-19 21:08:29', 'active'),
+(6, 'Test', '', 'Teacher', '', 'test@gmail.com', 'Male', '', 'test@gmail.com', 'testteacher414', '2024-10-24 21:17:36', 'active');
 
 -- --------------------------------------------------------
 
@@ -162,6 +165,7 @@ CREATE TABLE `user` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `del_status` varchar(55) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -169,11 +173,10 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `del_status`) VALUES
-(1, 'admin', 'admin', 'admin', ''),
-(2, 'Test', 'asdas', 'asdsa', 'deleted'),
-(3, 'Test', '123', '123', 'deleted'),
-(4, 'test', '1234', 'admin', '');
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `name`, `del_status`) VALUES
+(1, 'admin', 'admin', 'administrator', 'Super Admin', ''),
+(4, 'test', '1234', 'Administrator', '', 'deleted'),
+(5, 'Test@gmail.com', '123', 'registrar', 'Juan Dela Cruz', '');
 
 --
 -- Indexes for dumped tables
@@ -217,13 +220,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subject`
@@ -235,13 +238,13 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

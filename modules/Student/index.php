@@ -35,13 +35,14 @@ include "../../db_conn.php";
                 <thead>
                     <th style="width: 60px;">ID</th>
                     <th>Name</th>
-                    <th>Email</th> <!-- Assuming you want to show email -->
-                    <th>LRN Number</th> <!-- Assuming you want to show LRN Number -->
+                    <th>Grade Level</th>
+                    <th>Section</th>
+                    <th>LRN Number</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
                 // Adjusted SQL query to select students
-                $squery = mysqli_query($conn, "SELECT * FROM student WHERE del_status != 'deleted' ORDER BY id DESC;");
+                $squery = mysqli_query($conn, "SELECT * FROM student WHERE del_status != 'deleted' ORDER BY grade_level;");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
                 <tr class="table-row">
@@ -51,8 +52,9 @@ include "../../db_conn.php";
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name']; ?></span>
                         </div>
                     </td>
-                    <td><?php echo $row['email']; ?></td> <!-- Display email -->
-                    <td><?php echo $row['lrn_number']; ?></td> <!-- Display LRN Number -->
+                    <td><?php echo $row['grade_level']; ?></td>
+                    <td><?php echo $row['section']; ?></td>
+                    <td><?php echo $row['lrn_number']; ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id']; ?>">
                         View
@@ -65,7 +67,7 @@ include "../../db_conn.php";
             </div>
         </div>
 <script>new DataTable('#example', {
-    order: [[0, 'desc']]
+    order: [[2, 'asc']]
 });</script>
 
 </body>
