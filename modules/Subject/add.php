@@ -2,7 +2,7 @@
 include "../../db_conn.php";
 
 // Fetch teachers from the database
-$teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM teacher"); // Adjust table name and columns as necessary
+$teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_name) AS full_name FROM teacher WHERE del_status != 'deleted'"); // Adjust table name and columns as necessary
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ $teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_n
                     <select name="teacher_id" class="form-control" required style="height:43px;">
                         <option value="" hidden>Select a Teacher</option>
                         <?php while($teacher = mysqli_fetch_assoc($teachers_query)): ?>
-                            <option value="<?php echo $teacher['full_name']; ?>"><?php echo $teacher['full_name']; ?></option>
+                            <option value="<?php echo $teacher['id']; ?>"><?php echo $teacher['full_name']; ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>

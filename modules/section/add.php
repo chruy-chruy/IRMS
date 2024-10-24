@@ -6,7 +6,7 @@ $page = 'Section';
 $teachers_query = mysqli_query($conn, "
 SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
 FROM teacher 
-WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL)
+WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AND del_status != 'deleted'
 ");
 
 ?>
