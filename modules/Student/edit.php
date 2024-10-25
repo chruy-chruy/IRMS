@@ -176,7 +176,7 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" required>
+                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" value="<?php echo $row['lrn_number']; ?>"required>
                 </div>
 
                 <div class="grid-item">
@@ -196,7 +196,7 @@ $row = mysqli_fetch_array($query);
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Username:</label>
-                    <input type="text" class="form-control" id="username" name="email" value="<?php echo $row['email']; ?>" readonly>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $row['username']; ?>" readonly>
                 </div>
                 <div class="grid-item">
                     <label class="form-label">Password:</label>

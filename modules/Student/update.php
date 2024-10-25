@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $elementary_year = mysqli_real_escape_string($conn, $_POST['elementary_year']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $grade_level = mysqli_real_escape_string($conn, $_POST['grade_level']);
+    $lrn_number = mysqli_real_escape_string($conn, $_POST['lrn_number']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+
     
     // Password handling (consider hashing for production)
     $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -63,6 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         elementary_year = '$elementary_year',
         email = '$email',
         grade_level = '$grade_level',
+        lrn_number = '$lrn_number',
+        username = '$username',
         `password` = '$password'
         WHERE id = '$id'";
 
