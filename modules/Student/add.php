@@ -182,8 +182,8 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Email<span class="required">*</span></label>
-                    <input type="email" class="form-control" name="email" id="email" required>
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email">
                 </div>
 
                 <div class="grid-item">

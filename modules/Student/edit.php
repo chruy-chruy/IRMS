@@ -170,8 +170,8 @@ $row = mysqli_fetch_array($query);
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Email<span class="required">*</span></label>
-                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>" required>
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>">
                 </div>
 
                 <div class="grid-item">
