@@ -1,2 +1,2 @@
-# brgy_profiling
-barangay profiling system
+# IRMS
+Integrated Record Management System
