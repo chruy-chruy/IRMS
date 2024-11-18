@@ -36,7 +36,7 @@ $row = mysqli_fetch_array($query);
         <div class="header">
             <h1>Edit <?php echo $page; ?></h1>
         </div>
-
+        <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <form class="row g-3" action="update.php?id=<?php echo $row['id']; ?>" method="post">
             <div class="image" id="image">
                 <img src="../../assets/img/default.jpeg" alt="">

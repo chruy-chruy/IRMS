@@ -25,7 +25,7 @@
 
 <body>
     <?php 
-$page = 'User';
+$page = 'Users';
 include "../../navbar.php";
 include "../../db_conn.php";
  ?>
