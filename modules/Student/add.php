@@ -188,8 +188,11 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" required>
+                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" pattern="\d{13}" title="LRN must be exactly 13 digits" maxlength="13" required>
                 </div>
+                <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 13); // Allows only numbers, max 13 digits
+});</script>
 
                 <div class="grid-item">
     <label class="form-label">Grade Level</label>

@@ -76,12 +76,11 @@ $role = $_SESSION['role'];
 
                     <ul class="logout">
                         <li>
-                            <a href="../../logout.php">
+                            <a id="deleteButton">
                                 <i class="fa fa-sign-out fa-lg"></i>
                                 <span class="nav-text">
                                     Logout
                                 </span>
-
                             </a>
                         </li>
                     </ul>
@@ -90,3 +89,12 @@ $role = $_SESSION['role'];
         <div class="content">
         </div>
     </div>
+    <script>
+    // Confirm before Logout
+document.getElementById('deleteButton').addEventListener('click', function() {
+    const confirmed = confirm('Hello <?php echo $name;?>! Are you sure you want to logout?');
+    if (confirmed) {
+        window.location.href = '../../logout.php'; // Redirect to delete page
+    }
+});
+  </script>
