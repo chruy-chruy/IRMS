@@ -61,6 +61,15 @@ $role = $_SESSION['role'];
                             </a>
                         </li>
 
+                        <li class="darkerli <?php if ($page == 'Schedule') {echo 'active';} ?>">
+                            <a href="../Schedule/">
+                                <i class="fa fa-calendar-check-o fa-lg"></i>
+                                <span class="nav-text">
+                                    Schedule
+                                </span>
+                            </a>
+                        </li>
+
                         <?php if ($role == "administrator"){ ?>
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
                             <a href="../user/">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2024 at 04:05 PM
+-- Generation Time: Dec 28, 2024 at 07:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,51 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `id` int(11) NOT NULL,
+  `section` varchar(100) NOT NULL,
+  `1st_monday` varchar(100) NOT NULL,
+  `2nd_monday` varchar(100) NOT NULL,
+  `3rd_monday` varchar(100) NOT NULL,
+  `4th_monday` varchar(100) NOT NULL,
+  `5th_monday` varchar(100) NOT NULL,
+  `6th_monday` varchar(100) NOT NULL,
+  `7th_monday` varchar(100) NOT NULL,
+  `1st_tuesday` varchar(100) NOT NULL,
+  `2nd_tuesday` varchar(100) NOT NULL,
+  `3rd_tuesday` varchar(100) NOT NULL,
+  `4th_tuesday` varchar(100) NOT NULL,
+  `5th_tuesday` varchar(100) NOT NULL,
+  `6th_tuesday` varchar(100) NOT NULL,
+  `7th_tuesday` varchar(100) NOT NULL,
+  `1st_wednesday` varchar(100) NOT NULL,
+  `2nd_wednesday` varchar(100) NOT NULL,
+  `3rd_wednesday` varchar(100) NOT NULL,
+  `4th_wednesday` varchar(100) NOT NULL,
+  `5th_wednesday` varchar(100) NOT NULL,
+  `6th_wednesday` varchar(100) NOT NULL,
+  `7th_wednesday` varchar(100) NOT NULL,
+  `1st_thursday` varchar(100) NOT NULL,
+  `2nd_thursday` varchar(100) NOT NULL,
+  `3rd_thursday` varchar(100) NOT NULL,
+  `4th_thursday` varchar(100) NOT NULL,
+  `5th_thursday` varchar(100) NOT NULL,
+  `7th_thursday` varchar(100) NOT NULL,
+  `1st_friday` varchar(100) NOT NULL,
+  `2nd_friday` varchar(100) NOT NULL,
+  `3rd_friday` varchar(100) NOT NULL,
+  `4th_friday` varchar(100) NOT NULL,
+  `5th_friday` varchar(100) NOT NULL,
+  `6th_friday` varchar(100) NOT NULL,
+  `7_friday` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `section`
 --
 
@@ -40,10 +85,9 @@ CREATE TABLE `section` (
 --
 
 INSERT INTO `section` (`id`, `name`, `grade_level`, `teacher_id`, `del_status`) VALUES
-(2, 'Molave', 10, '00004', 'active'),
-(3, 'Narra', 7, '00003', 'active'),
-(5, 'Mahogani', 8, '00005', 'active'),
-(6, 'Test', 9, '00006', 'active');
+(1, 'Molave', 7, '1', 'active'),
+(2, 'Narra', 7, '2', 'active'),
+(3, 'Mahogani', 7, '3', 'active');
 
 -- --------------------------------------------------------
 
@@ -94,9 +138,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `gender`, `age`, `address`, `contact_number`, `birthdate`, `birthplace`, `nationality`, `religion`, `father_name`, `father_occupation`, `father_contact`, `mother_name`, `mother_occupation`, `mother_contact`, `guardian_name`, `guardian_contact`, `elementary_name`, `elementary_address`, `elementary_year`, `email`, `grade_level`, `lrn_number`, `section`, `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, `username`, `password`, `del_status`) VALUES
-(1, 'Jhon', '', 'Doe', '', 'Male', 24, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '1999-11-16', 'Maitum Sarangani', 'filipino', 'catholic', 'Tedmer Garidos', 'Mechanic', '09123455678', 'Mary Ann Garidos', 'Sales Agent', '09123456678', '', '', 'Balite Elementary School', 'Balite Lagao General Santos City', '2012', 'Jhon123@gmail.com', '7', '12312312', '2', '', '', '', '', '', 'jhondoe644', 'active'),
-(2, 'Asd', '', 'Ad', NULL, 'Male', 24, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '1999-12-11', 'Maitum Sarangani', 'filipino', 'catholic', '', '', '', '', '', '', '', '', '', '', '', 'garidostroymichael@gmail.com', '7', '12312312', '2', '', '', '', '', 'garidostroymichael@gmail.com', '', 'deleted'),
-(3, 'Test', '', '123', NULL, 'Female', 1312, '13', '123', '2004-11-11', '123', '123', '131', '123', '', '', '', '123', '', '', '', 'Balite Elementary School', '', '', 'test@gmail.com', '10', '123213', '2', '', '', '', '', '123213', 'test123865', 'active');
+(1, 'Student', '', 'Last', '', 'Male', 15, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '2010-02-11', 'asd', 'asd', 'ads', '', '', '', '', '', '', '', '', '', '', '', 'test@gmail.com', '8', '12313', '1', '', '', '', '', '12313', 'studentlast252', 'active');
 
 -- --------------------------------------------------------
 
@@ -107,6 +149,7 @@ INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`,
 CREATE TABLE `subject` (
   `id` int(11) NOT NULL,
   `code` varchar(100) NOT NULL,
+  `grade_level` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `details` varchar(100) NOT NULL,
   `teacher_id` varchar(100) NOT NULL,
@@ -117,11 +160,14 @@ CREATE TABLE `subject` (
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`id`, `code`, `name`, `details`, `teacher_id`, `del_status`) VALUES
-(1, 'E123', 'English', '', '00003', 'active'),
-(2, 'M123', 'Math', '', '', 'deleted'),
-(3, 'PE123', 'PE', '', '00004', 'active'),
-(4, 'SC101', 'Science', '', '00003', 'active');
+INSERT INTO `subject` (`id`, `code`, `grade_level`, `name`, `details`, `teacher_id`, `del_status`) VALUES
+(1, 'Science 7', '7', 'Science', '', '1', 'active'),
+(2, 'English 7', '', 'English', '', '1', 'active'),
+(3, 'Math 7', '', 'Math', '', '1', 'active'),
+(4, 'History 7', '', 'History', '', '2', 'active'),
+(5, 'Music 7', '', 'Music', '', '3', 'active'),
+(6, 'PE 7', '', 'PE', '', '2', 'active'),
+(7, 'Art 7', '', 'Art', '', '3', 'active');
 
 -- --------------------------------------------------------
 
@@ -149,10 +195,9 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `email`, `gender`, `contact_number`, `username`, `password`, `date_created`, `del_status`) VALUES
-(3, 'Troy', 'Ancino', 'Garidos', '', 'garidostroymichael@gmail.com', 'Male', '0912354688', 'garidostroymichael@gmail.com', 'troygaridos515', '2024-10-04 00:35:13', 'deleted'),
-(4, 'Juan', '', 'Dela Cruz', '', 'Juan@gmail.com', 'Male', '09269883740', 'Juan@gmail.com', 'juandela cruz498', '2024-10-16 21:37:26', 'active'),
-(5, 'Cardo', '', 'Dalisay', '', 'cardo@gmail.com', 'Male', '09531023180', 'cardo@gmail.com', 'cardodalisay555', '2024-10-19 21:08:29', 'active'),
-(6, 'Test', '', 'Teacher', '', 'test@gmail.com', 'Male', '', 'test@gmail.com', 'testteacher414', '2024-10-24 21:17:36', 'active');
+(1, 'Cheryl', '', 'Dela Cerna', '', 'Cheryl@gmail.com', 'Female', '09531023180', 'Cheryl@gmail.com', 'cheryldela cerna260', '2024-10-24 23:23:51', 'active'),
+(2, 'Sharon', '', 'Calida', '', 'Sharon@gmail.com', 'Female', '09531023180', 'Sharon@gmail.com', 'sharoncalida591', '2024-11-30 23:40:58', 'active'),
+(3, 'Momina', '', 'Mutin', '', 'Momina@gmai.com', 'Female', '09568755542', 'Momina@gmai.com', 'mominamutin535', '2024-12-28 23:51:58', 'active');
 
 -- --------------------------------------------------------
 
@@ -176,11 +221,18 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `name`, `del_status`) VALUES
 (1, 'admin', 'admin', 'administrator', 'Super Admin', ''),
 (4, 'test', '1234', 'Administrator', '', 'deleted'),
-(5, 'Test@gmail.com', '123', 'registrar', 'Juan Dela Cruz', '');
+(5, 'Test@gmail.com', '123', 'registrar', 'Juan Dela Cruz', ''),
+(6, 'Troy123', '123', 'registrar', 'Troy Garidos', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `section`
@@ -217,34 +269,40 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

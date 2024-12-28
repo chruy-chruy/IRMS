@@ -4,7 +4,7 @@ include "../../db_conn.php";
 
 // Get and sanitize the input values
 $subject_name = ucwords(trim($_POST['name']));
-$subject_code = strtoupper(trim($_POST['code']));
+$subject_code = $_POST['code'];
 $teacher_id = $_POST['teacher_id'];
 
 // Check if the subject already exists

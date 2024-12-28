@@ -7,7 +7,6 @@ $first_name = ucwords(trim($_POST['first_name']));
 $middle_name = ucwords(trim($_POST['middle_name']));
 $last_name = ucwords(trim($_POST['last_name']));
 $gender = trim($_POST['gender']);
-$age = intval(trim($_POST['age']));
 $address = trim($_POST['address']);
 $contact_number = trim($_POST['contact_number']);
 $birthdate = trim($_POST['birthdate']);
@@ -43,7 +42,7 @@ $check = mysqli_num_rows($squery) > 0;
 if (!$check) {
     // Insert the new student record
     $sql2 = "INSERT INTO `student` (
-        `first_name`, `middle_name`, `last_name`, `gender`, `age`, `address`, `contact_number`, 
+        `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_number`, 
         `birthdate`, `birthplace`, `nationality`, `religion`, 
         `father_name`, `father_occupation`, `father_contact`, 
         `mother_name`, `mother_occupation`, `mother_contact`, 
@@ -53,7 +52,7 @@ if (!$check) {
         `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, 
         `username`, `password`, `del_status`
     ) VALUES (
-        '$first_name', '$middle_name', '$last_name', '$gender', '$age', '$address', '$contact_number', 
+        '$first_name', '$middle_name', '$last_name', '$gender', '$address', '$contact_number', 
         '$birthdate', '$birthplace', '$nationality', '$religion', 
         '$father_name', '$father_occupation', '$father_contact', 
         '$mother_name', '$mother_occupation', '$mother_contact', 

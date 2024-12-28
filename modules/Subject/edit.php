@@ -59,7 +59,7 @@ $teacher = mysqli_fetch_assoc($org_teacher);
                 <input type="text" hidden name="imageValue" value="default.jpeg">
             </div>
           
-            <h3>Personal Information</h3>
+            <h3>Subject Information</h3>
             <div class="grid-container grid-container--fill">
 
                 <div class="grid-item">

@@ -86,11 +86,6 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Age<span class="required">*</span></label>
-                    <input type="number" class="form-control" name="age" required>
-                </div>
-
-                <div class="grid-item">
                     <label class="form-label">Address<span class="required">*</span></label>
                     <input type="text" class="form-control" name="address" required>
                 </div>
