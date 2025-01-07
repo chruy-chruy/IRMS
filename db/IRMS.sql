@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2024 at 07:39 PM
+-- Generation Time: Jan 07, 2025 at 07:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,7 +87,37 @@ CREATE TABLE `section` (
 INSERT INTO `section` (`id`, `name`, `grade_level`, `teacher_id`, `del_status`) VALUES
 (1, 'Molave', 7, '1', 'active'),
 (2, 'Narra', 7, '2', 'active'),
-(3, 'Mahogani', 7, '3', 'active');
+(3, 'Mahogani', 7, '3', 'active'),
+(4, '', 0, '', 'active'),
+(5, '', 0, '', 'active'),
+(6, 'Test', 7, '4', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_student`
+--
+
+CREATE TABLE `section_student` (
+  `id` int(11) NOT NULL,
+  `student` varchar(100) NOT NULL,
+  `section` varchar(100) NOT NULL,
+  `quarter` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section_subject`
+--
+
+CREATE TABLE `section_subject` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `section` varchar(100) NOT NULL,
+  `teacher` varchar(100) NOT NULL,
+  `quarter` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -138,7 +168,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `gender`, `age`, `address`, `contact_number`, `birthdate`, `birthplace`, `nationality`, `religion`, `father_name`, `father_occupation`, `father_contact`, `mother_name`, `mother_occupation`, `mother_contact`, `guardian_name`, `guardian_contact`, `elementary_name`, `elementary_address`, `elementary_year`, `email`, `grade_level`, `lrn_number`, `section`, `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, `username`, `password`, `del_status`) VALUES
-(1, 'Student', '', 'Last', '', 'Male', 15, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '2010-02-11', 'asd', 'asd', 'ads', '', '', '', '', '', '', '', '', '', '', '', 'test@gmail.com', '8', '12313', '1', '', '', '', '', '12313', 'studentlast252', 'active');
+(1, 'Student', '', 'Last', '', 'Male', 15, 'Purok 15 Zone 4 Lagao. General Santos City', '09531023180', '2010-02-11', 'asd', 'asd', 'ads', '', '', '', '', '', '', '', '', '', '', '', 'test@gmail.com', '7', '12313', '1', '', '', '', '', '12313', 'studentlast252', 'active');
 
 -- --------------------------------------------------------
 
@@ -162,7 +192,7 @@ CREATE TABLE `subject` (
 
 INSERT INTO `subject` (`id`, `code`, `grade_level`, `name`, `details`, `teacher_id`, `del_status`) VALUES
 (1, 'Science 7', '7', 'Science', '', '1', 'active'),
-(2, 'English 7', '', 'English', '', '1', 'active'),
+(2, 'English 7', '7', 'English', '', '1', 'active'),
 (3, 'Math 7', '', 'Math', '', '1', 'active'),
 (4, 'History 7', '', 'History', '', '2', 'active'),
 (5, 'Music 7', '', 'Music', '', '3', 'active'),
@@ -197,7 +227,8 @@ CREATE TABLE `teacher` (
 INSERT INTO `teacher` (`id`, `first_name`, `middle_name`, `last_name`, `suffix`, `email`, `gender`, `contact_number`, `username`, `password`, `date_created`, `del_status`) VALUES
 (1, 'Cheryl', '', 'Dela Cerna', '', 'Cheryl@gmail.com', 'Female', '09531023180', 'Cheryl@gmail.com', 'cheryldela cerna260', '2024-10-24 23:23:51', 'active'),
 (2, 'Sharon', '', 'Calida', '', 'Sharon@gmail.com', 'Female', '09531023180', 'Sharon@gmail.com', 'sharoncalida591', '2024-11-30 23:40:58', 'active'),
-(3, 'Momina', '', 'Mutin', '', 'Momina@gmai.com', 'Female', '09568755542', 'Momina@gmai.com', 'mominamutin535', '2024-12-28 23:51:58', 'active');
+(3, 'Momina', '', 'Mutin', '', 'Momina@gmai.com', 'Female', '09568755542', 'Momina@gmai.com', 'mominamutin535', '2024-12-28 23:51:58', 'active'),
+(4, 'Test', '', '123', '', 'test', 'Male', '09531023180', 'test', 'test123759', '2025-01-08 00:41:43', 'active');
 
 -- --------------------------------------------------------
 
@@ -241,6 +272,18 @@ ALTER TABLE `section`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `section_student`
+--
+ALTER TABLE `section_student`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `section_subject`
+--
+ALTER TABLE `section_subject`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -278,7 +321,19 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `section_student`
+--
+ALTER TABLE `section_student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `section_subject`
+--
+ALTER TABLE `section_subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -296,7 +351,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`

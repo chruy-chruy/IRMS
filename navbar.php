@@ -26,6 +26,17 @@ $role = $_SESSION['role'];
                             </a>
                         </li>
 
+                        
+                        <li class="darkerli <?php if ($page == 'Student') {echo 'active';} ?>">
+                            <a href="../Student/">
+                                <i class="fa fa-users fa-lg"></i>
+                                <span class="nav-text">
+                                    Student
+                                </span>
+                            </a>
+                        </li>
+
+
                         <li class="darkerli <?php if ($page == 'Teacher') {echo 'active';} ?>">
                             <a href="../Teacher/">
                                 <i class="fa fa-users fa-lg"></i>
@@ -51,16 +62,6 @@ $role = $_SESSION['role'];
                                 </span>
                             </a>
                         </li>
-
-                        <li class="darkerli <?php if ($page == 'Student') {echo 'active';} ?>">
-                            <a href="../Student/">
-                                <i class="fa fa-users fa-lg"></i>
-                                <span class="nav-text">
-                                    Student
-                                </span>
-                            </a>
-                        </li>
-
                         <li class="darkerli <?php if ($page == 'Schedule') {echo 'active';} ?>">
                             <a href="../Schedule/">
                                 <i class="fa fa-calendar-check-o fa-lg"></i>

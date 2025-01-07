@@ -1,7 +1,12 @@
 <?php 
 include "../../db_conn.php";
 $page = 'Section';
-
+include "../../db_conn.php";
+if (!isset($_GET['grade'])) {
+  header("Location: ./");
+  exit();
+} 
+$grade = $_GET['grade'];
 // Fetch teachers from the database
 $teachers_query = mysqli_query($conn, "
 SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
@@ -46,7 +51,7 @@ WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AN
                 <input type="text" hidden name="imageValue" value="default.jpeg">
             </div>
 
-            <h3>Subject Information</h3>
+            <h3>Section Information</h3>
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Section Name <span class="required">*</span></label>
@@ -55,13 +60,7 @@ WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AN
 
                 <div class="grid-item">
                     <label class="form-label">Grade Level<span class="required">*</span></label>
-                    <select name="grade_level" class="form-control" required style="height:43px;">
-                        <option value="" hidden>Select Grade Level</option>
-                        <option value="7" >Grade 7</option>
-                        <option value="8" >Grade 8 </option>
-                        <option value="9" >Grade 9 </option>
-                        <option value="10" >Grade 10 </option>
-                    </select>
+                    <input type="text" class="form-control" id="grade_level" name="grade_level" value="<?php echo $grade ?>"required readonly>
                 </div>
 
                 <div class="grid-item">
@@ -79,7 +78,7 @@ WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AN
 
             <div class="footer">
                 <button class="save" type="submit">Save</button>
-                <a href="./"><button class="cancel" type="button">Cancel</button></a>
+                <a href="./grade.php?grade=<?php echo $grade;?>"><button class="cancel" type="button">Cancel</button></a>
             </div>
         </form>
     </div>

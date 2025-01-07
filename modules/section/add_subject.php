@@ -1,0 +1,35 @@
+<?php 
+include "../../db_conn.php";
+
+// Get the ID from the URL
+$subject_id = $_GET['id'];
+$quarter = $_GET['quarter'];
+$section = $_GET['section'];
+
+// Initialize variables
+$squery = mysqli_query($conn, "SELECT * FROM section_subject WHERE subject = '$subject_id' AND quarter = '$quarter' AND section = '$section'");
+$check = mysqli_fetch_array($squery);
+
+if (empty($check)) {
+    // If not exists, insert the new subject into the database
+    $sql2 = "INSERT INTO `section_subject` (
+        `subject`,
+        `section`,
+        `quarter`
+    ) VALUES (
+        '$subject_id',
+        '$section',
+        '$quarter'
+    )";
+
+    mysqli_query($conn, $sql2);
+    
+    // Redirect with success message
+    header("Location: schedule.php?message=Success! New subject has been saved successfully.&section=$section&quarter=$quarter");
+} else {
+    // If it exists, redirect with error message
+    header("Location: schedule.php?error=Error! Student already exists.&section=$section&quarter=$quarter");
+}
+
+
+?>
