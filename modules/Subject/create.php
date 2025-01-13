@@ -6,6 +6,7 @@ include "../../db_conn.php";
 $subject_name = ucwords(trim($_POST['name']));
 $subject_code = $_POST['code'];
 $teacher_id = $_POST['teacher_id'];
+$grade_level = $_POST['grade_level'];
 
 // Check if the subject already exists
 $squery = mysqli_query($conn, "SELECT * FROM subject WHERE 
@@ -21,11 +22,13 @@ if (empty($check)) {
         `name`,
         `code`,
         `teacher_id`,
+        `grade_level`,
         `del_status`
     ) VALUES (
         '$subject_name',
         '$subject_code',
         '$teacher_id',
+        '$grade_level',
         'active'
     )";
 

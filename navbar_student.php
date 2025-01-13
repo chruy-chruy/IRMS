@@ -5,7 +5,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 } 
 $name = $_SESSION['name'];
-
+$student_id = $_SESSION['id'];
 ?>
 <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 <div class="container">
@@ -22,6 +22,16 @@ $name = $_SESSION['name'];
                             <a href="../dashboard">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <ul>
+                        <li class="darkerlishadow <?php if ($page == 'Schedule') {echo 'active';} ?>">
+                            <a href="../Schedule">
+                                <i class="fa fa-home fa-lg"></i>
+                                <span class="nav-text">My Schedule</span>
                             </a>
                         </li>
 

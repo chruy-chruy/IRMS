@@ -46,7 +46,7 @@ $role = $_SESSION['role'];
 
 
                         <li class="darkerli <?php if ($page == 'Subject') {echo 'active';} ?>">
-                            <a href="../subject/">
+                            <a href="../Subject/">
                                 <i class="fa fa-address-card-o fa-lg"></i>
                                 <span class="nav-text">
                                     Subject
@@ -55,25 +55,25 @@ $role = $_SESSION['role'];
                         </li>
 
                         <li class="darkerli <?php if ($page == 'Section') {echo 'active';} ?>">
-                            <a href="../section/">
+                            <a href="../Section/">
                                 <i class="fa fa-address-card-o fa-lg"></i>
                                 <span class="nav-text">
                                     Section
                                 </span>
                             </a>
                         </li>
-                        <li class="darkerli <?php if ($page == 'Schedule') {echo 'active';} ?>">
+                        <!-- <li class="darkerli <?php if ($page == 'Schedule') {echo 'active';} ?>">
                             <a href="../Schedule/">
                                 <i class="fa fa-calendar-check-o fa-lg"></i>
                                 <span class="nav-text">
                                     Schedule
                                 </span>
                             </a>
-                        </li>
+                        </li> -->
 
                         <?php if ($role == "administrator"){ ?>
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
-                            <a href="../user/">
+                            <a href="../User/">
                                 <i class="fa fa-user fa-lg"></i>
                                 <span class="nav-text">Users</span>
                             </a>

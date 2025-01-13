@@ -7,12 +7,14 @@ $id = $_GET['id'];
 // Initialize variables
 $name = ($_POST['name']);
 $code = ($_POST['code']);
+$grade_level = $_POST['grade_level'];
 $teacher_id = ($_POST['teacher_id']);
 
 // Prepare the SQL update query
 $sql = "UPDATE `subject` SET 
 `name`='$name',
 `code`='$code',
+`grade_level`='$grade_level',
 `teacher_id`='$teacher_id'
 WHERE id = '$id'";
 

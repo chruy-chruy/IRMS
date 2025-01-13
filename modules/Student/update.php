@@ -12,10 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $last_name = mysqli_real_escape_string($conn, $_POST['last_name']);
     $suffix = mysqli_real_escape_string($conn, $_POST['suffix']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
-    $age = mysqli_real_escape_string($conn, $_POST['age']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
     $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $birthdate = mysqli_real_escape_string($conn, $_POST['birthdate']);
+    $birthdate2 = new DateTime($birthdate); // Convert to DateTime
+$currentDate = new DateTime(); // Get the current date
+$age = $currentDate->diff($birthdate2)->y; // Calculate the age in years
     $birthplace = mysqli_real_escape_string($conn, $_POST['birthplace']);
     $nationality = mysqli_real_escape_string($conn, $_POST['nationality']);
     $religion = mysqli_real_escape_string($conn, $_POST['religion']);

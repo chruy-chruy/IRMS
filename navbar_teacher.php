@@ -19,7 +19,7 @@ $name = $_SESSION['name'];
 
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Dashboard') {echo 'active';} ?>">
-                            <a href="../dashboard">
+                            <a href="../Dashboard">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
                             </a>

@@ -33,11 +33,10 @@ include "../../db_conn.php";
             <div class="table_wrap">
             <table id="example" class="data list">
                 <thead>
-                    <th style="width: 60px;">ID</th>
+                    <th style="width: 120px;">LRN Number</th>
                     <th>Name</th>
+                    <th>Email</th>
                     <th>Grade Level</th>
-                    <th>Section</th>
-                    <th>LRN Number</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
                 <?php
@@ -46,15 +45,14 @@ include "../../db_conn.php";
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
                 <tr class="table-row">
-                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['lrn_number']; ?></td>
                     <td>
                         <div class="profile">
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name']; ?></span>
                         </div>
                     </td>
+                    <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['grade_level']; ?></td>
-                    <td><?php echo $row['section']; ?></td>
-                    <td><?php echo $row['lrn_number']; ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id']; ?>">
                         View

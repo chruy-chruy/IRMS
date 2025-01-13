@@ -40,6 +40,7 @@ include "../../db_conn.php";
                     <th style="width: 60px;">ID</th>
                     <th>Subject Name</th>
                     <th>Subject Code</th>
+                    <th>Grade Level</th>
                     <th>Assigned Teacher</th>
                     <th style="width: 55px;">Action</th>
                 </thead>
@@ -57,6 +58,7 @@ include "../../db_conn.php";
                     <td><?php echo $row['id'] ?></td>
                     <td><?php echo $row['name'] ?></td>
                     <td><?php echo $row['code'] ?></td>
+                    <td>Grade <?php echo $row['grade_level'] ?></td>
                     <td><?php echo $row['teacher_name'] ?></td>
                     <td>
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">

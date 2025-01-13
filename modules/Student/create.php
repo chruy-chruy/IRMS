@@ -10,6 +10,9 @@ $gender = trim($_POST['gender']);
 $address = trim($_POST['address']);
 $contact_number = trim($_POST['contact_number']);
 $birthdate = trim($_POST['birthdate']);
+$birthdate2 = new DateTime($birthdate); // Convert to DateTime
+$currentDate = new DateTime(); // Get the current date
+$age = $currentDate->diff($birthdate2)->y; // Calculate the age in years
 $birthplace = trim($_POST['birthplace']);
 $nationality = trim($_POST['nationality']);
 $religion = trim($_POST['religion']);
@@ -27,11 +30,11 @@ $elementary_year = trim($_POST['elementary_year']);
 $email = trim($_POST['email']);
 $grade_level = trim($_POST['grade_level']);
 $lrn_number = trim($_POST['lrn_number']);
-$section = trim($_POST['section']);
-$grade7_section = trim($_POST['grade7_section']);
-$grade8_section = trim($_POST['grade8_section']);
-$grade9_section = trim($_POST['grade9_section']);
-$grade10_section = trim($_POST['grade10_section']);
+// $section = trim($_POST['section']);
+// $grade7_section = trim($_POST['grade7_section']);
+// $grade8_section = trim($_POST['grade8_section']);
+// $grade9_section = trim($_POST['grade9_section']);
+// $grade10_section = trim($_POST['grade10_section']);
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
@@ -50,7 +53,7 @@ if (!$check) {
         `elementary_name`, `elementary_address`, `elementary_year`, 
         `email`, `grade_level`, `lrn_number`, `section`, 
         `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, 
-        `username`, `password`, `del_status`
+        `username`, `password`,`age`, `del_status`
     ) VALUES (
         '$first_name', '$middle_name', '$last_name', '$gender', '$address', '$contact_number', 
         '$birthdate', '$birthplace', '$nationality', '$religion', 
@@ -60,7 +63,7 @@ if (!$check) {
         '$elementary_name', '$elementary_address', '$elementary_year', 
         '$email', '$grade_level', '$lrn_number', '$section', 
         '$grade7_section', '$grade8_section', '$grade9_section', '$grade10_section', 
-        '$username', '$password', 'active'
+        '$username', '$password', '$age', 'active'
     )";
 
     if (mysqli_query($conn, $sql2)) {

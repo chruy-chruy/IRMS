@@ -54,6 +54,17 @@ $teachers_query = mysqli_query($conn, "SELECT id, CONCAT(first_name, ' ', last_n
                 </div>
 
                 <div class="grid-item">
+    <label class="form-label">Grade Level</label>
+    <select name="grade_level" class="form-control" id="grade_level" required style="height:43px;">
+        <option hidden value="">Select Grade Level</option> 
+        <option value="7">Grade 7</option>
+        <option value="8">Grade 8</option>
+        <option value="9">Grade 9</option>
+        <option value="10">Grade 10</option>
+    </select>
+</div>
+
+                <div class="grid-item">
                     <label class="form-label">Assigned Teacher<span class="required">*</span></label>
                     <select name="teacher_id" class="form-control" required style="height:43px;">
                         <option value="" hidden>Select a Teacher</option>

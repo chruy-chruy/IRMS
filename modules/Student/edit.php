@@ -36,7 +36,7 @@ $row = mysqli_fetch_array($query);
         <div class="header">
             <h1>Edit <?php echo $page; ?></h1>
         </div>
-        <a href="#" class="back" onclick="history.back(); return false;"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+        <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <script>
             
         </script>
@@ -78,7 +78,7 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">Age<span class="required">*</span></label>
-                    <input type="number" class="form-control" name="age" value="<?php echo $row['age']; ?>" required>
+                    <input readonly type="number" class="form-control" name="age" value="<?php echo $row['age']; ?>" required>
                 </div>
 
                 <div class="grid-item">
@@ -181,6 +181,9 @@ $row = mysqli_fetch_array($query);
                     <label class="form-label">LRN Number<span class="required">*</span></label>
                     <input type="text" class="form-control" name="lrn_number" id="lrn_number" value="<?php echo $row['lrn_number']; ?>"required>
                 </div>
+                <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 13); // Allows only numbers, max 13 digits
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Grade Level</label>

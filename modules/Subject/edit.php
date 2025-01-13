@@ -52,7 +52,7 @@ $teacher = mysqli_fetch_assoc($org_teacher);
             <div class="header">
                 <h1>Edit <?php if ($page) {echo $page;} ?></h1>
             </div>
-            <a href="#" class="back" onclick="history.back(); return false;"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+            <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <form class="row g-3" action="update.php?id=<?php echo $row['id']?>" method="post">
         <div class="image" id="image">
                 <img src="../../assets/img/default.jpeg" alt="">
@@ -71,6 +71,17 @@ $teacher = mysqli_fetch_assoc($org_teacher);
                     <label class="form-label">Subject Code</label>
                     <input type="text" class="form-control" id="name" name="code" 
                     value = "<?php echo $row['code']; ?>">
+                </div>
+
+                <div class="grid-item">
+                    <label class="form-label">Grade Level</label>
+                    <select name="grade_level" class="form-control" required style="height:43px;">
+                            <option hidden value="<?php echo $row['grade_level']; ?>" hidden>Grade <?php echo $row['grade_level']; ?></option> 
+                            <option value="7">Grade 7</option>
+                            <option value="8">Grade 8</option>
+                            <option value="9">Grade 9</option>
+                            <option value="10">Grade 10</option>
+                    </select>
                 </div>
 
                 <div class="grid-item">

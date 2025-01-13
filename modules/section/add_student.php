@@ -28,8 +28,7 @@ if (empty($check)) {
     header("Location: schedule.php?message=Success! New subject has been saved successfully.&section=$section&quarter=$quarter");
 } else {
     // If it exists, redirect with error message
-    header("Location: schedule.php?error=Error! Student already exists.");
+    header("Location: schedule.php?message=Error! Student already exists.&section=$section&quarter=$quarter");
 }
-
 
 ?>
