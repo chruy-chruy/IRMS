@@ -77,7 +77,7 @@
                         <span class="name"><?php echo $row['name']?></span>
                     </td>
                     <td>
-                        <a class="view" href="add_subject.php?id=<?php echo $row['id']; ?>&quarter=<?php echo $quarter; ?>&section=<?php echo $section; ?>">
+                        <a class="view" href="add_subject.php?id=<?php echo $row['id']; ?>&teacher=<?php echo $row['teacher_id']; ?>&quarter=<?php echo $quarter; ?>&section=<?php echo $section; ?>">
                         Add
                         </a>
                         <!-- Add more actions if needed -->

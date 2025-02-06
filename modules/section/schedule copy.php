@@ -182,39 +182,36 @@ while ($row = mysqli_fetch_array($squery)) { $section_name = $row['name']; $grad
 
 
 <div class="header">
-    <h1>Schedule</h1>
+                <h1>Schedule</h1>
 </div>
 <div class="scheduler">
-    <!-- Header Row -->
-    <div class="header1">Time</div>
-    <div class="header1">Monday</div>
-    <div class="header1">Tuesday</div>
-    <div class="header1">Wednesday</div>
-    <div class="header1">Thursday</div>
-    <div class="header1">Friday</div>
+        <!-- header1 -->
+        <div class="header1">Time</div>
+        <div class="header1">Monday</div>
+        <div class="header1">Tuesday</div>
+        <div class="header1">Wednesday</div>
+        <div class="header1">Thursday</div>
+        <div class="header1">Friday</div>
 
-<?php
+<!-- Time Slots and Subjects -->
+<?php 
+
 // Fetch all subjects for the dropdown
-$subjectsQuery = mysqli_query($conn, "SELECT a.* FROM `section_subject` b INNER JOIN subject a WHERE b.subject = a.id AND b.section = '$section';");
+$subjectsQuery = mysqli_query($conn, "SELECT a.* FROM `section_subject` b INNER JOIN subject a WHERE b.subject = a.id; ");
+// $subject = mysqli_fetch_assoc($subjectsQuery);
 $options = [];
-while ($subject = mysqli_fetch_assoc($subjectsQuery)) { 
-    $options[] = $subject;
+while ($subject = mysqli_fetch_array($subjectsQuery)) { 
+    // Append each subject's id and name to the array
+    $options[] = [
+        'id' => $subject['id'],
+        'name' => $subject['name']
+    ];
 }
+$schedQuery = mysqli_query($conn, "SELECT * FROM `schedule` WHERE section = '$section' AND quarter = '$quarter'");
+$sched = mysqli_fetch_assoc($schedQuery);
 
-// Fetch schedule with subject names using JOIN
-$schedQuery = mysqli_query($conn, "
-    SELECT s.day, s.time_slot, sub.name AS subject_name 
-    FROM `scheduler` s
-    LEFT JOIN `subject` sub ON s.subject = sub.id
-    WHERE s.section = '$section' AND s.quarter = '$quarter'
-");
-
-$schedule = [];
-while ($row = mysqli_fetch_assoc($schedQuery)) {
-    $schedule[$row['day']][$row['time_slot']] = $row['subject_name']; 
-}
-
-// Define Time Slots
+?>
+<?php
 $time_slots = [
     "7:30am - 8:30am",
     "8:31am - 9:30am",
@@ -227,59 +224,91 @@ $time_slots = [
     "3:01pm - 4:00pm",
     "4:01pm - 5:00pm"
 ];
+$days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
 
-$days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+$academic_counter = 0; // Counter for academic slots only
 
-foreach ($time_slots as $time_slot) {
+foreach ($time_slots as $index => $time_slot) {
     // Check if the current slot is for Lunch or Break
     if (strpos($time_slot, "Lunch") !== false) {
         echo '<div class="time-slot non-selectable">' . htmlspecialchars($time_slot) . '</div>';
         foreach ($days as $day) {
             echo '<div class="lunch">Lunch</div>';
         }
-        continue;
+        continue; // Skip generating a <select> for this slot
     }
 
-    if (strpos($time_slot, "Break") !== false) {
+    if (strpos($time_slot, "Break") !== false && strpos($time_slot, "Lunch") === false) {
         echo '<div class="time-slot non-selectable">' . htmlspecialchars($time_slot) . '</div>';
         foreach ($days as $day) {
             echo '<div class="break">Break</div>';
         }
-        continue;
+        continue; // Skip generating a <select> for this slot
     }
 
-    echo '<div class="time-slot">' . htmlspecialchars($time_slot) . '</div>';
+    $academic_counter++; // Increment the counter for academic slots only
+
+    echo '<div class="time-slot" >' . htmlspecialchars($time_slot) . '</div>';
 
     foreach ($days as $day) {
-        $current_subject = isset($schedule[$day][$time_slot]) ? $schedule[$day][$time_slot] : '';
+        $slot_name = strtolower(ordinal_suffix($academic_counter)) . "_" . $day; // Generate names like '1st_monday'
+        ?> <?php if (!empty($sched[$slot_name])): ?>
+        <select name="<?= htmlspecialchars($slot_name) ?>" id="<?= htmlspecialchars($slot_name) ?>" class="subject" onchange="updateSched('<?= htmlspecialchars($slot_name) ?>')">
+                <option hidden value="<?= htmlspecialchars($sched[$slot_name]) ?>">
+                    <?= htmlspecialchars($sched[$slot_name]) ?>
+                </option>
+          
 
-        echo '<select name="schedule[' . htmlspecialchars($day) . '][' . htmlspecialchars($time_slot) . ']" class="subject" onchange="updateSched(this)">';
-        echo '<option hidden value="' . htmlspecialchars($current_subject) . '">' . ($current_subject ?: 'Select Subject') . '</option>';
+            <?php foreach ($options as $option): ?>
+                <option value="./update_schedule.php?section=<?= htmlspecialchars($section) ?>&quarter=<?= htmlspecialchars($quarter) ?>&sched=<?= htmlspecialchars($slot_name) ?>&subject=<?= htmlspecialchars($option['name']) ?>">
+                    <?= htmlspecialchars($option['name']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
 
-        foreach ($options as $option) {
-            echo '<option value="./update_schedule.php?section=' . htmlspecialchars($section) . '&quarter=' . htmlspecialchars($quarter) . '&day=' . htmlspecialchars($day) . '&time_slot=' . htmlspecialchars($time_slot) . '&subject=' . htmlspecialchars($option['id']) . '"';
-            if ($current_subject == $option['name']) {
-                echo ' selected';
-            }
-            echo '>' . htmlspecialchars($option['name']) . '</option>';
-        }
+        <?php else: ?>
+            <select name="<?= htmlspecialchars($slot_name) ?>" id="<?= htmlspecialchars($slot_name) ?>" class="select" onchange="updateSched('<?= htmlspecialchars($slot_name) ?>')">
+            <option selected hidden value="" class="select">Select Subject</option>
+          
 
-        echo '</select>';
+            <?php foreach ($options as $option): ?>
+                <option value="./update_schedule.php?section=<?= htmlspecialchars($section) ?>&quarter=<?= htmlspecialchars($quarter) ?>&sched=<?= htmlspecialchars($slot_name) ?>&subject=<?= htmlspecialchars($option['name']) ?>">
+                    <?= htmlspecialchars($option['name']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+        <?php endif; ?>
+        <?php
     }
+}
+?>
+    
+
+<?php
+function ordinal_suffix($num) {
+    if (!in_array(($num % 100), [11, 12, 13])) {
+        switch ($num % 10) {
+            case 1: return $num . 'st';
+            case 2: return $num . 'nd';
+            case 3: return $num . 'rd';
+        }
+    }
+    return $num . 'th';
 }
 ?>
 
 </div>
 
 <script>
-    function updateSched(select) {
-        const url = select.value;
-        if (url) {
-            window.location.href = url; // Redirect to the selected link
-        }
-    }
-</script>
+        function updateSched(id) {
+            const select = document.getElementById(id);
+            const url = select.value;
 
+            if (url) {
+                window.location.href = url; // Redirect to the selected link
+            }
+        }
+</script>
 <!-- end of schedule -->
 
 

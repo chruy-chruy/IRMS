@@ -20,30 +20,6 @@
                     <div class="title">MANAGEMENT SYSTEM</div>
                 </div>
                 <form class="login" action="validate_login.php" method="POST">
-                    <!-- Role Selection -->
-                    <div class="radio-button-container">
-  <div class="radio-button">
-  <input type="radio" class="radio-button__input" id="radio1" name="role" value="registrar">
-  <label class="radio-button__label" for="radio1">
-    <span class="radio-button__custom"></span>
-    Registrar
-  </label>
-</div>
-<div class="radio-button">
-  <input type="radio" class="radio-button__input" id="radio2" name="role" value="student">
-  <label class="radio-button__label" for="radio2">
-    <span class="radio-button__custom"></span>
-    Student
-  </label>
-</div>
-<div class="radio-button">
-  <input type="radio" class="radio-button__input" id="radio3" name="role" value="teacher">
-  <label class="radio-button__label" for="radio3">
-    <span class="radio-button__custom"></span>
-    Teacher
-  </label>
-</div>
-</div>
 
                     <div class="login__field">
                         <i class="login__icon fas fa fa-user"></i>

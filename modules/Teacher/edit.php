@@ -70,6 +70,12 @@ while ($row = mysqli_fetch_array($squery)) {
                 </div>
 
                 <div class="grid-item">
+                    <label class="form-label">Extension Name</label>
+                    <input type="text" class="form-control" id="name" name="extension" 
+                    value = "<?php echo $row['extension_name']; ?>"  >
+                </div>
+
+                <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
                     <select name="gender" class="form-control" required style="height:43px;">
                         <option hidden value="<?php echo $row['gender']; ?>"><?php echo $row['gender']; ?></option>

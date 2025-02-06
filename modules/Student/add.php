@@ -27,7 +27,11 @@ if (isset($_GET['message'])) {
     $page = 'Student';
     include "../../navbar.php";
     include "../../db_conn.php";
-
+    if (!isset($_GET['grade'])) {
+        header("Location: ./");
+        exit();
+      } 
+      $grade = $_GET['grade'];
     ?>
 
 <?php 
@@ -189,16 +193,12 @@ while ($section = mysqli_fetch_assoc($section_query)) {
     this.value = this.value.replace(/\D/g, '').slice(0, 13); // Allows only numbers, max 13 digits
 });</script>
 
-    <div class="grid-item">
-    <label class="form-label">Grade Level</label>
-    <select name="grade_level" class="form-control" id="grade_level" required style="height:43px;">
-        <option hidden value="">Select Grade Level</option> 
-        <option value="7">Grade 7</option>
-        <option value="8">Grade 8</option>
-        <option value="9">Grade 9</option>
-        <option value="10">Grade 10</option>
-    </select>
-</div>
+
+<div class="grid-item">
+                    <label class="form-label">Grade Level</label>
+                    <input type="text" class="form-control" name="grade_level" id="grade_level" value="<?php echo $grade;?>" readonly>
+                </div>
+
  <!-- 
 <div class="grid-item">
     <label class="form-label">Section<span class="required">*</span></label>

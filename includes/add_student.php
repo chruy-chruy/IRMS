@@ -68,7 +68,7 @@
                 </thead>
                 <?php
                 // Adjusted SQL query to select students
-                $squery = mysqli_query($conn, "SELECT * FROM student WHERE del_status != 'deleted' AND grade_level = '$grade' ORDER BY grade_level;");
+                $squery = mysqli_query($conn, "SELECT * FROM student WHERE del_status != 'deleted' AND grade_level = '$grade' AND id NOT IN (SELECT student FROM section_student) ORDER BY grade_level;");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
                 <tr class="table-row">

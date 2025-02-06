@@ -64,6 +64,10 @@ include "../../db_conn.php";
                     <input type="text" class="form-control" id="name" name="suffix"  >
                 </div>
                 <div class="grid-item">
+                    <label class="form-label">Extension Name</label>
+                    <input type="text" class="form-control" id="name" name="extension"  >
+                </div>
+                <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
                     <select name="gender" class="form-control" required style="height:43px;">
                         <option hidden value="">Select Gender</option>

@@ -1,80 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+$page = 'Subject';
+
+include "../../db_conn.php";
+ ?>
 
 <head>
-
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content=="IE=edge" />
     <meta name="google" value="notranslate" />
+    <title>IRMS-<?php if ($page) {echo $page;} ?></title>
     <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
-    <title>IRMS-SUBJECT</title>
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css"
-        rel="stylesheet">
-    <!-- <script src="../../assets/js/table.js"></script> -->
-    <script src="../../assets/js//jquery-3.7.0.js"></script>
-    <script src="../../assets/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="../../assets/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
-    <?php 
-$page = 'Subject';
-include "../../navbar.php";
-include "../../db_conn.php";
-
- ?>
-        <div class="content">
-            <?php include "../../includes/alert.php"; ?>
-            <div class="header">
+<?php include "../../navbar.php"; ?>
+<div class="content">
+<div class="header">
                 <h1><?php if ($page) {echo $page;} ?></h1>
-            </div>
-            
-            <div class="search-box">
-            <!-- <a href="./export.php"><button style="float:left;">Export</button></a> -->
-                <a href="./add.php"><button>Add</button></a>
-            </div>
-            <div class="table_wrap">
-            <table id="example" class="data list">
-                <thead>
-                    <th style="width: 60px;">ID</th>
-                    <th>Subject Name</th>
-                    <th>Subject Code</th>
-                    <th>Grade Level</th>
-                    <th>Assigned Teacher</th>
-                    <th style="width: 55px;">Action</th>
-                </thead>
-                <?php
-         $squery = mysqli_query($conn, "
-         SELECT s.*, CONCAT(t.first_name, ' ', t.last_name) AS teacher_name 
-         FROM subject s 
-         LEFT JOIN teacher t ON s.teacher_id = t.id 
-         WHERE s.del_status != 'deleted' 
-         ORDER BY s.id DESC;
-     ");
-     while ($row = mysqli_fetch_array($squery)) {
-        ?>
-                <tr class="table-row">
-                    <td><?php echo $row['id'] ?></td>
-                    <td><?php echo $row['name'] ?></td>
-                    <td><?php echo $row['code'] ?></td>
-                    <td>Grade <?php echo $row['grade_level'] ?></td>
-                    <td><?php echo $row['teacher_name'] ?></td>
-                    <td>
-                        <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
-                        View
-                        </a>
-                        <!-- <a href=""><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a> -->
-                    </td>
-                </tr>
-                <?php }?>
-            </table>
-            </div>
-    </div>
-<script>new DataTable('#example', {
-    order: [[0, 'desc']]
-});</script>
+</div>
 
+
+<div  class="row g-3">
+<div class="grid-container-schedule">
+
+<a href="./subject.php?grade=7" class="schedule">
+    <div class="box-icon"><i class="fa fa-users"></i></div>
+    Grade 7
+</a>
+
+<a href="./subject.php?grade=8" class="schedule">
+  <div class="box-icon"><i class="fa fa-users"></i></div>
+  Grade 8
+</a>
+
+<a href="./subject.php?grade=9" class="schedule">
+  <div class="box-icon"><i class="fa fa-users"></i></div>
+  Grade 9
+</a>
+
+<a href="./subject.php?grade=10" class="schedule">
+  <div class="box-icon"><i class="fa fa-users"></i></div>
+  Grade 10
+</a>
+  
+</div>
+</div>
+
+</div>
 </body>
 
 </html>

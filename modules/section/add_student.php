@@ -7,7 +7,7 @@ $quarter = $_GET['quarter'];
 $section = $_GET['section'];
 
 // Initialize variables
-$squery = mysqli_query($conn, "SELECT * FROM section_student WHERE student = '$student_id' AND quarter = '$quarter' AND section = '$section'");
+$squery = mysqli_query($conn, "SELECT * FROM section_student WHERE student = '$student_id'");
 $check = mysqli_fetch_array($squery);
 
 if (empty($check)) {
@@ -28,7 +28,7 @@ if (empty($check)) {
     header("Location: schedule.php?message=Success! New subject has been saved successfully.&section=$section&quarter=$quarter");
 } else {
     // If it exists, redirect with error message
-    header("Location: schedule.php?message=Error! Student already exists.&section=$section&quarter=$quarter");
+    header("Location: schedule.php?message=Error! Student already have a section.&section=$section&quarter=$quarter");
 }
 
 ?>

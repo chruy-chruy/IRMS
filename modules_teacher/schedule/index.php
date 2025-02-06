@@ -84,7 +84,7 @@ include "../../db_conn.php";
 
     </style>
 <body>
-<?php include "../../navbar_student.php"; ?>
+<?php include "../../navbar_teacher.php"; ?>
 <div class="content">
 <div class="header">
                 <h1>My <?php if ($page) {echo $page;} ?></h1>
@@ -98,28 +98,25 @@ include "../../db_conn.php";
     <div class="header1">Thursday</div>
     <div class="header1">Friday</div>
 
-    <!-- Fetch Student Section -->
     <?php 
-    $getSectionQuery = mysqli_query($conn, "SELECT a.* FROM `section` a INNER JOIN section_student b WHERE b.section = a.id AND b.student = '$student_id'");
-    $getSection = mysqli_fetch_assoc($getSectionQuery);
+    // Fetch teacher's assigned schedule using the section_subject table
+    $schedQuery = mysqli_query($conn, "
+        SELECT s.day, s.time_slot, sub.name AS subject_name, sec.name AS section_name
+        FROM `scheduler` s
+        LEFT JOIN `subject` sub ON s.subject = sub.id
+        LEFT JOIN `section_subject` sec_sub ON sec_sub.subject = sub.id
+        LEFT JOIN `section` sec ON sec_sub.section = sec.id
+        WHERE sec_sub.teacher = '$teacher_id'
+    ");
 
-    if ($getSection) {
-        $section = $getSection['id'];
-        // Fetch schedule with subject names
-        $schedQuery = mysqli_query($conn, "SELECT s.day, s.time_slot, sub.name AS subject_name FROM `scheduler` s LEFT JOIN `subject` sub ON s.subject = sub.id WHERE s.section = '$section'");
-
-// Store schedule in an associative array
-$schedule = [];
-while ($row = mysqli_fetch_assoc($schedQuery)) {
-    $day = strtolower(trim($row['day']));
-    $time_slot = strtolower(trim($row['time_slot'])); // Normalize time slot
-    $schedule[$day][$time_slot] = $row['subject_name'];
-}
-
+    // Store schedule in an associative array
+    $schedule = [];
+    while ($row = mysqli_fetch_assoc($schedQuery)) {
+        $day = strtolower(trim($row['day']));
+        $time_slot = strtolower(trim($row['time_slot']));
+        $schedule[$day][$time_slot] = $row['subject_name'] . " (" . $row['section_name'] . ")";
     }
-    ?>
 
-    <?php
     $time_slots = [
         "7:30am - 8:30am",
         "8:31am - 9:30am",
@@ -136,17 +133,33 @@ while ($row = mysqli_fetch_assoc($schedQuery)) {
 
     foreach ($time_slots as $time_slot) {
         $normalized_time_slot = strtolower(trim($time_slot)); // Ensure format consistency
-    
+
+        // Check if it's a break/lunch
+        if (strpos($time_slot, "Lunch") !== false) {
+            echo '<div class="time-slot non-selectable">' . htmlspecialchars($time_slot) . '</div>';
+            foreach ($days as $day) {
+                echo '<div class="lunch">Lunch</div>';
+            }
+            continue;
+        }
+
+        if (strpos($time_slot, "Break") !== false) {
+            echo '<div class="time-slot non-selectable">' . htmlspecialchars($time_slot) . '</div>';
+            foreach ($days as $day) {
+                echo '<div class="break">Break</div>';
+            }
+            continue;
+        }
+
         // Display time slot
         echo '<div class="time-slot">' . htmlspecialchars($time_slot) . '</div>';
-    
+
         // Display subjects for each day
         foreach ($days as $day) {
-            $subject_name = isset($schedule[$day][$normalized_time_slot]) ? $schedule[$day][$normalized_time_slot] : "TBA";
+            $subject_name = isset($schedule[$day][$normalized_time_slot]) ? $schedule[$day][$normalized_time_slot] : "Free";
             echo '<input readonly type="text" class="subject" value="' . htmlspecialchars($subject_name) . '">';
         }
     }
-    
     ?>
 </div>
 

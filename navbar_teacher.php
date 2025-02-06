@@ -5,7 +5,7 @@ if (!isset($_SESSION['id'])) {
     exit();
 } 
 $name = $_SESSION['name'];
-
+$teacher_id = $_SESSION['id'];
 ?>
 <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 <div class="container">
@@ -25,17 +25,35 @@ $name = $_SESSION['name'];
                             </a>
                         </li>
                     </ul>
+                    
+                    <ul>
+                        <li class="darkerlishadow <?php if ($page == 'Schedule') {echo 'active';} ?>">
+                            <a href="../schedule">
+                                <i class="fa fa-home fa-lg"></i>
+                                <span class="nav-text">My Schedule</span>
+                            </a>
+                        </li>
 
+                    </ul>
+
+                    <ul>
+                        <li class="darkerlishadow <?php if ($page == 'Grades') {echo 'active';} ?>">
+                            <a href="../grade">
+                                <i class="fa fa-home fa-lg"></i>
+                                <span class="nav-text">Grades</span>
+                            </a>
+                        </li>
+
+                    </ul>
 
 
                     <ul class="logout">
-                        <li>
-                            <a href="../../logout.php">
+                    <li>
+                            <a id="deleteButton">
                                 <i class="fa fa-sign-out fa-lg"></i>
                                 <span class="nav-text">
                                     Logout
                                 </span>
-
                             </a>
                         </li>
                     </ul>
@@ -44,3 +62,13 @@ $name = $_SESSION['name'];
         <div class="content">
         </div>
     </div>
+
+    <script>
+    // Confirm before Logout
+document.getElementById('deleteButton').addEventListener('click', function() {
+    const confirmed = confirm('Hello <?php echo $name;?>! Are you sure you want to logout?');
+    if (confirmed) {
+        window.location.href = '../../logout.php'; // Redirect to delete page
+    }
+});
+  </script>

@@ -5,6 +5,7 @@ include "../../db_conn.php";
 $subject_id = $_GET['id'];
 $quarter = $_GET['quarter'];
 $section = $_GET['section'];
+$teacher = $_GET['teacher'];
 
 // Initialize variables
 $squery = mysqli_query($conn, "SELECT * FROM section_subject WHERE subject = '$subject_id' AND quarter = '$quarter' AND section = '$section'");
@@ -15,10 +16,12 @@ if (empty($check)) {
     $sql2 = "INSERT INTO `section_subject` (
         `subject`,
         `section`,
+        `teacher`,
         `quarter`
     ) VALUES (
         '$subject_id',
         '$section',
+        '$teacher',
         '$quarter'
     )";
 

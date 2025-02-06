@@ -10,6 +10,7 @@ $email = ($_POST['email']);
 $contact_number = ($_POST['contact_number']);
 $username = ($_POST['username']);
 $password = ($_POST['password']);
+$extension = ($_POST['extension']);
 
 
 
@@ -28,6 +29,7 @@ if (empty($check)){
     `middle_name`,
     `last_name`,
     `suffix`,
+    `extension_name`,
     `gender`,
     `email`,
     `contact_number`,
@@ -39,6 +41,7 @@ if (empty($check)){
         '$middle_name',
         '$last_name',
         '$suffix',
+        '$extension',
         '$gender',
         '$email',
         '$contact_number',

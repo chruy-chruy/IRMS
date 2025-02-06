@@ -29,7 +29,7 @@ $student_id = $_SESSION['id'];
 
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Schedule') {echo 'active';} ?>">
-                            <a href="../Schedule">
+                            <a href="../schedule">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">My Schedule</span>
                             </a>
@@ -40,13 +40,12 @@ $student_id = $_SESSION['id'];
 
 
                     <ul class="logout">
-                        <li>
-                            <a href="../../logout.php">
+                    <li>
+                            <a id="deleteButton">
                                 <i class="fa fa-sign-out fa-lg"></i>
                                 <span class="nav-text">
                                     Logout
                                 </span>
-
                             </a>
                         </li>
                     </ul>
@@ -55,3 +54,12 @@ $student_id = $_SESSION['id'];
         <div class="content">
         </div>
     </div>
+    <script>
+    // Confirm before Logout
+document.getElementById('deleteButton').addEventListener('click', function() {
+    const confirmed = confirm('Hello <?php echo $name;?>! Are you sure you want to logout?');
+    if (confirmed) {
+        window.location.href = '../../logout.php'; // Redirect to delete page
+    }
+});
+  </script>
