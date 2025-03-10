@@ -6,11 +6,13 @@ include "../../db_conn.php";
 $section_name = ucwords(trim($_POST['name']));
 $grade_level = strtoupper(trim($_POST['grade_level']));
 $teacher_id = $_POST['teacher_id'];
+$sy = $_POST['sy'];
 
 // Check if the subject already exists
 $squery = mysqli_query($conn, "SELECT * FROM section WHERE 
 `name` = '$subject_name' AND 
 teacher_id = '$teacher_id' AND 
+school_year = '$sy' AND 
 del_status != 'deleted'");
 
 $check = mysqli_fetch_array($squery);
@@ -21,18 +23,20 @@ if (empty($check)) {
         `name`,
         `grade_level`,
         `teacher_id`,
+        `school_year`,
         `del_status`
     ) VALUES (
         '$section_name',
         '$grade_level',
         '$teacher_id',
+        '$sy',
         'active'
     )";
 
     mysqli_query($conn, $sql2);
     
     // Redirect with success message
-    header("Location: index.php?message=Success! New subject has been saved successfully.");
+    header("Location: grade.php?grade=$grade_level&sy=$sy&message=Success! New subject has been saved successfully.");
 } else {
     // If it exists, redirect with error message
     header("Location: add.php?error=Error! Subject already exists.");

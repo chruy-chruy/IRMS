@@ -26,6 +26,8 @@ if (isset($_GET['message'])) {
     include "../../navbar.php";
     include "../../db_conn.php";
     $id = $_GET['id'];
+    $sy = $_GET['sy'];
+    $grade = $_GET['grade'];
 
     // Fetch section details
     $squery = mysqli_query($conn, "SELECT * FROM `section` WHERE id = '$id'");
@@ -51,7 +53,7 @@ if (isset($_GET['message'])) {
         <div class="header">
             <h1>Edit <?php echo $page; ?></h1>
         </div>
-        <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+        <a href="schedule.php?section=<?php echo $id?>&grade=<?php echo $grade?>&sy=<?php echo $sy?>&quarter=1" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <form class="row g-3" action="update.php?id=<?php echo $row['id']; ?>" method="post">
             <div class="image" id="image">
                 <img src="../../assets/img/default.jpeg" alt="">

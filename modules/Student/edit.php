@@ -50,17 +50,23 @@ $row = mysqli_fetch_array($query);
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name']; ?>" required>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name']; ?>" required
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="middleName" name="middle_name" value="<?php echo $row['middle_name']; ?>">
+                    <input type="text" class="form-control" id="middleName" name="middle_name" value="<?php echo $row['middle_name']; ?>"
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Last Name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $row['last_name']; ?>" required>
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php echo $row['last_name']; ?>" required
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
@@ -88,8 +94,11 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">Contact Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="contact_number" value="<?php echo $row['contact_number']; ?>" required>
+                    <input type="text" class="form-control" name="contact_number" id="contact_number" value="<?php echo $row['contact_number']; ?>" required>
                 </div>
+                <script>document.getElementById('contact_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 11 digits
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Birthdate<span class="required">*</span></label>
@@ -116,7 +125,9 @@ $row = mysqli_fetch_array($query);
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Father's Name</label>
-                    <input type="text" class="form-control" name="father_name" value="<?php echo $row['father_name']; ?>">
+                    <input type="text" class="form-control" name="father_name" value="<?php echo $row['father_name']; ?>" 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
@@ -126,12 +137,17 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">Father's Contact</label>
-                    <input type="text" class="form-control" name="father_contact" value="<?php echo $row['father_contact']; ?>">
+                    <input type="text" class="form-control" name="father_contact" id="father_contact" value="<?php echo $row['father_contact']; ?>">
                 </div>
+            <script>document.getElementById('father_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); 
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Name</label>
-                    <input type="text" class="form-control" name="mother_name" value="<?php echo $row['mother_name']; ?>">
+                    <input type="text" class="form-control" name="mother_name" value="<?php echo $row['mother_name']; ?>"
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
@@ -141,19 +157,27 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Contact</label>
-                    <input type="text" class="form-control" name="mother_contact" value="<?php echo $row['mother_contact']; ?>">
-                </div>
+                    <input type="text" class="form-control" name="mother_contact" id="mother_contact" value="<?php echo $row['mother_contact']; ?>">
+                    </div>
+            <script>document.getElementById('mother_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); 
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Guardian's Name</label>
-                    <input type="text" class="form-control" name="guardian_name" value="<?php echo $row['guardian_name']; ?>">
+                    <input type="text" class="form-control" name="guardian_name" value="<?php echo $row['guardian_name']; ?>"
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Guardian's Contact</label>
-                    <input type="text" class="form-control" name="guardian_contact" value="<?php echo $row['guardian_contact']; ?>">
+                    <input type="text" class="form-control" name="guardian_contact" id="guardian_contact" value="<?php echo $row['guardian_contact']; ?>">
                 </div>
-            </div>
+                </div>
+            <script>document.getElementById('guardian_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); 
+});</script>
 
             <h3>Education Information</h3>
             <div class="grid-container grid-container--fill">
@@ -182,17 +206,33 @@ $row = mysqli_fetch_array($query);
                     <input type="text" class="form-control" name="lrn_number" id="lrn_number" value="<?php echo $row['lrn_number']; ?>"required>
                 </div>
                 <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
-    this.value = this.value.replace(/\D/g, '').slice(0, 13); // Allows only numbers, max 13 digits
+    this.value = this.value.replace(/\D/g, '').slice(0, 12); // Allows only numbers, max 12 digits
 });</script>
 
-                <div class="grid-item">
+                <!-- <div class="grid-item">
                     <label class="form-label">Grade Level</label>
-                    <select name="grade_level" class="form-control" required style="height:43px;">
+                    <select name="grade_level" class="form-control" required style="height:43px;" >
                             <option hidden value="<?php echo $row['grade_level']; ?>" hidden>Grade <?php echo $row['grade_level']; ?></option> 
                             <option value="7">Grade 7</option>
                             <option value="8">Grade 8</option>
                             <option value="9">Grade 9</option>
                             <option value="10">Grade 10</option>
+                    </select>
+                </div> -->
+
+                
+                <div class="grid-item">
+                    <label class="form-label">Grade Level</label>
+                    <input type="text" class="form-control" name="grade_level" id="grade_level" value="<?php echo $row['grade_level']; ?>" readonly>
+                </div>
+
+                <div class="grid-item">
+                    <label class="form-label">Transferee?<span class="required">*</span></label>
+                    <select name="transferee" class="form-control" required style="height:43px; width:320px;">
+                    <option selected hidden value="<?php echo $row['grade_level']; ?>" hidden><?php echo $row['transferee']; ?></option> 
+                        <option value="">Select</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
                     </select>
                 </div>
 

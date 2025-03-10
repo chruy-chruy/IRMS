@@ -46,17 +46,23 @@ include "../../db_conn.php";
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" id="first_name" name="first_name"   required>
+                    <input type="text" class="form-control" id="first_name" name="first_name" required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="namiddle_nameme" name="middle_name"  >
+                    <input type="text" class="form-control" id="namiddle_nameme" name="middle_name" 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Last Name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="last_name" name="last_name"  required>
+                    <input type="text" class="form-control" id="last_name" name="last_name"  required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
@@ -87,6 +93,9 @@ include "../../db_conn.php";
                     <label class="form-label">Contact Number</label>
                     <input type="text" class="form-control" id="contact_number" name="contact_number">
                 </div>
+                <script>document.getElementById('contact_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
             </div>
 
             <h3>User Information</h3>
@@ -100,6 +109,7 @@ include "../../db_conn.php";
                     <input type="text" class="form-control" id="password" name="password" password="password" readonly>
                     <!-- <button type="button" id="togglePassword">Show</button> -->
                 </div>
+                
             </div>
 
             <div class="footer">

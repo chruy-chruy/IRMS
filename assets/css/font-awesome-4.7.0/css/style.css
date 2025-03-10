@@ -16,6 +16,12 @@ body {
   border-bottom: 2px solid#c04747;
   text-align: center;
 }
+.header2 {
+  width: 100%;
+  /* border-bottom: 2px solid#c04747; */
+  text-align: center;
+}
+
 
 .footer {
   /* position: relative; */

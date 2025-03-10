@@ -101,7 +101,7 @@ include "../../db_conn.php";
     <?php 
     // Fetch teacher's assigned schedule using the section_subject table
     $schedQuery = mysqli_query($conn, "
-        SELECT s.day, s.time_slot, sub.name AS subject_name, sec.name AS section_name
+        SELECT s.day, s.time_slot, sub.name AS subject_name, sec.name AS section_name, sec.grade_level
         FROM `scheduler` s
         LEFT JOIN `subject` sub ON s.subject = sub.id
         LEFT JOIN `section_subject` sec_sub ON sec_sub.subject = sub.id
@@ -114,7 +114,7 @@ include "../../db_conn.php";
     while ($row = mysqli_fetch_assoc($schedQuery)) {
         $day = strtolower(trim($row['day']));
         $time_slot = strtolower(trim($row['time_slot']));
-        $schedule[$day][$time_slot] = $row['subject_name'] . " (" . $row['section_name'] . ")";
+        $schedule[$day][$time_slot] = $row['subject_name'] . " ( " . $row['section_name'] . " - ". $row['grade_level'] . " )";
     }
 
     $time_slots = [

@@ -35,6 +35,7 @@ $age = $currentDate->diff($birthdate2)->y; // Calculate the age in years
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $grade_level = mysqli_real_escape_string($conn, $_POST['grade_level']);
     $lrn_number = mysqli_real_escape_string($conn, $_POST['lrn_number']);
+    $transferee = mysqli_real_escape_string($conn, $_POST['transferee']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
 
     
@@ -69,6 +70,7 @@ $age = $currentDate->diff($birthdate2)->y; // Calculate the age in years
         email = '$email',
         grade_level = '$grade_level',
         lrn_number = '$lrn_number',
+        transferee = '$transferee',
         username = '$username',
         `password` = '$password'
         WHERE id = '$id'";

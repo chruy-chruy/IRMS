@@ -4,11 +4,13 @@
 $page = 'Section';
 
 include "../../db_conn.php";
-if (!isset($_GET['grade'])) {
+if (empty($_GET['grade']) || empty($_GET['sy']) ) {
   header("Location: ./");
   exit();
 } 
+$sy = $_GET['sy'];
 $grade = $_GET['grade'];
+
  ?>
 
 <head>
@@ -29,7 +31,7 @@ $grade = $_GET['grade'];
 </div>
 <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
 <div class="search-box">
-            <a href="./add.php?grade=<?php echo $grade;?>"><button>Add</button></a>
+            <a href="./add.php?grade=<?php echo $grade;?>&sy=<?php echo $sy;?>"><button>Add</button></a>
         </div>
 <div  class="row g-3">
 <div class="grid-container-dashboard">
@@ -40,13 +42,13 @@ $grade = $_GET['grade'];
                     SELECT s.*, CONCAT(t.first_name, ' ', t.last_name) AS teacher_name 
                     FROM section s 
                     LEFT JOIN teacher t ON s.teacher_id = t.id 
-                    WHERE s.del_status != 'deleted' AND s.grade_level = '$grade'
+                    WHERE s.del_status != 'deleted' AND s.grade_level = '$grade' AND s.school_year = '$sy'
                     ;
                 ");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
 
-<a href="./schedule.php?section=<?php echo $row['id']; ?>" class="schedule">
+<a href="./schedule.php?section=<?php echo $row['id']; ?>&grade=<?php echo $grade; ?>&sy=<?php echo $sy; ?>&quarter=1" class="schedule">
     <div class="box-icon"><i class="fa fa-users"></i></div>
    <span style="font-size: 120%;"> <?php echo $row['name']; ?></span>
 </a>

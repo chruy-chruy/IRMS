@@ -8,7 +8,9 @@
 }
 
 body {
-	background: linear-gradient(90deg, #fafafa, #560202);		
+    position: relative;
+    background: url('../../../img/school2.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .container {
@@ -28,6 +30,7 @@ body {
 	width: 360px;	
 	box-shadow: 0px 0px 24px #2c2c2c;
 	border-radius: 10px;
+	background: rgba(250, 250, 250, 0.5);
 	
 }
 
@@ -35,6 +38,7 @@ body {
 	z-index: 1;
 	position: relative;	
 	height: 100%;
+	
 }
 
 .screen__background {		
@@ -58,7 +62,7 @@ body {
 .login__header {
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
-	background-color: #2C2D2D;
+	background-color: #2c2d2dd7;
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -118,7 +122,7 @@ body {
 }
 
 .login__submit {
-	background: #f8f7f7;
+	background: #f8f7f7a9;
 	font-size: 16px;
 	margin-top: 30px;
 	padding: 16px 20px;	

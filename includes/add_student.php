@@ -77,7 +77,7 @@
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name']; ?></span>
                     </td>
                     <td>
-                        <a class="view" href="add_student.php?id=<?php echo $row['id']; ?>&quarter=<?php echo $quarter; ?>&section=<?php echo $section; ?>">
+                        <a class="view" href="add_student.php?id=<?php echo $row['id']; ?>&quarter=<?php echo $quarter; ?>&section=<?php echo $section; ?>&sy=<?php echo $sy; ?>&grade=<?php echo $grade; ?>">
                         Add
                         </a>
                         <!-- Add more actions if needed -->

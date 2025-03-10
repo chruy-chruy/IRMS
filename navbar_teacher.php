@@ -19,7 +19,7 @@ $teacher_id = $_SESSION['id'];
 
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Dashboard') {echo 'active';} ?>">
-                            <a href="../Dashboard">
+                            <a href="../dashboard">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
                             </a>
@@ -58,8 +58,6 @@ $teacher_id = $_SESSION['id'];
                         </li>
                     </ul>
             </nav>
-        </div>
-        <div class="content">
         </div>
     </div>
 

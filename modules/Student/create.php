@@ -30,6 +30,7 @@ $elementary_year = trim($_POST['elementary_year']);
 $email = trim($_POST['email']);
 $grade_level = trim($_POST['grade_level']);
 $lrn_number = trim($_POST['lrn_number']);
+$transferee = trim($_POST['transferee']);
 // $section = trim($_POST['section']);
 // $grade7_section = trim($_POST['grade7_section']);
 // $grade8_section = trim($_POST['grade8_section']);
@@ -53,7 +54,7 @@ if (!$check) {
         `elementary_name`, `elementary_address`, `elementary_year`, 
         `email`, `grade_level`, `lrn_number`, `section`, 
         `grade7_section`, `grade8_section`, `grade9_section`, `grade10_section`, 
-        `username`, `password`,`age`, `del_status`
+        `username`, `password`,`age`,`transferee`, `del_status`
     ) VALUES (
         '$first_name', '$middle_name', '$last_name', '$gender', '$address', '$contact_number', 
         '$birthdate', '$birthplace', '$nationality', '$religion', 
@@ -63,7 +64,7 @@ if (!$check) {
         '$elementary_name', '$elementary_address', '$elementary_year', 
         '$email', '$grade_level', '$lrn_number', '$section', 
         '$grade7_section', '$grade8_section', '$grade9_section', '$grade10_section', 
-        '$username', '$password', '$age', 'active'
+        '$username', '$password', '$age', '$transferee', 'active'
     )";
 
     if (mysqli_query($conn, $sql2)) {

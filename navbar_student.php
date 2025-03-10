@@ -37,6 +37,16 @@ $student_id = $_SESSION['id'];
 
                     </ul>
 
+                    <ul>
+                        <li class="darkerlishadow <?php if ($page == 'Grade') {echo 'active';} ?>">
+                            <a href="../grade">
+                                <i class="fa fa-home fa-lg"></i>
+                                <span class="nav-text">My Grades</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
 
 
                     <ul class="logout">

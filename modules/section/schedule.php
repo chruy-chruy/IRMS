@@ -13,8 +13,10 @@ if (!isset($_GET['section'])) {
   exit();
 } 
 $section = $_GET['section'];
+$sy = $_GET['sy'];
+$grade = $_GET['grade'];
 if (!isset($_GET['quarter'])) {
-    header("Location: ./schedule.php?section=$section&quarter=1");
+    header("Location: ./schedule.php?section=$section&quarter=1&sy=$sy&grade=$grade");
   } 
   $quarter = $_GET['quarter'];
 
@@ -25,7 +27,12 @@ $squery = mysqli_query($conn, "
                     WHERE s.del_status != 'deleted' AND s.id = '$section'
                     ;
                 ");
-while ($row = mysqli_fetch_array($squery)) { $section_name = $row['name']; $grade = $row['grade_level']; }
+
+while ($row = mysqli_fetch_array($squery)) { 
+    $section_name = $row['name']; 
+    $grade = $row['grade_level']; 
+    $teacher_name =  $row['teacher_name'];
+}
 
 ?>
  ?>
@@ -167,23 +174,58 @@ while ($row = mysqli_fetch_array($squery)) { $section_name = $row['name']; $grad
 <div class="header">
                 <h1><?php if ($page) {echo 'Grade '.$grade. ' - ' .$section_name;} ?></h1>
 </div>
-<a href="./grade.php?grade=<?php echo $grade?>" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
-
-<script>
-        function goToLink() {
-            const select = document.getElementById("quarter-select");
-            const url = select.value;
-
-            if (url) {
-                window.location.href = url; // Redirect to the selected link
-            }
-        }
-    </script>
 
 
-<div class="header">
+<div class="search-box">
+<a href="./grade.php?grade=<?php echo $grade?>&sy=<?php echo $sy?>" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+<a href="edit.php?id=<?php echo $section; ?>&grade=<?php echo $grade?>&sy=<?php echo $sy?>"><button>Edit</button></a>
+</div>
+
+<div class="header2">
     <h1>Schedule</h1>
 </div>
+<div class="info-box">
+    <div class="row">
+        <span class="left"><strong>Section:</strong> <?php echo $section_name ?></span>
+        <span class="right"><strong>School Year:</strong> <?php echo $sy ?></span>
+    </div>
+    <div class="row">
+        <span class="left"><strong>Adviser:</strong> <?php echo $teacher_name ?></span>
+        <span class="right"><strong>Grade Level:</strong> <?php echo $grade ?></span>
+    </div>
+</div>
+
+<style>
+    .info-box {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        margin: 20px auto;
+        width: 100%;
+    max-width: 90%;
+    margin: 20px auto;
+
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between; /* Pushes left and right sides */
+        padding: 5px 0;
+        width: 100%; /* Ensures full width alignment */
+    }
+
+    .left {
+        text-align: left;
+    }
+
+    .right {
+        text-align: right; /* Pushes text to the far right */
+        flex: 1; /* Ensures right-side text stays at the edge */
+    }
+</style>
+
+
+
+
 <div class="scheduler">
     <!-- Header Row -->
     <div class="header1">Time</div>
@@ -206,7 +248,7 @@ $schedQuery = mysqli_query($conn, "
     SELECT s.day, s.time_slot, sub.name AS subject_name 
     FROM `scheduler` s
     LEFT JOIN `subject` sub ON s.subject = sub.id
-    WHERE s.section = '$section' AND s.quarter = '$quarter'
+    WHERE s.section = '$section' AND s.quarter = '$quarter' AND s.school_year = '$sy'
 ");
 
 $schedule = [];
@@ -257,7 +299,7 @@ foreach ($time_slots as $time_slot) {
         echo '<option hidden value="' . htmlspecialchars($current_subject) . '">' . ($current_subject ?: 'Select Subject') . '</option>';
 
         foreach ($options as $option) {
-            echo '<option value="./update_schedule.php?section=' . htmlspecialchars($section) . '&quarter=' . htmlspecialchars($quarter) . '&day=' . htmlspecialchars($day) . '&time_slot=' . htmlspecialchars($time_slot) . '&subject=' . htmlspecialchars($option['id']) . '"';
+            echo '<option value="./update_schedule.php?section=' . htmlspecialchars($section) . '&quarter=' . htmlspecialchars($quarter) . '&day=' . htmlspecialchars($day) . '&time_slot=' . htmlspecialchars($time_slot) . '&subject=' . htmlspecialchars($option['id']) . '&sy=' . htmlspecialchars($sy) . '&grade=' . htmlspecialchars($grade) . '"';
             if ($current_subject == $option['name']) {
                 echo ' selected';
             }
@@ -303,7 +345,11 @@ foreach ($time_slots as $time_slot) {
                 <?php
                 // Adjusted SQL query to select students
                 $squery = mysqli_query($conn, "
-              SELECT s.*, CONCAT(s.first_name, ' ', s.last_name) AS student_name, t.id AS section_student_id,t.section,t.quarter FROM student s INNER JOIN section_student t ON s.id = t.student WHERE t.quarter = '$quarter' AND t.section = '$section' ORDER BY s.id ASC;
+              SELECT s.*, CONCAT(s.first_name, ' ', s.last_name) AS student_name, t.id AS section_student_id,t.section,t.quarter 
+              FROM student s 
+              INNER JOIN section_student t ON s.id = t.student 
+              WHERE t.quarter = '$quarter' AND t.section = '$section' AND t.school_year = '$sy' 
+              ORDER BY s.id ASC;
             ");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>
@@ -357,7 +403,12 @@ foreach ($time_slots as $time_slot) {
                 <?php
                 // Updated SQL query to join section with teacher
                 $squery = mysqli_query($conn, "
-                 SELECT s.*, t.id AS section_subject_id, t.section, t.quarter, CONCAT(te.first_name, ' ', te.last_name) AS teacher_name FROM subject s INNER JOIN section_subject t ON s.id = t.subject INNER JOIN teacher te ON s.teacher_id = te.id WHERE t.quarter = '$quarter' AND t.section = '$section' ORDER BY s.id ASC;
+                 SELECT s.*, t.id AS section_subject_id, t.section, t.quarter, CONCAT(te.first_name, ' ', te.last_name) AS teacher_name 
+                 FROM subject s 
+                 INNER JOIN section_subject t ON s.id = t.subject 
+                 INNER JOIN teacher te ON s.teacher_id = te.id 
+                 WHERE t.quarter = '$quarter' AND t.section = '$section' AND t.school_year = '$sy' 
+                 ORDER BY s.id ASC;
                 ");
                 while ($row = mysqli_fetch_array($squery)) {
                 ?>

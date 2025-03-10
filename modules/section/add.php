@@ -7,6 +7,7 @@ if (!isset($_GET['grade'])) {
   exit();
 } 
 $grade = $_GET['grade'];
+$sy = $_GET['sy'];
 // Fetch teachers from the database
 $teachers_query = mysqli_query($conn, "
 SELECT id, CONCAT(first_name, ' ', last_name) AS full_name 
@@ -74,6 +75,11 @@ WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AN
                         <?php endwhile; ?>  
                     </select>
                 </div>
+
+                <div class="grid-item">
+                    <label class="form-label">School Year<span class="required"></span></label>
+                    <input type="text" class="form-control" id="sy" name="sy" value="<?php echo $sy ?>"required readonly>
+            </div>
             </div>
 
             <div class="footer">

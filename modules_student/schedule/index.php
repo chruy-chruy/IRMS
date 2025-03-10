@@ -106,14 +106,29 @@ include "../../db_conn.php";
     if ($getSection) {
         $section = $getSection['id'];
         // Fetch schedule with subject names
-        $schedQuery = mysqli_query($conn, "SELECT s.day, s.time_slot, sub.name AS subject_name FROM `scheduler` s LEFT JOIN `subject` sub ON s.subject = sub.id WHERE s.section = '$section'");
+        $schedQuery = mysqli_query($conn, "
+        SELECT 
+    s.day, 
+    s.time_slot, 
+    sub.name AS subject_name, 
+    sec.name AS section_name, 
+    CONCAT(t.first_name, ' ', 
+           COALESCE(t.middle_name, ''), ' ', 
+           t.last_name, ' ', 
+           COALESCE(t.extension_name, '')) AS teacher_name
+FROM `scheduler` s 
+LEFT JOIN `subject` sub ON s.subject = sub.id 
+LEFT JOIN `section` sec ON s.section = sec.id  
+LEFT JOIN `teacher` t ON sec.teacher_id = t.id  -- Joining teacher table to get teacher's name
+WHERE s.section = '$section';
+");
 
 // Store schedule in an associative array
 $schedule = [];
 while ($row = mysqli_fetch_assoc($schedQuery)) {
     $day = strtolower(trim($row['day']));
     $time_slot = strtolower(trim($row['time_slot'])); // Normalize time slot
-    $schedule[$day][$time_slot] = $row['subject_name'];
+    $schedule[$day][$time_slot] = $row['subject_name'] . "<br>( " . $row['teacher_name'] . ')';
 }
 
     }
@@ -143,8 +158,8 @@ while ($row = mysqli_fetch_assoc($schedQuery)) {
         // Display subjects for each day
         foreach ($days as $day) {
             $subject_name = isset($schedule[$day][$normalized_time_slot]) ? $schedule[$day][$normalized_time_slot] : "TBA";
-            echo '<input readonly type="text" class="subject" value="' . htmlspecialchars($subject_name) . '">';
-        }
+            echo '<div class="subject">' . nl2br(htmlspecialchars_decode($subject_name)) . '</div>';
+        }           
     }
     
     ?>

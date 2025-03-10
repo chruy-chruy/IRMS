@@ -17,35 +17,37 @@
 <?php include "../../navbar_teacher.php"; ?>
 <?php 
 
+$section_id = isset($_GET['section_id']) ? intval($_GET['section_id']) : 0;
 
 // Fetch sections where the teacher teaches a subject
-$query = "SELECT s.id AS section_id, s.name AS section_name, s.grade_level, sub.name AS subject_name
+$query = "SELECT ss.subject AS subject_id, ss.section AS section_id, ss.teacher AS teacher_id, sub.name AS subject_name
     FROM section_subject ss
-    JOIN scheduler sch ON ss.subject = sch.subject AND ss.section = sch.section
-    JOIN section s ON ss.section = s.id
-    JOIN subject sub ON sub.id = ss.subject
-    WHERE ss.teacher = '$teacher_id'
-    GROUP BY s.id
+	JOIN subject sub ON ss.subject = sub.id
+    WHERE ss.teacher = '1' AND ss.section = 1
 ";
+
+// Fetch sections where the teacher teaches a subject
+$section = "SELECT * FROM section WHERE id = $section_id";
 
 // $stmt = $conn->prepare($query);
 // $stmt->execute();
 // $result = $stmt->get_result();
 include "../../db_conn.php";
 $squery = mysqli_query($conn,$query);
-
+$secquery = mysqli_query($conn,$section);
 
 ?>
 <div class="content">
-    <div class="header">
-        <h1><?php if ($page) {echo $page;} ?></h1>
+    <div class="header"><?php while ($row = mysqli_fetch_array($secquery)): ?>
+        <h1><?php if ($page) {echo $page;} ?> - <?= $row['name'] ?> <?= $row['grade_level'] ?></h1>
+        <?php endwhile; ?>
     </div>
 
     <div  class="row g-3">
     <div class="grid-container-dashboard">
             <?php while ($row = mysqli_fetch_array($squery)): ?>
-                <a href="./subject.php?section_id=<?= $row['section_id'] ?>" class="schedule" style="width: max-content;">
-                    <div class="box-icon"><i class="fa fa-users"></i></div>Section :  <?= $row['section_name'] ?><br> Grade: <?= $row['grade_level'] ?> 
+                <a href="./section.php?section_id=<?= $row['section_id'] ?>&subject_id=<?= $row['subject_id'] ?>" class="schedule" style="width: max-content;">
+                    <div class="box-icon"><i class="fa fa-users"></i></div> Subject : <?= $row['subject_name'] ?> 
                 </a>
             <?php endwhile; ?>
         </div>

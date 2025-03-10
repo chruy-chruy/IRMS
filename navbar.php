@@ -71,14 +71,14 @@ $role = $_SESSION['role'];
                             </a>
                         </li> -->
 
-                        <?php if ($role == "administrator"){ ?>
+                        <!-- <?php if ($role == "administrator"){ ?>
                         <li class="darkerlishadowdown <?php if ($page == 'Users') {echo 'active';} ?>">
-                            <a href="../User/">
+                            <a href="../user/">
                                 <i class="fa fa-user fa-lg"></i>
                                 <span class="nav-text">Users</span>
                             </a>
                         </li>
-                        <?php }?>
+                        <?php }?> -->
 
                     </ul>
 

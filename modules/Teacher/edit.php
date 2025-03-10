@@ -48,19 +48,25 @@ while ($row = mysqli_fetch_array($squery)) {
 
                 <div class="grid-item">
                     <label class="form-label">First Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name'] ?>" required>
+                    <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name'] ?>" required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Middle Name</label>
                     <input type="text" class="form-control" id="middle_name" name="middle_name" 
-                    value = "<?php echo $row['middle_name']; ?>">
+                    value = "<?php echo $row['middle_name']; ?>" 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Last Name<span class="required">*</span></label>
                     <input type="text" class="form-control" id="last_name" name="last_name" 
-                    value = "<?php echo $row['last_name']; ?>" required>
+                    value = "<?php echo $row['last_name']; ?>" required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">

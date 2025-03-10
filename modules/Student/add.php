@@ -60,19 +60,25 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
             <h3>Personal Information</h3>
             <div class="grid-container grid-container--fill">
-                <div class="grid-item">
-                    <label class="form-label">First Name <span class="required">*</span></label>
-                    <input type="text" class="form-control" id="first_name" name="first_name" required>
-                </div>
+            <div class="grid-item">
+    <label class="form-label">First Name <span class="required">*</span></label>
+    <input type="text" class="form-control" id="first_name" name="first_name" required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
+</div>
 
                 <div class="grid-item">
                     <label class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="middleName" name="middle_name">
+                    <input type="text" class="form-control" id="middleName" name="middle_name" 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Last Name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    <input type="text" class="form-control" id="last_name" name="last_name" required 
+           pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
+           oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
@@ -82,7 +88,7 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
-                    <select name="gender" class="form-control" required style="height:43px;">
+                    <select name="gender" class="form-control" required style="height:43px; width:320px;">
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -96,8 +102,11 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Contact Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="contact_number" required>
+                    <input type="text" class="form-control" name="contact_number" id="contact_number" required>
                 </div>
+                <script>document.getElementById('contact_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Birthdate<span class="required">*</span></label>
@@ -190,13 +199,22 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                     <input type="text" class="form-control" name="lrn_number" id="lrn_number" pattern="\d{13}" title="LRN must be exactly 13 digits" maxlength="13" required>
                 </div>
                 <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
-    this.value = this.value.replace(/\D/g, '').slice(0, 13); // Allows only numbers, max 13 digits
+    this.value = this.value.replace(/\D/g, '').slice(0, 12); // Allows only numbers, max 12 digits
 });</script>
 
 
-<div class="grid-item">
+                <div class="grid-item">
                     <label class="form-label">Grade Level</label>
                     <input type="text" class="form-control" name="grade_level" id="grade_level" value="<?php echo $grade;?>" readonly>
+                </div>
+
+                <div class="grid-item">
+                    <label class="form-label">Transferee?<span class="required">*</span></label>
+                    <select name="transferee" class="form-control" required style="height:43px; width:320px;">
+                        <option value="">Select</option>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
                 </div>
 
  <!-- 

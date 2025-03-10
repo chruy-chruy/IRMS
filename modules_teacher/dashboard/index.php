@@ -224,12 +224,12 @@ include "../../db_conn.php";
         <tbody>
             <?php
             $query = mysqli_query($conn, "
-                SELECT s.id, s.first_name, s.last_name, s.grade_level, s.lrn_number, ss.id AS section_student_id
+                SELECT DISTINCT s.id, s.first_name, s.last_name, s.grade_level, s.lrn_number, ss.id AS section_student_id
                 FROM section_student ss
                 JOIN section_subject sub ON ss.section = sub.section
                 JOIN student s ON ss.student = s.id
                 WHERE sub.teacher = '$teacher_id'
-                ORDER BY s.grade_level ASC
+                ORDER BY s.grade_level ASC;
             ");
             while ($row = mysqli_fetch_array($query)) {
                 $full_name = $row['first_name'] . " " . $row['last_name'];
@@ -260,7 +260,7 @@ include "../../db_conn.php";
         <tbody>
             <?php
             $query = mysqli_query($conn, "
-                SELECT sec.name AS section_name, sec.grade_level 
+                SELECT DISTINCT sec.name AS section_name, sec.grade_level 
                 FROM section_subject sub
                 JOIN section sec ON sub.section = sec.id
                 WHERE sub.teacher = '$teacher_id'
@@ -293,7 +293,7 @@ include "../../db_conn.php";
         <tbody>
             <?php
             $query = mysqli_query($conn, "
-                SELECT sub.code, sub.name AS subject_name, sub.grade_level 
+                SELECT DISTINCT sub.code, sub.name AS subject_name, sub.grade_level 
                 FROM section_subject sec_sub
                 JOIN subject sub ON sec_sub.subject = sub.id
                 WHERE sec_sub.teacher = '$teacher_id'
