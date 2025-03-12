@@ -253,7 +253,7 @@ $row = mysqli_fetch_array($query);
 
             <div class="footer">
             <button class="save" type="submit">Update</button>
-            <button class="delete" id="delBtn" type="button" onclick="del()">Delete</button>
+            <button class="delete" id="delBtn" type="button" onclick="del()">Archive</button>
             <?php
                 include_once "../../includes/modal_del.php";
             ?>
