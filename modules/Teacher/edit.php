@@ -104,6 +104,9 @@ while ($row = mysqli_fetch_array($squery)) {
                     value = "<?php echo $row['contact_number']; ?>">
                 </div>
             </div>
+            <script>document.getElementById('contact_number').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
 
             <h3>User Information</h3>
             <div class="grid-container grid-container--fill">

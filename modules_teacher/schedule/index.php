@@ -104,9 +104,9 @@ include "../../db_conn.php";
         SELECT s.day, s.time_slot, sub.name AS subject_name, sec.name AS section_name, sec.grade_level
         FROM `scheduler` s
         LEFT JOIN `subject` sub ON s.subject = sub.id
-        LEFT JOIN `section_subject` sec_sub ON sec_sub.subject = sub.id
-        LEFT JOIN `section` sec ON sec_sub.section = sec.id
-        WHERE sec_sub.teacher = '$teacher_id'
+        #LEFT JOIN `section_subject` sec_sub ON sec_sub.subject = sub.id
+        LEFT JOIN `section` sec ON s.section = sec.id
+        WHERE sub.teacher_id = '$teacher_id'
     ");
 
     // Store schedule in an associative array

@@ -17,13 +17,13 @@
 <?php include "../../navbar_teacher.php"; ?>
 <?php 
 
-$section_id = isset($_GET['section_id']) ? intval($_GET['section_id']) : 0;
+$section_id = $_GET['section_id'];
 
 // Fetch sections where the teacher teaches a subject
 $query = "SELECT ss.subject AS subject_id, ss.section AS section_id, ss.teacher AS teacher_id, sub.name AS subject_name
     FROM section_subject ss
 	JOIN subject sub ON ss.subject = sub.id
-    WHERE ss.teacher = '1' AND ss.section = 1
+    WHERE ss.teacher = '$teacher_id' AND ss.section = '$section_id'
 ";
 
 // Fetch sections where the teacher teaches a subject
@@ -42,12 +42,13 @@ $secquery = mysqli_query($conn,$section);
         <h1><?php if ($page) {echo $page;} ?> - <?= $row['name'] ?> <?= $row['grade_level'] ?></h1>
         <?php endwhile; ?>
     </div>
+    <a href="index.php" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
 
     <div  class="row g-3">
     <div class="grid-container-dashboard">
             <?php while ($row = mysqli_fetch_array($squery)): ?>
                 <a href="./section.php?section_id=<?= $row['section_id'] ?>&subject_id=<?= $row['subject_id'] ?>" class="schedule" style="width: max-content;">
-                    <div class="box-icon"><i class="fa fa-users"></i></div> Subject : <?= $row['subject_name'] ?> 
+                    <div class="box-icon"><i class="fa fa-users"></i></div><?= $row['subject_name'] ?> 
                 </a>
             <?php endwhile; ?>
         </div>

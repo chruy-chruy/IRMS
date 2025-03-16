@@ -255,7 +255,7 @@ $row = mysqli_fetch_array($query);
             <button class="save" type="submit">Update</button>
             <button class="delete" id="delBtn" type="button" onclick="del()">Archive</button>
             <?php
-                include_once "../../includes/modal_del.php";
+                include_once "../../includes/modal_archive.php";
             ?>
             </div>
         </form>

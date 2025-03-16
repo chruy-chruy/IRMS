@@ -58,7 +58,7 @@
     <span class="close2" onclick="exit()" >&times;</span>.
     <!-- -->
     <div class="header">
-        <h1>Delete <?php if ($page) {echo $page;}?> </h1>
+        <h1>Archive <?php if ($page) {echo $page;}?> </h1>
     </div>
     <div class="message">
        Are you sure want to remove <?php if ($page) {echo $page;}?><br>

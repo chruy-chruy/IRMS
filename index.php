@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['id'])) {
+    header("Location: modules/dashboard");
+    exit();
+} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -146,8 +154,8 @@
     <div class="container">
         <div class="login__header">
             <img src="assets/img/logo.png" alt="Logo" class="login-logo">
-            <h2>INTEGRATED RECORDS</h2>
-            <div class="title">MANAGEMENT SYSTEM</div>
+            <!-- <h2>GFI JUNIOR HIGH SCHOOL DEPARTMENT</h2> -->
+            <div class="title">GFI JUNIOR HIGH SCHOOL DEPARTMENT</div>
         </div>
         <form class="login" action="validate_login.php" method="POST">
             <div class="login__field">

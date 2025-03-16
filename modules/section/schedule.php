@@ -35,7 +35,6 @@ while ($row = mysqli_fetch_array($squery)) {
 }
 
 ?>
- ?>
 
 <head>
     <meta charset="utf-8" />
@@ -428,7 +427,7 @@ foreach ($time_slots as $time_slot) {
   font-family: Arial, Helvetica, sans-serif;
   color: #ffffff;
   cursor: pointer;
-  text-decoration: none;" href="remove_subject.php?id=<?php echo $row['section_subject_id']; ?>">
+  text-decoration: none;" href="remove_subject.php?id=<?php echo $row['section_subject_id']; ?>&section=<?php echo $section; ?>&subject=<?php echo $row['id']; ?>">
                         Remove
                         </a>
                         <!-- Add more actions if needed -->

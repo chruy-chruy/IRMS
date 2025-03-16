@@ -6,6 +6,17 @@ if (!isset($_SESSION['id'])) {
 } 
 $name = $_SESSION['name'];
 $teacher_id = $_SESSION['id'];
+
+include "../../db_conn.php"; // Include database connection
+
+    // $query = mysqli_query($conn, "SELECT * FROM teacher where id = '$teacher_id' AND del_status != 'deleted'");
+    // $teacher_creds = mysqli_fetch_array($query);
+
+
+    $adviser_query = mysqli_query($conn, "SELECT * FROM `section` WHERE teacher_id = '$teacher_id' LIMIT 1;");
+    $adviser_row = mysqli_fetch_array($adviser_query);
+    
+
 ?>
 <link rel="icon" type="image/x-icon" href="../../assets/img/logo.png">
 <div class="container">
@@ -29,17 +40,27 @@ $teacher_id = $_SESSION['id'];
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Schedule') {echo 'active';} ?>">
                             <a href="../schedule">
-                                <i class="fa fa-home fa-lg"></i>
+                                <i class="fa fa-calendar fa-lg"></i>
                                 <span class="nav-text">My Schedule</span>
                             </a>
                         </li>
 
                     </ul>
+                    <?php if($adviser_row){ ?>
+                    <ul>
+                        <li class="darkerlishadow <?php if ($page == 'Advisory') {echo 'active';} ?>">
+                            <a href="../advisory">
+                                <i class="fa fa-book fa-lg"></i>
+                                <span class="nav-text">My Advisory</span>
+                            </a>
+                        </li>
 
+                    </ul>
+                        <?php }?>
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Grades') {echo 'active';} ?>">
                             <a href="../grade">
-                                <i class="fa fa-home fa-lg"></i>
+                                <i class="fa fa-pencil fa-lg"></i>
                                 <span class="nav-text">Grades</span>
                             </a>
                         </li>

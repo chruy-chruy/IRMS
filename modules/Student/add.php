@@ -110,8 +110,9 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Birthdate<span class="required">*</span></label>
-                    <input type="date" class="form-control" name="birthdate" required>
+                    <input type="date" class="form-control" name="birthdate" required min='1000-01-01' max='9999-01-01'>
                 </div>
+                
 
                 <div class="grid-item">
                     <label class="form-label">Birthplace<span class="required">*</span></label>
@@ -143,8 +144,11 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Father's Contact</label>
-                    <input type="text" class="form-control" name="father_contact">
+                    <input type="text" class="form-control" name="father_contact" id="father_contact">
                 </div>
+                <script>document.getElementById('father_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Name</label>
@@ -158,8 +162,11 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Contact</label>
-                    <input type="text" class="form-control" name="mother_contact">
+                    <input type="text" class="form-control" name="mother_contact" id="mother_contact">
                 </div>
+                <script>document.getElementById('mother_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
 
                 <div class="grid-item">
                     <label class="form-label">Guardian's Name</label>
@@ -168,10 +175,12 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Guardian's Contact</label>
-                    <input type="text" class="form-control" name="guardian_contact">
+                    <input type="text" class="form-control" name="guardian_contact" id="guardian_contact">
                 </div>
             </div>
-
+            <script>document.getElementById('guardian_contact').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
+});</script>
             <h3>Education Information</h3>
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
@@ -196,7 +205,7 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" pattern="\d{13}" title="LRN must be exactly 13 digits" maxlength="13" required>
+                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" title="LRN must be exactly 12 digits" maxlength="12" required>
                 </div>
                 <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 12); // Allows only numbers, max 12 digits
@@ -211,7 +220,7 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 <div class="grid-item">
                     <label class="form-label">Transferee?<span class="required">*</span></label>
                     <select name="transferee" class="form-control" required style="height:43px; width:320px;">
-                        <option value="">Select</option>
+                        <option hidden value="">Select</option>
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>

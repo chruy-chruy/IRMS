@@ -2,9 +2,9 @@
 $page = 'Grade';
 include "../../db_conn.php";
 
-if (isset($GET['student_id'])) {
-$student_id = $GET['student_id'];
-} 
+
+$student_id = $_GET['student_id'];
+
 
 ?>
 
@@ -52,10 +52,11 @@ $student_id = $GET['student_id'];
     margin: 5px 0;
 }
 
+
     </style>
 </head>
 <body>
-<?php include "../../navbar_student.php"; 
+<?php include "../../navbar.php"; 
 // Fetch student information
 $student_info_query = "SELECT s.lrn_number, s.first_name, s.last_name, sec.name 
                        FROM student s 
@@ -91,6 +92,16 @@ while ($row = $result->fetch_assoc()) {
     <div class="header">
         <h1>My <?php echo $page; ?></h1>
     </div>
+    <a href="javascript:history.back()" class="back">
+    <i class="fa fa-arrow-circle-o-left fa-2x"></i>
+</a>
+<div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2></h2>
+    <a href="print_grade.php?student_id=<?php echo $student_id; ?>" target="_blank"
+       style="text-decoration: none; background: none; border: none; cursor: pointer; color:green;">
+        <i class="fa fa-print fa-2x"></i>
+    </a>
+</div>
 
     <!-- Student Information -->
     <div class="student-info">
@@ -107,6 +118,7 @@ while ($row = $result->fetch_assoc()) {
 
     <!-- Grades Table -->
     <div class="grades-table">
+        
     <table class="grades-table">
     <thead>
         <tr>
@@ -145,7 +157,7 @@ while ($row = $result->fetch_assoc()) {
             $subject_count++;
 
             // Determine Pass/Fail
-            $remarks = ($final_grade >= 75) ? "Pass" : "Fail";
+            $remarks = ($final_grade >= 75) ? "Passed" : "Failed";
             ?>
             
             <td><?php echo $final_grade; ?></td>
@@ -160,7 +172,7 @@ while ($row = $result->fetch_assoc()) {
         <tr>
             <td colspan="5" style="text-align: right; font-weight: bold;">General Average:</td>
             <td style="font-weight: bold;"><?php echo $general_average; ?></td>
-            <td style="font-weight: bold;"><?php echo ($general_average >= 75) ? "Pass" : "Fail"; ?></td>
+            <td style="font-weight: bold;"><?php echo ($general_average >= 75) ? "Passed" : "Failed"; ?></td>
         </tr>
     </tbody>
 </table>
