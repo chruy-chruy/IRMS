@@ -39,7 +39,70 @@ if (!isset($_GET['grade'])) {
             <div class="search-box">
             <!-- <a href="./export.php"><button style="float:left;">Export</button></a> -->
                 <a href="./add.php?grade=<?php echo $grade; ?>"><button>Add</button></a>
+                <a href="javascript:printTable()"
+       style="text-decoration: none; background: none; border: none; cursor: pointer; color:green;">
+        <i class="fa fa-print fa-2x"></i>
+    </a>
             </div>
+            <script>
+  function printTable() {
+    var printContent = document.getElementById('example').outerHTML;
+
+    // Remove the Action column from the print view
+    printContent = printContent.replace(/<th class="text-end">Actions<\/th>/, ''); // Remove header column
+    printContent = printContent.replace(/<td class="text-end">.*?<\/td>/g, ''); // Remove data cells in Action column
+
+    var printWindow = window.open('', '', 'height=600,width=800');
+    printWindow.document.write('<html><head><title>Student List</title>');
+    printWindow.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">');
+    printWindow.document.write(`
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+        h1 {
+          text-align: center;
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        th, td {
+          border: 1px solid #000;
+          padding: 8px;
+          text-align: left;
+        }
+        th {
+          background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+        tr:hover {
+          background-color: #f1f1f1;
+        }
+        @media print {
+          #example th.text-end, #example td.text-end {
+            display: none;
+          }
+        }
+      </style>
+    `);
+    printWindow.document.write('</head><body>');
+    printWindow.document.write('<h1>Subject List</h1>');  // Set the title as 'Student List'
+    printWindow.document.write('<table class="table table-striped table-hover">' + printContent + '</table>');
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+  }
+</script>
+
+
+
             <div class="table_wrap">
             <table id="example" class="data list">
                 <thead>
@@ -48,7 +111,7 @@ if (!isset($_GET['grade'])) {
                     <th>Subject Code</th>
                     <th>Grade Level</th>
                     <th>Assigned Teacher</th>
-                    <th style="width: 55px;">Action</th>
+                    <th class="text-end" style="width: 55px;">Action</th>
                 </thead>
                 <?php
          $squery = mysqli_query($conn, "
@@ -66,7 +129,7 @@ if (!isset($_GET['grade'])) {
                     <td><?php echo $row['code'] ?></td>
                     <td>Grade <?php echo $row['grade_level'] ?></td>
                     <td><?php echo $row['teacher_name'] ?></td>
-                    <td>
+                    <td  class="text-end">
                         <a class="view" href="edit.php?id=<?php echo $row['id'] ?>">
                         View
                         </a>

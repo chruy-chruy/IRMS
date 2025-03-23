@@ -80,7 +80,7 @@ if (isset($_GET['message'])) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Assigned Teacher<span class="required">*</span></label>
+                    <label class="form-label">Assigned Advisory<span class="required">*</span></label>
                     <select name="teacher_id" class="form-control" required style="height:43px;">
                         <option value="<?php echo $teacher['id']; ?>"><?php echo $teacher['full_name']; ?></option>
                         <?php while ($teacher = mysqli_fetch_assoc($teachers_query)): ?> 

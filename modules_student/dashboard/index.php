@@ -22,7 +22,61 @@ include "../../db_conn.php";
 <div class="header">
                 <h1><?php if ($page) {echo $page;} ?></h1>
 </div>
-On Progress
+
+<div  class="row g-3">
+<div class="grid-container-dashboard">
+
+  <div class="dashboard">
+  <div class="box-icon"><i class="fa fa-users"></i></div>
+  <div class="box-content">
+  <span class="big"><?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_subject FROM section_subject Where section = (SELECT section FROM student WHERE id = '$student_id')");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_subject']; }
+    ?></span>
+     Total Subject
+  </div>
+  </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-users"></i></i></div> 
+    <div class="box-content">
+    <span class="big">
+    <?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_student FROM student Where del_status != 'deleted'");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_student']; }
+    ?>
+    </span>
+    Total Students
+    </div>
+    </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-address-book"></i></div> 
+    <div class="box-content">
+      <span class="big">
+      <?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_subject FROM `subject` Where del_status != 'deleted'");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_subject']; }
+    ?>
+      </span>
+      Total Subjects
+    </div>
+    </div>
+
+    <div class="dashboard">
+    <div class="box-icon"><i class="fa fa-certificate"></i></div> 
+    <div class="box-content">
+      <span class="big">
+      <?php
+    $squery =  mysqli_query($conn, "SELECT COUNT(id) AS total_section FROM `section` Where del_status != 'deleted'");
+    while ($row = mysqli_fetch_array($squery)) { echo $row['total_section']; }
+    ?>
+      </span>
+      Total Section
+    </div>
+    </div>
+
+</div>
 <br>
 <!-- <img class="img" src="../../assets/img/school.jpg" alt="School" width="90%" height="600px"> -->
 </div>

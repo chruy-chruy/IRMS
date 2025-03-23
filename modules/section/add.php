@@ -65,7 +65,7 @@ WHERE id NOT IN (SELECT teacher_id FROM section WHERE teacher_id IS NOT NULL) AN
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Assigned Teacher<span class="required">*</span></label>
+                    <label class="form-label">Assigned Advisory<span class="required">*</span></label>
                     <select name="teacher_id" class="form-control" required style="height:43px;">
                     <option value="" hidden>Select Teacher</option> 
                         <?php while ($teacher = mysqli_fetch_assoc($teachers_query)): ?> 

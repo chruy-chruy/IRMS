@@ -33,6 +33,10 @@ include "../../db_conn.php";
             <div class="search-box">
             <!-- <a href="./export.php"><button style="float:left;">Export</button></a> -->
                 <a href="./add.php"><button>Add</button></a>
+                <a href="print.php?student_id=<?php echo $student_id; ?>" target="_blank"
+       style="text-decoration: none; background: none; border: none; cursor: pointer; color:green;">
+        <i class="fa fa-print fa-2x"></i>
+    </a>
             </div>
             <div class="table_wrap">
             <table id="example" class="data list">

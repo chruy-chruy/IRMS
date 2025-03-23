@@ -17,20 +17,19 @@ $student_id = $_SESSION['id'];
                 <div class="user">Hello <?php echo $name; ?>! </div>
                 <div class="scrollbar" id="style-1">
 
-                    <ul>
+                    <!-- <ul>
                         <li class="darkerlishadow <?php if ($page == 'Dashboard') {echo 'active';} ?>">
                             <a href="../dashboard">
                                 <i class="fa fa-home fa-lg"></i>
                                 <span class="nav-text">Dashboard</span>
                             </a>
                         </li>
-
-                    </ul>
+                    </ul> -->
 
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Schedule') {echo 'active';} ?>">
                             <a href="../schedule">
-                                <i class="fa fa-home fa-lg"></i>
+                                <i class="fa fa-calendar fa-lg"></i>
                                 <span class="nav-text">My Schedule</span>
                             </a>
                         </li>
@@ -40,7 +39,7 @@ $student_id = $_SESSION['id'];
                     <ul>
                         <li class="darkerlishadow <?php if ($page == 'Grade') {echo 'active';} ?>">
                             <a href="../grade">
-                                <i class="fa fa-home fa-lg"></i>
+                                <i class="fa fa-id-card fa-lg"></i>
                                 <span class="nav-text">My Grades</span>
                             </a>
                         </li>

@@ -93,11 +93,32 @@ while ($row = mysqli_fetch_array($squery)) {
 
             <h3>Contact Information</h3>
             <div class="grid-container grid-container--fill">
-                <div class="grid-item">
-                    <label class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" required
-                    value = "<?php echo $row['email']; ?>">
-                </div>
+            <div class="grid-item">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>" required>
+    <small id="emailError" style="color: red; display: none;">Please enter a valid Gmail address.</small>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let emailInput = document.getElementById("email");
+            let emailError = document.getElementById("emailError");
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+            if (!emailPattern.test(emailInput.value)) {
+                event.preventDefault(); // Prevent form submission
+                emailError.style.display = "block"; // Show error message
+                emailInput.style.border = "1px solid red"; // Highlight input field
+            } else {
+                emailError.style.display = "none"; // Hide error message
+                emailInput.style.border = ""; // Reset border
+            }
+        });
+    });
+</script>
+
+
                 <div class="grid-item">
                     <label class="form-label">Contact Number</label>
                     <input type="text" class="form-control" id="contact_number" name="contact_number" required

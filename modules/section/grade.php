@@ -29,7 +29,7 @@ $grade = $_GET['grade'];
 <div class="header">
                 <h1><?php if ($page) {echo $page . 's of Grade ' .$grade;} ?></h1>
 </div>
-<a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+<a href="index.php?sy=<?php echo $sy;?>" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
 <div class="search-box">
             <a href="./add.php?grade=<?php echo $grade;?>&sy=<?php echo $sy;?>"><button>Add</button></a>
         </div>

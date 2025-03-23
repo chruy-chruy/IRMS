@@ -48,7 +48,7 @@ if (isset($_POST['username'], $_POST['password'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['name'] = $user['first_name']." ".$user['last_name'];
-        header("Location: modules_student/dashboard/index.php");
+        header("Location: modules_student/schedule/index.php");
         exit();
     }else if (mysqli_num_rows($result3) === 1) {
         $user = mysqli_fetch_assoc($result3);

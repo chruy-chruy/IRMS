@@ -102,7 +102,7 @@ $row = mysqli_fetch_array($query);
 
                 <div class="grid-item">
                     <label class="form-label">Birthdate<span class="required">*</span></label>
-                    <input type="date" class="form-control" name="birthdate" value="<?php echo $row['birthdate']; ?>" required>
+                    <input type="date" class="form-control" name="birthdate" value="<?php echo $row['birthdate']; ?>" min='1000-01-01' max='9999-01-01' required >
                 </div>
 
                 <div class="grid-item">
@@ -142,7 +142,8 @@ $row = mysqli_fetch_array($query);
             <script>document.getElementById('father_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); 
 });</script>
-
+</div>
+<div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Mother's Name</label>
                     <input type="text" class="form-control" name="mother_name" value="<?php echo $row['mother_name']; ?>"
@@ -162,7 +163,8 @@ $row = mysqli_fetch_array($query);
             <script>document.getElementById('mother_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); 
 });</script>
-
+</div>
+<div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Guardian's Name</label>
                     <input type="text" class="form-control" name="guardian_name" value="<?php echo $row['guardian_name']; ?>"
@@ -196,10 +198,34 @@ $row = mysqli_fetch_array($query);
                     <input type="text" class="form-control" name="elementary_year" value="<?php echo $row['elementary_year']; ?>">
                 </div>
 
-                <div class="grid-item">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>">
-                </div>
+
+
+
+<div class="grid-item">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" id="email" value="<?php echo $row['email']; ?>" required>
+    <small id="emailError" style="color: red; display: none;">Please enter a valid Gmail address.</small>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let emailInput = document.getElementById("email");
+            let emailError = document.getElementById("emailError");
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+            if (!emailPattern.test(emailInput.value)) {
+                event.preventDefault(); // Prevent form submission
+                emailError.style.display = "block"; // Show error message
+                emailInput.style.border = "1px solid red"; // Highlight input field
+            } else {
+                emailError.style.display = "none"; // Hide error message
+                emailInput.style.border = ""; // Reset border
+            }
+        });
+    });
+</script>
+
 
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
@@ -229,8 +255,8 @@ $row = mysqli_fetch_array($query);
                 <div class="grid-item">
                     <label class="form-label">Transferee?<span class="required">*</span></label>
                     <select name="transferee" class="form-control" required style="height:43px; width:320px;">
-                    <option selected hidden value="<?php echo $row['grade_level']; ?>" hidden><?php echo $row['transferee']; ?></option> 
-                        <option value="">Select</option>
+                    <option selected hidden value="<?php echo $row['transferee']; ?>" hidden><?php echo $row['transferee']; ?></option> 
+                        <option hidden value="">Select</option>
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>

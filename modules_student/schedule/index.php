@@ -82,13 +82,58 @@ include "../../db_conn.php";
     color: #388e3c;
 }
 
+.student-info {
+    width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+}
+
+.student-info .info-left,
+.student-info .info-right {
+    width: 48%;
+}
+
+.student-info p {
+    margin: 5px 0;
+}
+
     </style>
 <body>
-<?php include "../../navbar_student.php"; ?>
+<?php include "../../navbar_student.php"; 
+// Fetch student information
+$student_info_query = "SELECT s.lrn_number, s.first_name, s.last_name, sec.name 
+                       FROM student s 
+                       JOIN section_student ss ON s.id = ss.student 
+                       JOIN section sec ON ss.section = sec.id 
+                       WHERE s.id = ?";
+
+$stmt_info = $conn->prepare($student_info_query);
+$stmt_info->bind_param("i", $student_id);
+$stmt_info->execute();
+$result_info = $stmt_info->get_result();
+$student_info = $result_info->fetch_assoc();
+?>
 <div class="content">
-<div class="header">
-                <h1>My <?php if ($page) {echo $page;} ?></h1>
+    <div class="header">
+        <h1>My <?php echo $page; ?></h1>
+    </div>
+
+    <!-- Student Information -->
+    <div class="student-info">
+    <div class="info-left">
+        <p><strong>Student Name:</strong> <?php echo htmlspecialchars($student_info['first_name'] . ' ' . $student_info['last_name']); ?></p>
+        <p><strong>Section:</strong> <?php echo htmlspecialchars($student_info['name']); ?></p>
+    </div>
+    <div class="info-right">
+        <p><strong>Student LRN:</strong> <?php echo htmlspecialchars($student_info['lrn_number']); ?></p>
+        <p><strong>School Year:</strong> 2025-2026</p>
+    </div>
 </div>
+
+
 <div class="scheduler">
     <!-- Table Header -->
     <div class="header1">Time</div>
@@ -119,7 +164,7 @@ include "../../db_conn.php";
 FROM `scheduler` s 
 LEFT JOIN `subject` sub ON s.subject = sub.id 
 LEFT JOIN `section` sec ON s.section = sec.id  
-LEFT JOIN `teacher` t ON sec.teacher_id = t.id  -- Joining teacher table to get teacher's name
+LEFT JOIN `teacher` t ON sub.teacher_id = t.id  -- Joining teacher table to get teacher's name
 WHERE s.section = '$section';
 ");
 

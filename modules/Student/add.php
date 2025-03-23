@@ -149,7 +149,8 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 <script>document.getElementById('father_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
 });</script>
-
+</div>
+<div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Mother's Name</label>
                     <input type="text" class="form-control" name="mother_name">
@@ -167,7 +168,8 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 <script>document.getElementById('mother_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
 });</script>
-
+</div>
+<div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Guardian's Name</label>
                     <input type="text" class="form-control" name="guardian_name">
@@ -199,10 +201,29 @@ while ($section = mysqli_fetch_assoc($section_query)) {
                 </div>
 
                 <div class="grid-item">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" name="email" id="email">
-                </div>
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" id="email" required>
+    <small id="emailError" style="color: red; display: none;">Please enter a valid Gmail address.</small>
+</div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("form").addEventListener("submit", function (event) {
+            let emailInput = document.getElementById("email");
+            let emailError = document.getElementById("emailError");
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+            if (!emailPattern.test(emailInput.value)) {
+                event.preventDefault(); // Prevent form submission
+                emailError.style.display = "block"; // Show error message
+                emailInput.style.border = "1px solid red"; // Highlight input field
+            } else {
+                emailError.style.display = "none"; // Hide error message
+                emailInput.style.border = ""; // Reset border
+            }
+        });
+    });
+</script>
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
                     <input type="text" class="form-control" name="lrn_number" id="lrn_number" title="LRN must be exactly 12 digits" maxlength="12" required>

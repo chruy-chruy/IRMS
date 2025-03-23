@@ -140,12 +140,12 @@ while ($row = $result->fetch_assoc()) {
             }
 
             // Compute final grade (average of 4 quarters)
-            $final_grade = round($final_grade / 4, 2);
+            $final_grade = round($final_grade / 4);
             $total_final_grade += $final_grade;
             $subject_count++;
 
             // Determine Pass/Fail
-            $remarks = ($final_grade >= 75) ? "Pass" : "Fail";
+            $remarks = ($final_grade >= 75) ? "Passed" : "Failed";
             ?>
             
             <td><?php echo $final_grade; ?></td>
@@ -155,12 +155,12 @@ while ($row = $result->fetch_assoc()) {
 
         <!-- General Average Row -->
         <?php 
-        $general_average = ($subject_count > 0) ? round($total_final_grade / $subject_count, 2) : 0;
+        $general_average = ($subject_count > 0) ? round($total_final_grade / $subject_count) : 0;
         ?>
         <tr>
             <td colspan="5" style="text-align: right; font-weight: bold;">General Average:</td>
             <td style="font-weight: bold;"><?php echo $general_average; ?></td>
-            <td style="font-weight: bold;"><?php echo ($general_average >= 75) ? "Pass" : "Fail"; ?></td>
+            <td style="font-weight: bold;"><?php echo ($general_average >= 75) ? "Passed" : "Failed"; ?></td>
         </tr>
     </tbody>
 </table>

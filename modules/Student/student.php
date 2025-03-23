@@ -36,7 +36,10 @@ if (!isset($_GET['grade'])) {
             
             <div class="search-box">
     <a href="./add.php?grade=<?php echo $grade; ?>"><button>Add</button></a>
-    <a href="javascript:printTable()" style="float: left;" ><button>Print</button></a>
+    <a href="javascript:printTable()"
+       style="text-decoration: none; background: none; border: none; cursor: pointer; color:green;">
+        <i class="fa fa-print fa-2x"></i>
+    </a>
 </div>
 <script>
   function printTable() {

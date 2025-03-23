@@ -217,7 +217,7 @@ $student_info = $result_info->fetch_assoc();
 FROM `scheduler` s 
 LEFT JOIN `subject` sub ON s.subject = sub.id 
 LEFT JOIN `section` sec ON s.section = sec.id  
-LEFT JOIN `teacher` t ON sec.teacher_id = t.id  -- Joining teacher table to get teacher's name
+LEFT JOIN `teacher` t ON sub.teacher_id = t.id  -- Joining teacher table to get teacher's name
 WHERE s.section = '$section';
 ");
 
