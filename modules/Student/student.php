@@ -123,7 +123,7 @@ if (!isset($_GET['grade'])) {
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['grade_level']; ?></td>
                     <td class="text-end">
-                        <a class="view" href="edit.php?id=<?php echo $row['id']; ?>">
+                        <a class="view" href="edit.php?grade=<?php echo $row['grade_level']; ?>&id=<?php echo $row['id']; ?>">
                         View
                         </a>
                         <!-- Add more actions if needed -->

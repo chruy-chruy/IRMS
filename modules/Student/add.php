@@ -15,13 +15,64 @@ if (isset($_GET['message'])) {
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/menu.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/style.css">
     <link rel="stylesheet" type="text/css" href="../../assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    
     <script src="../../assets/js/table.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/jquery-3.7.0.js"></script>
     <script src="../../assets/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="../../assets/css/jquery.dataTables.min.css">
 </head>
+<style>
+    .dropbtn {
+  background-color: #2c2d2d;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
 
+  width: 150px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  min-width: 230px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+    background-color: #560202;
+    color: white;
+}
+
+.dropbtn:hover {
+    background-color: #560202;
+    color: white;
+}
+
+.show {display: block;}
+</style>
 <body>
     <?php 
     $page = 'Student';
@@ -32,6 +83,8 @@ if (isset($_GET['message'])) {
         exit();
       } 
       $grade = $_GET['grade'];
+      $grade_level = $grade-1;
+
     ?>
 
 <?php 
@@ -51,45 +104,93 @@ while ($section = mysqli_fetch_assoc($section_query)) {
         <div class="header">
             <h1>Add <?php if ($page) {echo $page;} ?></h1>
         </div>
+<br><?php if($grade > 7) {?>
+        <div class="search-box">
+                <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn btn btn-success dropdown-toggle">Existing Grade <?php echo $grade_level ?></button>
 
-        <form class="row g-3" action="create.php" method="post">
-            <div class="image" id="image">
+
+    <?php 
+    // Query to fetch student data
+    $query = "SELECT s.*, CONCAT(t.name) AS strand_name 
+    FROM student s 
+    LEFT JOIN section t ON s.section = t.id 
+    WHERE s.del_status != 'deleted' AND s.grade_level = '$grade_level'
+    ORDER BY s.id DESC;";
+    $result = mysqli_query($conn, $query);
+    ?>
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+    <a href="add.php?grade=<?php echo $grade ?>">None</a>
+    <?php 
+        // Loop through each row from the query result and populate the table
+        while($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $full_name = $row['first_name'] . ' ' . $row['middle_name'] . ' ' . $row['last_name'];
+            $gender = $row['gender'];
+            $Email = $row['email'];
+            $strand = $row['strand_name'];
+        ?>
+    <a href="add.php?grade=<?php echo $grade ?>&student=<?php echo $id; ?>"><?php echo $full_name; ?></a>
+    <?php } 
+          if (isset($_GET['student'])){
+            $id2 = $_GET['student'];
+              // Query to fetch student data
+              $query2 = "SELECT s.*, CONCAT(t.name) AS section_name 
+              FROM student s 
+              LEFT JOIN section t ON s.section = t.id 
+              WHERE s.del_status != 'deleted' AND s.grade_level = '$grade_level' AND s.id = '$id2'";
+              $result2 = mysqli_query($conn, $query2);
+              $row = mysqli_fetch_assoc($result2);
+          }?>
+    </div>
+    </div>
+    </div>
+    <hr>
+<?php } ?>
+
+        <form class="row g-3" action="create.php?<?php if (isset($_GET['student'])){ echo "student=" . $_GET['student']; } ?>&grade=<?php echo $grade; ?>" method="post">
+            <!-- <div class="image" id="image">
                 <img src="../../assets/img/default.jpeg" alt="">
                 <input type="text" hidden name="imageValue" value="default.jpeg">
-            </div>
+   
 
+            </div> -->
+           
+ 
             <h3>Personal Information</h3>
             <div class="grid-container grid-container--fill">
             <div class="grid-item">
     <label class="form-label">First Name <span class="required">*</span></label>
-    <input type="text" class="form-control" id="first_name" name="first_name" required 
+    <input type="text" class="form-control" id="first_name" name="first_name"  value="<?php if (isset($_GET['student'])){ echo $row['first_name']; } ?>" required 
            pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
            oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Middle Name</label>
-                    <input type="text" class="form-control" id="middleName" name="middle_name" 
+                    <input type="text" class="form-control" id="middleName" name="middle_name" value="<?php if (isset($_GET['student'])){ echo $row['middle_name']; } ?>"
            pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
            oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Last Name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="last_name" name="last_name" required 
+                    <input type="text" class="form-control" id="last_name" name="last_name" value="<?php if (isset($_GET['student'])){ echo $row['last_name']; } ?>" required 
            pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed" 
            oninput="this.value = this.value.replace(/[^A-Za-z\s]/g, '')">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Suffix</label>
-                    <input type="text" class="form-control" id="suffix" name="suffix">
+                    <input type="text" class="form-control" id="suffix" name="suffix" value="<?php if (isset($_GET['student'])){ echo $row['suffix']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Gender<span class="required">*</span></label>
                     <select name="gender" class="form-control" required style="height:43px; width:320px;">
-                        <option value="">Select Gender</option>
+                       <option value="<?php if (isset($_GET['student'])){ echo $row['gender']; } ?>"><?php if (isset($_GET['student'])){ echo $row['gender']; }else { echo "Select"; } ?></option>
+
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
@@ -97,12 +198,12 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Address<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="address" required>
+                    <input type="text" class="form-control" name="address" value="<?php if (isset($_GET['student'])){ echo $row['address']; } ?>" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Contact Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="contact_number" id="contact_number" required>
+                    <input type="text" class="form-control" name="contact_number" id="contact_number" value="<?php if (isset($_GET['student'])){ echo $row['contact_number']; } ?>" required>
                 </div>
                 <script>document.getElementById('contact_number').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
@@ -110,23 +211,23 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
                 <div class="grid-item">
                     <label class="form-label">Birthdate<span class="required">*</span></label>
-                    <input type="date" class="form-control" name="birthdate" required min='1000-01-01' max='9999-01-01'>
+                    <input type="date" class="form-control" name="birthdate" required min='1000-01-01' max='9999-01-01' value="<?php if (isset($_GET['student'])){ echo $row['birthdate']; } ?>"> 
                 </div>
                 
 
                 <div class="grid-item">
                     <label class="form-label">Birthplace<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="birthplace" required>
+                    <input type="text" class="form-control" name="birthplace" value="<?php if (isset($_GET['student'])){ echo $row['birthplace']; } ?>" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Nationality<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="nationality" required>
+                    <input type="text" class="form-control" name="nationality" value="<?php if (isset($_GET['student'])){ echo $row['nationality']; } ?>" required>
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Religion<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="religion" required>
+                    <input type="text" class="form-control" name="religion" value="<?php if (isset($_GET['student'])){ echo $row['religion']; } ?>" required>
                 </div>
             </div>
 
@@ -134,17 +235,17 @@ while ($section = mysqli_fetch_assoc($section_query)) {
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Father's Name</label>
-                    <input type="text" class="form-control" name="father_name">
+                    <input type="text" class="form-control" name="father_name" value="<?php if (isset($_GET['student'])){ echo $row['father_name']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Father's Occupation</label>
-                    <input type="text" class="form-control" name="father_occupation">
+                    <input type="text" class="form-control" name="father_occupation" value="<?php if (isset($_GET['student'])){ echo $row['father_occupation']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Father's Contact</label>
-                    <input type="text" class="form-control" name="father_contact" id="father_contact">
+                    <input type="text" class="form-control" name="father_contact" id="father_contact" value="<?php if (isset($_GET['student'])){ echo $row['father_contact']; } ?>">
                 </div>
                 <script>document.getElementById('father_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
@@ -153,17 +254,17 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Mother's Name</label>
-                    <input type="text" class="form-control" name="mother_name">
+                    <input type="text" class="form-control" name="mother_name" value="<?php if (isset($_GET['student'])){ echo $row['mother_name']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Occupation</label>
-                    <input type="text" class="form-control" name="mother_occupation">
+                    <input type="text" class="form-control" name="mother_occupation" value="<?php if (isset($_GET['student'])){ echo $row['mother_occupation']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Mother's Contact</label>
-                    <input type="text" class="form-control" name="mother_contact" id="mother_contact">
+                    <input type="text" class="form-control" name="mother_contact" id="mother_contact" value="<?php if (isset($_GET['student'])){ echo $row['mother_contact']; } ?>">
                 </div>
                 <script>document.getElementById('mother_contact').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 11); // Allows only numbers, max 12 digits
@@ -172,12 +273,12 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Guardian's Name</label>
-                    <input type="text" class="form-control" name="guardian_name">
+                    <input type="text" class="form-control" name="guardian_name" value="<?php if (isset($_GET['student'])){ echo $row['guardian_name']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Guardian's Contact</label>
-                    <input type="text" class="form-control" name="guardian_contact" id="guardian_contact">
+                    <input type="text" class="form-control" name="guardian_contact" id="guardian_contact" value="<?php if (isset($_GET['student'])){ echo $row['guardian_contact']; } ?>">
                 </div>
             </div>
             <script>document.getElementById('guardian_contact').addEventListener('input', function (e) {
@@ -187,22 +288,22 @@ while ($section = mysqli_fetch_assoc($section_query)) {
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Elementary School Name</label>
-                    <input type="text" class="form-control" name="elementary_name">
+                    <input type="text" class="form-control" name="elementary_name" value="<?php if (isset($_GET['student'])){ echo $row['elementary_name']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Elementary School Address</label>
-                    <input type="text" class="form-control" name="elementary_address">
+                    <input type="text" class="form-control" name="elementary_address" value="<?php if (isset($_GET['student'])){ echo $row['elementary_address']; } ?>">
                 </div>
 
                 <div class="grid-item">
                     <label class="form-label">Elementary Year Graduated</label>
-                    <input type="text" class="form-control" name="elementary_year">
+                    <input type="text" class="form-control" name="elementary_year" value="<?php if (isset($_GET['student'])){ echo $row['elementary_year']; } ?>">
                 </div>
 
                 <div class="grid-item">
     <label class="form-label">Email</label>
-    <input type="email" class="form-control" name="email" id="email" required>
+    <input type="email" class="form-control" name="email" id="email" required value="<?php if (isset($_GET['student'])){ echo $row['email']; } ?>">
     <small id="emailError" style="color: red; display: none;">Please enter a valid Gmail address.</small>
 </div>
 
@@ -226,7 +327,7 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 </script>
                 <div class="grid-item">
                     <label class="form-label">LRN Number<span class="required">*</span></label>
-                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" title="LRN must be exactly 12 digits" maxlength="12" required>
+                    <input type="text" class="form-control" name="lrn_number" id="lrn_number" title="LRN must be exactly 12 digits" maxlength="12" value="<?php if (isset($_GET['student'])){ echo $row['lrn_number']; } ?>" required>
                 </div>
                 <script>document.getElementById('lrn_number').addEventListener('input', function (e) {
     this.value = this.value.replace(/\D/g, '').slice(0, 12); // Allows only numbers, max 12 digits
@@ -283,11 +384,11 @@ while ($section = mysqli_fetch_assoc($section_query)) {
             <div class="grid-container grid-container--fill">
                 <div class="grid-item">
                     <label class="form-label">Username:</label>
-                    <input type="text" class="form-control" id="username" name="username" readonly>
+                    <input type="text" class="form-control" id="username" name="username"  value="<?php if (isset($_GET['student'])){ echo $row['username']; } ?>" readonly>
                 </div>
                 <div class="grid-item">
                     <label class="form-label">Password:</label>
-                    <input type="text" class="form-control" id="password" name="password" password="password" readonly>
+                    <input type="text" class="form-control" id="password" name="password" password="password"  value="<?php if (isset($_GET['student'])){ echo $row['password']; } ?>" readonly>
                 </div>
             </div>
 
@@ -299,24 +400,35 @@ while ($section = mysqli_fetch_assoc($section_query)) {
 
         <script>
             // Auto-generate username based on email
-            document.getElementById('lrn_number').addEventListener('input', function() {
-                const emailValue = this.value;
-                document.getElementById('username').value = emailValue; // Set username as the email
-            });
+            document.addEventListener('DOMContentLoaded', function () {
+    const lrnInput = document.getElementById('lrn_number');
+    const usernameInput = document.getElementById('username');
+    const firstNameInput = document.getElementById('first_name');
+    const lastNameInput = document.getElementById('last_name');
+    const passwordInput = document.getElementById('password');
 
-            // Auto-generate password based on full name (first + last name) and add 3 random digits
-            document.getElementById('first_name').addEventListener('input', generatePassword);
-            document.getElementById('last_name').addEventListener('input', generatePassword);
+    function updateUsername() {
+        if (!usernameInput.value) {
+            usernameInput.value = lrnInput.value;
+        }
+    }
 
-            function generatePassword() {
-                const firstName = document.getElementById('first_name').value;
-                const lastName = document.getElementById('last_name').value;
-                if (firstName && lastName) {
-                    const randomNumbers = Math.floor(100 + Math.random() * 900); // Generate 3 random digits
-                    const password = firstName.toLowerCase() + lastName.toLowerCase() + randomNumbers;
-                    document.getElementById('password').value = password; // Set password as first + last name + 3 random digits
-                }
-            }
+    function generatePassword() {
+        const firstName = firstNameInput.value.trim();
+        const lastName = lastNameInput.value.trim();
+        if (firstName && lastName && !passwordInput.value) {
+            const randomNumbers = Math.floor(100 + Math.random() * 900); // Generate 3 random digits
+            passwordInput.value = firstName.toLowerCase() + lastName.toLowerCase() + randomNumbers;
+        }
+    }
+
+    // Run check once after a short delay
+    // const interval = setInterval(() => {
+    //     updateUsername();
+    //     generatePassword();
+    //     clearInterval(interval); // Stop interval after first execution
+    // }, 500); // Adjust delay as needed
+});
 
             // Function to filter and update sections based on grade level
     document.getElementById('grade_level').addEventListener('change', function() {
@@ -336,7 +448,9 @@ while ($section = mysqli_fetch_assoc($section_query)) {
             }
         });
     });
-
+    function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
         </script>
     </div>
 </body>

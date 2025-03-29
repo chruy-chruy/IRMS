@@ -3,6 +3,7 @@ include "../../db_conn.php";
 
 // Get the student ID from the URL
 $id = $_GET['id'];
+$grade = $_GET['grade'];
 
 // Fetch student data from the database
 $query = mysqli_query($conn, "SELECT * FROM student WHERE id = '$id'");
@@ -36,7 +37,7 @@ $row = mysqli_fetch_array($query);
         <div class="header">
             <h1>Edit <?php echo $page; ?></h1>
         </div>
-        <a href="./" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
+        <a href="student.php?grade=<?php echo $grade; ?>" class="back"><i class="fa fa-arrow-circle-o-left fa-2x"></i></a>
         <script>
             
         </script>

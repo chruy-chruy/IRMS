@@ -44,6 +44,53 @@ $squery =  mysqli_query($conn, "SELECT * FROM student WHERE first_name = '$first
 $check = mysqli_num_rows($squery) > 0;
 
 if (!$check) {
+
+    if (isset($_GET['student'])){ 
+        $student_id = $_GET['student'];
+        // Update the student data in the database
+    $query = "UPDATE student SET
+    first_name = '$first_name',
+    middle_name = '$middle_name',
+    last_name = '$last_name',
+    suffix = '$suffix',
+    gender = '$gender',
+    age = '$age',
+    address = '$address',
+    contact_number = '$contact_number',
+    birthdate = '$birthdate',
+    birthplace = '$birthplace',
+    nationality = '$nationality',
+    religion = '$religion',
+    father_name = '$father_name',
+    father_occupation = '$father_occupation',
+    father_contact = '$father_contact',
+    mother_name = '$mother_name',
+    mother_occupation = '$mother_occupation',
+    mother_contact = '$mother_contact',
+    guardian_name = '$guardian_name',
+    guardian_contact = '$guardian_contact',
+    elementary_name = '$elementary_name',
+    elementary_address = '$elementary_address',
+    elementary_year = '$elementary_year',
+    email = '$email',
+    grade_level = '$grade_level',
+    lrn_number = '$lrn_number',
+    transferee = '$transferee',
+    username = '$username',
+    `password` = '$password'
+    WHERE id = '$student_id'";
+
+if (mysqli_query($conn, $query)) {
+    $message = "Student information updated successfully.";
+    header("location:student.php?grade=$grade_level&message=Success! Changes has been saved successfully.");
+} else {
+    $message = "Error updating record: " . mysqli_error($conn);
+    header("Location: add.php?grade=$grade_level&student=$student_id&message=" . urlencode($message));
+}
+
+    }
+    else{
+
     // Insert the new student record
     $sql2 = "INSERT INTO `student` (
         `first_name`, `middle_name`, `last_name`, `gender`, `address`, `contact_number`, 
@@ -68,10 +115,11 @@ if (!$check) {
     )";
 
     if (mysqli_query($conn, $sql2)) {
-        header("Location: index.php?message=Success! New student has been saved successfully.");
+        header("Location: student.php?grade=$grade_level&message=Success! New student has been saved successfully.");
     } else {
         header("Location: add.php?error=Error! Failed to save student. Please try again.");
     }
+}
 } else {
     header("Location: add.php?error=Error! Student already exists.");
 }

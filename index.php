@@ -24,13 +24,13 @@ if (isset($_SESSION['id'])) {
         }
 
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('assets/img/school2.jpg') no-repeat center center fixed;
-            background-size: cover;
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, maroon 20%, white 100%);
+}
+
 
         .container {
             width: 100%;

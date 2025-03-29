@@ -14,9 +14,9 @@ if (!isset($_GET['section'])) {
 } 
 $section = $_GET['section'];
 $sy = $_GET['sy'];
-$grade = $_GET['grade'];
+$grade_level = $_GET['grade'];
 if (!isset($_GET['quarter'])) {
-    header("Location: ./section.php?section=$section&quarter=1&sy=$sy&grade=$grade");
+    header("Location: ./section.php?section=$section&quarter=1&sy=$sy&grade=$grade_level");
   } 
   $quarter = $_GET['quarter'];
 
@@ -243,7 +243,7 @@ while ($row = mysqli_fetch_array($squery)) {
                         <span class="name"><?php echo $row['first_name'] . " " . $row['last_name']; ?></span>
                         </div>
                     </td>
-                    <td><?php echo $row['grade_level']; ?></td>
+                    <td><?php echo $grade_level;?></td>
                     <td><?php echo $row['lrn_number']; ?></td>
                     <td>
                         <a clash="view" href="grade.php?student_id=<?php echo $row['id']; ?>">

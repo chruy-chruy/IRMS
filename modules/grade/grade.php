@@ -161,7 +161,7 @@ while ($row = $result->fetch_assoc()) {
             $color =  ($final_grade >= 75) ? "" : "red";
             ?>
             
-            <td><?php echo $final_grade; ?></td>
+            <td  style="color:<?php echo $color;?>"><?php echo $final_grade; ?></td>
             <td style="color:<?php echo $color;?>"><?php echo $remarks; ?></td>
         </tr>
         <?php } ?>
@@ -169,10 +169,11 @@ while ($row = $result->fetch_assoc()) {
         <!-- General Average Row -->
         <?php 
         $general_average = ($subject_count > 0) ? round($total_final_grade / $subject_count) : 0;
+        $color =  ($general_average >= 75) ? "" : "red";
         ?>
         <tr>
             <td colspan="5" style="text-align: right; font-weight: bold;">General Average:</td>
-            <td style="font-weight: bold;"><?php echo $general_average; ?></td>
+            <td style="font-weight: bold; color:<?php echo $color;?>"><?php echo $general_average; ?></td>
             <td style="font-weight: bold; color:<?php echo ($general_average >= 75) ? "" : "red"; ?> "><?php echo ($general_average >= 75) ? "Passed" : "Failed"; ?></td>
         </tr>
     </tbody>
